@@ -552,6 +552,55 @@ html, body {
 .warn-icon { font-size: 18px; flex-shrink: 0; }
 .warn-body { font-size: 12px; color: var(--warning); line-height: 1.6; }
 
+/* ── VIDEO CARD ── */
+.video-card {
+  background: white; border-radius: var(--r-sm);
+  border: 1px solid rgba(107,79,160,0.1);
+  overflow: hidden; margin-bottom: 12px;
+  cursor: pointer; text-decoration: none; display: block;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.video-card:active { transform: scale(0.98); }
+.video-thumb {
+  width: 100%; aspect-ratio: 16/9;
+  position: relative; overflow: hidden;
+  background: #0f0f0f;
+}
+.video-thumb img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.video-play-btn {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.25);
+}
+.video-play-circle {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: rgba(255,0,0,0.9);
+  display: flex; align-items: center; justify-content: center;
+}
+.video-play-circle::after {
+  content: '';
+  border-style: solid;
+  border-width: 10px 0 10px 18px;
+  border-color: transparent transparent transparent white;
+  margin-left: 4px;
+}
+.video-card-footer {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px;
+}
+.video-card-footer-icon {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--purple); color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; flex-shrink: 0;
+}
+.video-card-footer-text { flex: 1; }
+.video-card-title { font-size: 12px; font-weight: 500; color: var(--text); }
+.video-card-sub { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
+.video-card-arrow { font-size: 16px; color: var(--text-muted); }
+
 .panic-btn {
   width: 100%; background: var(--danger);
   color: white; border: none; border-radius: 20px;
@@ -910,7 +959,7 @@ html, body {
       <em>Белослава Славова</em>
     </div>
     <div class="intro-date">7 май 2026 · 21:49 · Телец ♉</div>
-    <p class="intro-tagline">Всяко дишане е чудо.<br>Вие не сте сами.</p>
+    <p class="intro-tagline">Вашият личен наръчник<br>за първите 30 дни с Белослава.</p>
     <div class="intro-actions">
       <button class="btn-intro-primary" onclick="nav('home')">✨ &nbsp;Започни пътешествието</button>
       <button class="btn-intro-ghost" onclick="nav('guide')">📖 &nbsp;Наръчник за родители</button>
@@ -1291,28 +1340,28 @@ html, body {
           <div class="house-num">I</div>
           <div class="house-body">
             <div class="house-title">Асцендент Стрелец — Аз и облик</div>
-            <div class="house-desc">Как светът я вижда: открита, ентусиазирана, с широка усмивка. Юпитер като управител й дава природна харизма и оптимизъм.</div>
+            <div class="house-desc">Как светът я вижда: открита, усмихната, пълна с енергия. Ще влиза в стаята и хората ще я забелязват — не защото е шумна, а защото излъчва топлота.</div>
           </div>
         </div>
         <div class="house-item">
           <div class="house-num">II</div>
           <div class="house-body">
             <div class="house-title">Козирог — Ресурси и ценности</div>
-            <div class="house-desc">Слънцето и Плутон тук — силна воля за материална сигурност. Ще изгражда стойности чрез дисциплина и дълбока трансформация.</div>
+            <div class="house-desc">Ще изгражда сигурност чрез труд и дисциплина. Ценностите й ще са дълбоки и устойчиви — не е типът да следва тълпата.</div>
           </div>
         </div>
         <div class="house-item">
           <div class="house-num">VIII</div>
           <div class="house-body">
             <div class="house-title">Рак — Трансформация и мистерия</div>
-            <div class="house-desc">Венера и Юпитер тук — дълбока емоционална интелигентност. Способност за дълбока, трансформираща любов. Интуиция на ниво дар.</div>
+            <div class="house-desc">Дълбока емоционална интелигентност — ще усеща хората. Ще обича истински и дълбоко, не повърхностно. Интуицията й ще е силна.</div>
           </div>
         </div>
         <div class="house-item">
           <div class="house-num">IX</div>
           <div class="house-body">
             <div class="house-title">Дева — Философия и пътувания</div>
-            <div class="house-desc">Луната тук — емоционалното й развитие идва чрез учене, пътуване и философия. Ще обича да изследва света с ума си.</div>
+            <div class="house-desc">Ще обича да учи, да пътува, да задава въпроси. Умът й ще е любопитен — дайте й книги, места, хора с различни истории.</div>
           </div>
         </div>
       </div>
@@ -1324,25 +1373,25 @@ html, body {
         <div class="astro-icon" style="background:linear-gradient(135deg,#C9A96E,#8B6840)">△</div>
         <div>
           <div class="astro-section-title">Ключови аспекти</div>
-          <div class="astro-section-sub">Планетарните разговори в картата</div>
+          <div class="astro-section-sub">Планетарните връзки в картата</div>
         </div>
       </div>
       <div class="astro-card">
         <div class="aspect-row">
           <div class="aspect-badge trine">△ Тригон</div>
-          <div class="aspect-desc"><strong>☉ Слънце △ ☽ Луна</strong> — Телец и Дева са и двата земни знака. Вътрешна хармония — чувствата и волята й ще работят заедно. Рядко срещана вътрешна цялост.</div>
+          <div class="aspect-desc"><strong>Слънце + Луна в хармония</strong> — Чувствата и волята й ще работят заедно, не срещу себе си. Рядка вътрешна устойчивост — ще знае кой е и какво иска.</div>
         </div>
         <div class="aspect-row">
           <div class="aspect-badge sextile">✶ Секстил</div>
-          <div class="aspect-desc"><strong>♀ Венера ✶ ♃ Юпитер</strong> — Обожаван аспект! Природно щастие, привличане на любов и изобилие. Хората около нея ще усещат топлота.</div>
+          <div class="aspect-desc"><strong>Венера + Юпитер</strong> — Природна топлота и щедрост. Хората около нея ще се чувстват добре. Ще привлича добри приятелства и обич лесно.</div>
         </div>
         <div class="aspect-row">
           <div class="aspect-badge square">□ Квадрат</div>
-          <div class="aspect-desc"><strong>♄ Сатурн □ ☉ Слънце</strong> — Предизвикателство: необходимост да докаже себе си. Дава дисциплина, амбиция и дълбочина след преодоляване.</div>
+          <div class="aspect-desc"><strong>Сатурн + Слънце</strong> — Ще трябва да се доказва и ще го прави. Дава амбиция и дисциплина. Трудностите ще я правят по-силна, не по-слаба.</div>
         </div>
         <div class="aspect-row">
           <div class="aspect-badge trine">△ Тригон</div>
-          <div class="aspect-desc"><strong>♃ Юпитер △ ASC</strong> — Юпитер благославя асцендента. Тя ще привлича правилните хора, ситуации и възможности естествено.</div>
+          <div class="aspect-desc"><strong>Юпитер + Асцендент</strong> — Ще привлича правилните хора и възможности без да ги търси. Удачата ще я следва — особено когато е истинска себе си.</div>
         </div>
       </div>
     </div>
@@ -1353,13 +1402,13 @@ html, body {
         <div class="astro-icon" style="background:linear-gradient(135deg,#C4607A,#8B3050)">✦</div>
         <div>
           <div class="astro-section-title">Мисията на Белослава</div>
-          <div class="astro-section-sub">Северен възел — душевният path</div>
+          <div class="astro-section-sub">Северен възел — пътят на душата</div>
         </div>
       </div>
       <div class="astro-card">
         <div class="destiny-wrap">
-          <div class="destiny-text">Северният възел е в <strong>Дева</strong> — Белослава е тук, за да <strong>служи, анализира и лекува</strong>. Нейният path е чрез прецизност, практическа мъдрост и помощ на другите. Ще намери смисъл там, където внася ред в хаоса и лекува с детайл и любов.</div>
-          <div class="destiny-quote">"Родена е с мисия да направи света малко по-добър, малко по-хармоничен — с търпение и любов."</div>
+          <div class="destiny-text">Северният възел е в <strong>Дева</strong> — Белослава е тук, за да <strong>помага, анализира и лекува</strong>. Ще намери смисъл в детайлите, в реда, в практическата помощ за другите. Не е типът за шум и слава — нейната сила е в тихото, задълбочено правене на нещата добре.</div>
+          <div class="destiny-quote">"Родена е с мисия да направи света малко по-добър — с търпение, внимание и любов."</div>
         </div>
       </div>
     </div>
@@ -1455,36 +1504,36 @@ const bgNames = ['яну','фев','мар','апр','май','юни','юли',
 
 const DAY_DATA = {
   week: {
-    1:  { label:'Седмица 1', tip:'Адаптация', text:'Белослава се адаптира към света. Фокус: топлина, кожен контакт, кърмене по желание. Жълтеница е нормална — следете цвета.' },
-    2:  { label:'Седмица 1', tip:'Адаптация', text:'Пъпчето започва да изсъхва. Кожата може да се люспи — нормално е. Режимът на хранене трябва да се установява.' },
-    3:  { label:'Седмица 1', tip:'Адаптация', text:'Третият ден е критичен за кърменето — млякото идва. Гърдите може да наболеят. Продължавайте да кърмите!' },
-    4:  { label:'Седмица 1', tip:'Адаптация', text:'Бебето може да загуби до 10% от теглото — нормално е. Следващите дни ще започне да наддава.' },
-    5:  { label:'Седмица 1', tip:'Адаптация', text:'Педиатърът трябва да провери теглото. Жълтеницата трябва да намалява. Очен контакт вече е възможен.' },
-    6:  { label:'Седмица 1', tip:'Адаптация', text:'Циркадният ритъм все още не е развит — нощното будуване е нормално. Спете когато спи бебето.' },
-    7:  { label:'Седмица 1', tip:'Адаптация', text:'Първата седмица е зад вас! Вие се справяте чудесно. Пъпчето трябва да е паднало или близо до падане.' },
-    8:  { label:'Седмица 2', tip:'Будност', text:'Белослава вече е по-будна в някои моменти. Говорете й, пейте — тя чува и разпознава гласа ви.' },
-    9:  { label:'Седмица 2', tip:'Будност', text:'Може да забележите "социална усмивка" скоро. Зрението й е около 20-25 см — точно до лицето ви при кърмене.' },
-    10: { label:'Седмица 2', tip:'Будност', text:'Теглото трябва вече да е над раждането. Хранене: 8-12 пъти на ден е нормата.' },
-    11: { label:'Седмица 2', tip:'Будност', text:'Може да има период на по-голямо плачене следобяд — "вечерна колика". Носенето помага.' },
-    12: { label:'Седмица 2', tip:'Будност', text:'Коремните газове са чести. Масаж по часовникова стрелка и велосипедни движения на краката помагат.' },
-    13: { label:'Седмица 2', tip:'Будност', text:'Двете седмици — важна точка. Ако имате трудности с кърменето, потърсете лактационен консултант.' },
-    14: { label:'Седмица 2', tip:'Будност', text:'Две седмици! Устойчивостта ви е невероятна. Белослава вече реагира по-ясно на вашия глас.' },
-    15: { label:'Седмица 3', tip:'Осъзнаване', text:'Белослава започва да "фокусира" поглед. Черно-бели картинки я привличат. Покажете й контрастни форми.' },
-    16: { label:'Седмица 3', tip:'Осъзнаване', text:'Може да се появи първата истинска социална усмивка. Неочаквано и разтопяващо сърцето.' },
-    17: { label:'Седмица 3', tip:'Осъзнаване', text:'Нощните сесии може да намалеят леко. Или не. И двете са нормални — бъдете търпеливи.' },
-    18: { label:'Седмица 3', tip:'Осъзнаване', text:'Bebe може да реагира на музика — успокояваща или оживяваща. Открийте какво й харесва.' },
-    19: { label:'Седмица 3', tip:'Осъзнаване', text:'Гласовете й стават по-разнообразни. Освен плач — може да чуете малки звукове, "гу-гу".' },
-    20: { label:'Седмица 3', tip:'Осъзнаване', text:'Три седмици! Тялото й укрепва. При "корем-времето" (под наблюдение!) тя вдига главата за секунди.' },
-    21: { label:'Седмица 3', tip:'Осъзнаване', text:'21 дни — бебето вече е оформило разпознаваемите си черти. Снимайте — расте невероятно бързо!' },
-    22: { label:'Седмица 4', tip:'Развитие', text:'Последната седмица! Белослава вече е доста различна от новороденото на ден 1.' },
-    23: { label:'Седмица 4', tip:'Развитие', text:'Очният контакт е по-устойчив и осъзнат. Тя вас търси с поглед — невероятно.' },
-    24: { label:'Седмица 4', tip:'Развитие', text:'Малки "разговори" — тя издава звук, вие повтаряте, тя отговаря. Първото й "dialogue".' },
-    25: { label:'Седмица 4', tip:'Развитие', text:'Сънят може да се удължи малко — 3-4 часа на блок нощем. Ако се случи, насладете се!' },
-    26: { label:'Седмица 4', tip:'Развитие', text:'Ръцете й са по-активни — ще се опитва да "хваща" нещата в зрителното поле.' },
-    27: { label:'Седмица 4', tip:'Развитие', text:'Скок в развитието около ден 26-28 е описан — бебето може да е по-нервно. Това е знак за растеж!' },
-    28: { label:'Седмица 4', tip:'Развитие', text:'Четири седмици! Официално 1 месец наближава. Вие преминахте невероятно пътешествие.' },
-    29: { label:'Месец 1', tip:'Един месец!', text:'Почти един месец! Белослава следи лица, реагира на глас, прави "гу" звуци и понякога се усмихва.' },
-    30: { label:'Месец 1', tip:'🎉 30 Дни!', text:'30 ДНИ! Честито — преминахте най-интензивните 30 дни от живота си като родители. Вие сте герои. Белослава е щастлива, защото вие сте там.' }
+    1:  { label:'Седмица 1', tip:'Първи ден — дишайте!', text:'Топлина и кожен контакт — това е всичко. Кърмете при всяко търсене. Жълтеникав тен = нормално. Спете когато тя спи.' },
+    2:  { label:'Седмица 1', tip:'Пъпчето и кожата', text:'Пъпчето започва да изсъхва — не мокрете, не покривайте. Кожата се люспи — нормално е, не мажете с нищо. Хранете на 2–3 часа.' },
+    3:  { label:'Седмица 1', tip:'Млякото идва!', text:'Ден 3 = млякото се появява. Гърдите набъбват и болят — нормално. Продължавайте да кърмите колкото се може повече. Ако не може — помолете за помощ от акушерката.' },
+    4:  { label:'Седмица 1', tip:'Теглото намалява', text:'Бебето губи тегло — до 10% е ок. Ще започне да наддава от ден 5–6. Знак за добро хранене: 6+ мокри памперса на ден.' },
+    5:  { label:'Седмица 1', tip:'Педиатър днес!', text:'Задължителен преглед при педиатъра — проверка на тегло и жълтеница. Пригответе въпросите си. Жълтеницата трябва да намалява, не да расте.' },
+    6:  { label:'Седмица 1', tip:'Нощта е трудна', text:'Тя не знае кога е ден и нощ — и нормално! Спете на смени с партньора. Не гледайте часовника. Нощта с новородено е просто такава.' },
+    7:  { label:'Седмица 1', tip:'Първата седмица — done!', text:'7 дни зад вас — браво! Пъпчето трябва да е почти паднало. Забелязвате ли кога е гладна, преди да е заплакала? Вие вече я познавате.' },
+    8:  { label:'Седмица 2', tip:'Тя ви чува', text:'Говорете й — тя разпознава гласа ви! Пейте, коментирайте какво правите. Не е нужно да е перфектно, важно е да чуе вас.' },
+    9:  { label:'Седмица 2', tip:'Зрението й', text:'Вижда на ~25 см — точно колкото е лицето ви при кърмене. Гледайте я в очите. Черно-бели контрасти я привличат повече от цветни играчки.' },
+    10: { label:'Седмица 2', tip:'Теглото расте', text:'Теглото трябва да е над раждането вече. Ако не е — педиатър. Нормата: 8–12 хранения на ден. Да, и нощем. Да, за дълго.' },
+    11: { label:'Седмица 2', tip:'Вечерният плач', text:'Следобед и вечер = по-нервно бебе. Т.нар. "вечерна колика" е нормална. Помага: носене близо до тялото, тихо "шшш" до ухото, леко поклащане.' },
+    12: { label:'Седмица 2', tip:'Газовете боят', text:'Масаж по корема — с пръсти, по часовникова стрелка, нежно. После "велосипед" с краката. Ако е много нервна след хранене — оригнете я по-дълго преди да я слагате.' },
+    13: { label:'Седмица 2', tip:'Кърменето е трудно?', text:'Ако боли, ако тя не се нахранва, ако гърдите са твърди — потърсете лактационен консултант. Не е провал. Те знаят неща, които никой друг не ви е казал.' },
+    14: { label:'Седмица 2', tip:'2 седмици — ура!', text:'Две седмици! Вече забелязвате разлика в плача й — различните видове звучат различно. Продължавайте.' },
+    15: { label:'Седмица 3', tip:'Вижда по-добре', text:'Започва да следи движещи предмети с очи. Покажете й лицето си, черно-бяла картинка, или просто мърдайте пръста бавно. Ще я видите да следи.' },
+    16: { label:'Седмица 3', tip:'Първата усмивка?', text:'Около ден 16–21 може да се появи първата истинска усмивка — не от газове. Ако я видите, ще знаете. Снимайте всичко.' },
+    17: { label:'Седмица 3', tip:'Нощта се подобрява (може би)', text:'Може нощният сън да се удължи малко. Или не. И двете са нормални. Не следвайте "графици" от интернет — следвайте нея.' },
+    18: { label:'Седмица 3', tip:'Музиката работи', text:'Пробвайте различна музика — бяла шума (феникс, прахосмукачка), тихи колиски, класика. Открийте какво я успокоява и го използвайте при нужда.' },
+    19: { label:'Седмица 3', tip:'Звуците й', text:'Освен плач ще чувате малки "ах", "гу", мъркане. Отговаряйте й — повторете звука. Така се учи да "говори".' },
+    20: { label:'Седмица 3', tip:'"Корем-времето"', text:'Слагайте я по корем на постелка (под надзор!) за 1–2 минути. Тя ще вдига главата. Укрепва врата и раменете. Ако плаче — спрете, утре пак.' },
+    21: { label:'Седмица 3', tip:'3 седмици!', text:'21 дни. Тя расте невероятно бързо. Снимайте дори в трудните моменти — след месец ще искате да ги имате.' },
+    22: { label:'Седмица 4', tip:'Последната седмица', text:'Белослава вече не е същото новородено. Забелязвате ли как ви следи с очи? Как реагира на гласа ви по-бързо?' },
+    23: { label:'Седмица 4', tip:'Очен контакт', text:'Гледа ви по-дълго и по-осъзнато. Търси лицата. Правете "игра на очи" — гледайте се, усмихвайте се, изчакайте реакцията й.' },
+    24: { label:'Седмица 4', tip:'Първият "разговор"', text:'Тя издава звук — вие повтаряте — тя отговаря. Изчакайте. Дайте й пространство да "отговори". Това е началото на речта.' },
+    25: { label:'Седмица 4', tip:'Нощта се оправя', text:'Може да спи 3–4 часа на блок. Ако стане — не се събуждайте веднага. Изчакайте 1 минута — понякога сама се успокоява и заспива.' },
+    26: { label:'Седмица 4', tip:'Ръцете й', text:'Ще забележите как опипва нещата с пръстите. Дайте й меки текстури да докосва. Вашият пръст е любимата й "играчка".' },
+    27: { label:'Седмица 4', tip:'Скок в развитието', text:'Дни 26–28 са известни с нервност. Тя расте бързо — и мозъкът й работи усилено. По-голям апетит, по-капризна. Нормално. Ще мине за 2–3 дни.' },
+    28: { label:'Седмица 4', tip:'Почти 1 месец!', text:'4 седмици зад вас. Помните ли как се чувствахте на ден 1? Вижте колко далеч сте стигнали — и двамата.' },
+    29: { label:'Месец 1', tip:'Почти там!', text:'Белослава следи лица, реагира на глас, прави звуци и се усмихва. Педиатърът ще направи преглед за 1 месец — пригответе въпроси.' },
+    30: { label:'Месец 1', tip:'🎉 30 Дни!', text:'30 дни! Направихте го. Без наръчник, без пауза, без почивни дни. Белослава расте и е щастлива — защото вие сте там.' }
   }
 };
 
@@ -1582,29 +1631,43 @@ const DETAILS = {
     title: 'Как се държи бебе',
     sub: 'Позиции, безопасност и DO/DON\'T',
     html: `
-      <div class="warn-banner"><div class="warn-icon">⚠️</div><div class="warn-body">Главата на Белослава изисква постоянна опора — шийните мускули не са развити.</div></div>
+      <div class="warn-banner"><div class="warn-icon">⚠️</div><div class="warn-body">Главата на Белослава трябва ВИНАГИ да е подпряна — шийните мускули са слаби. Дръжте и когато я прехвърляте от ръка на ръка.</div></div>
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=wFGr9axK8eQ','_blank')">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/wFGr9axK8eQ/hqdefault.jpg" alt="Как се държи бебе" onerror="this.style.display='none'">
+          <div class="video-play-btn"><div class="video-play-circle"></div></div>
+        </div>
+        <div class="video-card-footer">
+          <div class="video-card-footer-icon">▶</div>
+          <div class="video-card-footer-text">
+            <div class="video-card-title">Как се държи новородено бебе</div>
+            <div class="video-card-sub">Boston Children's Hospital · YouTube</div>
+          </div>
+          <div class="video-card-arrow">↗</div>
+        </div>
+      </div>
       <div class="step-card">
         <div class="step-num-badge">1</div>
-        <div class="step-card-title">Позиция "на рамото"</div>
+        <div class="step-card-title">На рамото</div>
         <div class="step-visual">🤱</div>
-        <div class="step-card-body">Нежно подпрете главата с ладон. Тялото е по диагонал — гърдите на бебето до вашите гърди. Другата ръка поддържа гърба и задника. Дишането е по-спокойно в тази позиция.</div>
+        <div class="step-card-body">Главата на рамото ви, ладонта подпира задника. Другата ръка е зад гърба. Лицето й е обърнато настрани. Добра позиция след хранене — помага за оригване.</div>
       </div>
       <div class="step-card">
         <div class="step-num-badge">2</div>
-        <div class="step-card-title">Позиция "в люлка"</div>
+        <div class="step-card-title">В люлка (хоризонтално)</div>
         <div class="step-visual">👶</div>
-        <div class="step-card-body">Лакътят ви е под главата, предмишницата поддържа гърба. Бебето лежи хоризонтално. Подходяща за хранене и приспиване.</div>
+        <div class="step-card-body">Главата в лакъта, предмишницата поддържа гърба. Бебето лежи хоризонтално. Подходяща за хранене и за гледане в очите. Можете да я поклащате леко.</div>
       </div>
       <div class="step-card">
         <div class="step-num-badge">3</div>
-        <div class="step-card-title">Позиция "лице надолу"</div>
-        <div class="step-card-body">Само при газове и колики — главата е настрани, НИКОГА лице надолу. Бебето лежи по корем на предмишницата ви. Задължителен надзор.</div>
+        <div class="step-card-title">По корем на ръката (за газове)</div>
+        <div class="step-card-body">Главата в ямката на лакъта, тялото по цялата предмишница, краката по двете страни на китката. Тя гледа надолу — помага при газове и колики. САМО при надзор, НИКОГА за сън.</div>
       </div>
       <div class="step-card">
-        <div class="step-card-title">DO / DON'T</div>
+        <div class="step-card-title">✅ / ❌ За запомняне</div>
         <div class="do-dont">
-          <div class="do-box"><div class="do-lbl">✅ Правилно</div><div class="do-txt">Поддържайте главата постоянно. Движете се бавно и плавно. Говорете нежно.</div></div>
-          <div class="dont-box"><div class="dont-lbl">❌ Грешно</div><div class="dont-txt">Никога не разтърсвайте. Не оставяйте без опора на главата. Без рязки движения.</div></div>
+          <div class="do-box"><div class="do-lbl">✅ Правилно</div><div class="do-txt">Поддържайте главата ВИНАГИ. Движете се бавно. Говорете нежно — тя чувства тона ви.</div></div>
+          <div class="dont-box"><div class="dont-lbl">❌ Никога</div><div class="dont-txt">Не разтърсвайте (дори при игра). Не оставяйте главата да увисне. Без рязко повдигане.</div></div>
         </div>
       </div>
     `
@@ -1613,11 +1676,25 @@ const DETAILS = {
     title: 'Хранене на Белослава',
     sub: 'Кърмене, шише, оригване',
     html: `
-      <div class="step-card"><div class="step-num-badge">1</div><div class="step-card-title">Кога да храните</div><div class="step-card-body">На всеки 2–3 часа, или при сигнали на глад: търсене, смучене на пръсти, завъртване на главата. Не чакайте плач — той е последен сигнал за глад.</div></div>
-      <div class="step-card"><div class="step-num-badge">2</div><div class="step-card-title">Правилна позиция при кърмене</div><div class="step-visual">🤱</div><div class="step-card-body">Коремът на бебето към вашия корем. Цялото тяло обърнато към вас. Главата леко назад. Устата трябва да обхване цялото зърно, не само върха — иначе боли и бебето не се нахранва добре.</div></div>
-      <div class="step-card"><div class="step-num-badge">3</div><div class="step-card-title">Как се дава шише</div><div class="step-visual">🍼</div><div class="step-card-body">Шишето под ъгъл ~45°. Зърното ВИНАГИ пълно с мляко — без въздух. Правете пауза на всеки 60 мл. Млякото трябва да е на температурата на тялото (37°C).</div></div>
-      <div class="step-card"><div class="step-num-badge">4</div><div class="step-card-title">Оригване — задължително</div><div class="step-card-body">След всяко хранене изправете бебето вертикално на рамото. Нежно потупайте гърба с кръгови движения. Изчакайте 1–2 минути. Нормално е малко мляко да се върне.</div></div>
-      <div class="warn-banner"><div class="warn-icon">🚨</div><div class="warn-body">Ако бебето не се е нахранило добре 3 пъти подред или има признаци на жълтеница — обадете се на педиатъра веднага.</div></div>
+      <div class="step-card"><div class="step-num-badge">1</div><div class="step-card-title">Кога да храните</div><div class="step-card-body">На всеки 2–3 часа, или при ранни сигнали на глад: търсене с уста, смучене на пръсти, завъртване на глава. <strong>Не чакайте плача</strong> — той е последният сигнал. Хранете ~8–12 пъти на ден.</div></div>
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=S5RijIXcHlk','_blank')">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/S5RijIXcHlk/hqdefault.jpg" alt="Кърмене" onerror="this.style.display='none'">
+          <div class="video-play-btn"><div class="video-play-circle"></div></div>
+        </div>
+        <div class="video-card-footer">
+          <div class="video-card-footer-icon">▶</div>
+          <div class="video-card-footer-text">
+            <div class="video-card-title">Как се кърми бебе — стъпка по стъпка</div>
+            <div class="video-card-sub">Nemours KidsHealth · YouTube</div>
+          </div>
+          <div class="video-card-arrow">↗</div>
+        </div>
+      </div>
+      <div class="step-card"><div class="step-num-badge">2</div><div class="step-card-title">Правилна позиция при кърмене</div><div class="step-visual">🤱</div><div class="step-card-body">Коремът й към вашия корем. Цялото тяло обърнато към вас — не само главата. Устата трябва да обхване цялото зърно, не само върха. Ако боли — значи позицията не е правилна. Пуснете и пробвайте отново.</div></div>
+      <div class="step-card"><div class="step-num-badge">3</div><div class="step-card-title">Шише — как се дава правилно</div><div class="step-visual">🍼</div><div class="step-card-body">Шишето под ~45°. Зърното ВИНАГИ пълно с мляко — без въздух вътре. Пауза всеки 60 мл. Температура: 37°C (капнете на китката — не трябва да гори). Не карайте я да изпие до дъно ако не иска.</div></div>
+      <div class="step-card"><div class="step-num-badge">4</div><div class="step-card-title">Оригване — не пропускайте!</div><div class="step-card-body">След всяко хранене — изправете я вертикално на рамото. Нежно потупвайте гърба с кръгови движения. Изчакайте поне 1–2 минути. Ако е нервна след хранене — оригнете я преди да я слагате. Малко мляко може да се върне — нормално.</div></div>
+      <div class="warn-banner"><div class="warn-icon">🚨</div><div class="warn-body">Ако не се е нахранила добре 3 пъти подред, или имате съмнение за жълтеница — обадете се на педиатъра веднага.</div></div>
     `
   },
   pampers: {
@@ -1625,6 +1702,20 @@ const DETAILS = {
     sub: 'Стъпка по стъпка с пълна хигиена',
     html: `
       <div class="step-card"><div class="step-num-badge">1</div><div class="step-card-title">Подготовка</div><div class="step-card-body">Пригответе ПРЕДИ да сложите бебето: чист памперс, мокри кърпи (без алкохол, без аромат), крем за попче. <strong>Измийте ръце!</strong> Никога не оставяйте бебето без надзор на масичката.</div></div>
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=MN402tbByR0','_blank')">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/MN402tbByR0/hqdefault.jpg" alt="Смяна на памперс" onerror="this.style.display='none'">
+          <div class="video-play-btn"><div class="video-play-circle"></div></div>
+        </div>
+        <div class="video-card-footer">
+          <div class="video-card-footer-icon">▶</div>
+          <div class="video-card-footer-text">
+            <div class="video-card-title">Смяна на памперс — пълен наръчник</div>
+            <div class="video-card-sub">YouTube · 2026</div>
+          </div>
+          <div class="video-card-arrow">↗</div>
+        </div>
+      </div>
       <div class="step-card"><div class="step-num-badge">2</div><div class="step-card-title">Сваляне на стария памперс</div><div class="step-visual">👶</div><div class="step-card-body">Отворете лепенките. Хванете двете глезени с едната ръка и повдигнете леко задника. Сгънете стария памперс навътре (замърсената страна вътре) и го извадете.</div></div>
       <div class="step-card"><div class="step-num-badge">3</div><div class="step-card-title">Почистване</div><div class="step-card-body">🩷 Момичета: ВИНАГИ отпред назад! Почистете всички гънки. Не е нужно да почиствате вътре.<br><br>💙 Момчета: покрийте пениса по време на почистване (може да "изненада"). Почистете под скротума.</div></div>
       <div class="step-card"><div class="step-num-badge">4</div><div class="step-card-title">Поставяне на нов памперс</div><div class="step-card-body">Пъхнете задната (по-широка) част под попчето. Предната минава между краката нагоре. Лепенките трябва да са симетрични. Тест: трябва да влизат 2 пръста отстрани — нито много стегнат, нито хлабав.</div></div>
@@ -1639,6 +1730,20 @@ const DETAILS = {
     sub: 'Безопасна баня стъпка по стъпка',
     html: `
       <div class="warn-banner"><div class="warn-icon">🌡️</div><div class="warn-body">Температура на водата: точно 37°C. Проверявайте с лакъта — не с ръка. Температура в стаята: поне 24°C.</div></div>
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=907EhHuntd4','_blank')">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/907EhHuntd4/hqdefault.jpg" alt="Баня на новородено" onerror="this.style.display='none'">
+          <div class="video-play-btn"><div class="video-play-circle"></div></div>
+        </div>
+        <div class="video-card-footer">
+          <div class="video-card-footer-icon">▶</div>
+          <div class="video-card-footer-text">
+            <div class="video-card-title">Първата баня на бебето — стъпка по стъпка</div>
+            <div class="video-card-sub">YouTube · 2025</div>
+          </div>
+          <div class="video-card-arrow">↗</div>
+        </div>
+      </div>
       <div class="step-card"><div class="step-num-badge">1</div><div class="step-card-title">Подготовка</div><div class="step-card-body">Напълнете ваничката с 8–10 см вода. Пригответе ПРЕДВАРИТЕЛНО: мека кърпа, гъба, шампоан без сълзи, чисти дрехи, чист памперс. Всичко трябва да е в ръка разстояние.</div></div>
       <div class="step-card"><div class="step-num-badge">2</div><div class="step-card-title">Как се държи Белослава</div><div class="step-visual">🛁</div><div class="step-card-body">Лявата ви ръка е под врата и главата — предмишницата поддържа целия гръб. Дясната ръка мие. Главата е ВИНАГИ над водата. Движете се бавно. Усмихвайте се — тя чувства вашето спокойствие!</div></div>
       <div class="step-card"><div class="step-num-badge">3</div><div class="step-card-title">Последователност на миене</div><div class="step-card-body">Лице (с чиста вода, без сапун) → шия и гърди → ръце → гърб → крака → интимни зони. Главата — последна. Не разтривайте — нежно потупайте.</div></div>
@@ -1653,87 +1758,101 @@ const DETAILS = {
   },
   sleep: {
     title: 'Безопасен сън',
-    sub: 'Позиция, среда, SIDS prevention',
+    sub: 'Позиция, среда, какво е нормално',
     html: `
-      <div class="warn-banner"><div class="warn-icon">⚠️</div><div class="warn-body">Безопасният сън е приоритет №1 за Белослава. Тези правила спасяват животи.</div></div>
-      <div class="step-card"><div class="step-num-badge">1</div><div class="step-card-title">Единствената правилна позиция</div><div class="step-visual">😴</div><div class="step-card-body">САМО на гръб — за всеки сън, включително дрямка. Никога на корем или настрани без постоянно наблюдение. Главата леко встрани (редувайте страните).</div></div>
-      <div class="step-card"><div class="step-num-badge">2</div><div class="step-card-title">Безопасна среда за сън</div><div class="step-card-body">✅ Твърд матрак с добре опнат чаршаф<br>✅ Спален чувал вместо одеяло<br>✅ Температура в стаята: 18–20°C<br><br>❌ Без възглавница<br>❌ Без одеяло или плюшени играчки в леглото<br>❌ Без бамперс (мека ограда около леглото)</div></div>
-      <div class="step-card"><div class="step-num-badge">3</div><div class="step-card-title">Заедно, но безопасно</div><div class="step-card-body">Препоръчително: детско легло до родителското за лесен достъп при кърмене. Никога в едно легло с родители ако има умора, алкохол, медикаменти или меки повърхности.</div></div>
+      <div class="warn-banner"><div class="warn-icon">⚠️</div><div class="warn-body">Позицията за сън е най-важното правило. Прочетете и го запомнете наизуст.</div></div>
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=hWo5sKFKkvo','_blank')">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/hWo5sKFKkvo/hqdefault.jpg" alt="Безопасен сън" onerror="this.style.display='none'">
+          <div class="video-play-btn"><div class="video-play-circle"></div></div>
+        </div>
+        <div class="video-card-footer">
+          <div class="video-card-footer-icon">▶</div>
+          <div class="video-card-footer-text">
+            <div class="video-card-title">Безопасен сън за новородено</div>
+            <div class="video-card-sub">Safe Sleep Guidelines · YouTube</div>
+          </div>
+          <div class="video-card-arrow">↗</div>
+        </div>
+      </div>
+      <div class="step-card"><div class="step-num-badge">1</div><div class="step-card-title">Позиция: само на гръб</div><div class="step-visual">😴</div><div class="step-card-body">САМО на гръб — за всеки сън, включително кратките дрямки. Никога на корем или настрани без постоянен надзор. Редувайте страните на главата при слагане — ляво, дясно, ляво.</div></div>
+      <div class="step-card"><div class="step-num-badge">2</div><div class="step-card-title">Леглото: минимализъм</div><div class="step-card-body">✅ Твърд матрак с добре опнат чаршаф<br>✅ Спален чувал вместо одеяло<br>✅ Температура в стаята: 18–20°C<br><br>❌ Без възглавница<br>❌ Без одеяло, плюши, играчки в леглото<br>❌ Без мека ограда (бампър) около леглото</div></div>
+      <div class="step-card"><div class="step-num-badge">3</div><div class="step-card-title">До вас, но безопасно</div><div class="step-card-body">Детско легло до родителското = идеален вариант. Лесен достъп при кърмене, но тя спи в своето легло. Никога в едно легло ако сте уморени, взимали сте лекарства, или матракът е мек.</div></div>
       <div class="step-card">
-        <div class="step-card-title">Нормален сън на Белослава</div>
-        <div class="step-card-body">Новородени спят 16–18 часа на ден в цикли от 45–60 мин. Будуването 8–12 пъти нощем е нормално. Не се притеснявайте — ще се нормализира!</div>
+        <div class="step-card-title">Какво е нормално за съня</div>
+        <div class="step-card-body">Новородено спи 16–18 часа на ден, но не наведнъж — на цикли от 45–60 мин. Будуване 8–12 пъти нощем е нормално. Не се опитвайте да "поправите" съня й в първия месец — просто оцелявайте.</div>
       </div>
     `
   },
   cry: {
-    title: 'Разпознаване на плач',
-    sub: 'Какво казва Белослава с плача си',
+    title: 'Защо плаче Белослава?',
+    sub: 'Разпознайте какво ви казва',
     html: `
       <div class="step-card">
-        <div class="step-card-title">4-те основни вида плач</div>
+        <div class="step-card-title">Проверете по този ред</div>
         <div class="cry-type">
           <div class="cry-emoji">🍼</div>
           <div class="cry-body">
-            <div class="cry-name">Гладен плач</div>
-            <div class="cry-desc">Ритмичен, повтарящ се: "нeh-нeh-нeh". Постепенно нараства. Предшества от търсене с уста, смучене на пръсти.</div>
+            <div class="cry-name">Гладна</div>
+            <div class="cry-desc">Ритмичен плач, нараства постепенно. Преди плача: търси с уста, смуче пръстите, върти главата. Последното хранене преди 2+ часа?</div>
             <span class="cry-tag">➡ Нахранете я</span>
           </div>
         </div>
         <div class="cry-type">
           <div class="cry-emoji">😴</div>
           <div class="cry-body">
-            <div class="cry-name">Сънен плач</div>
-            <div class="cry-desc">Стенане, хленчене. Бебето търка очи, прозява. Очите се затварят по средата на изречение.</div>
-            <span class="cry-tag">➡ Тъмно, тихо, повийте</span>
+            <div class="cry-name">Сънена</div>
+            <div class="cry-desc">Хленчене, стенане. Търка очи, прозява. Очите се затварят и отварят. Будна повече от 1–1.5 часа?</div>
+            <span class="cry-tag">➡ Тъмно, тихо, повийте я</span>
           </div>
         </div>
         <div class="cry-type">
           <div class="cry-emoji">😣</div>
           <div class="cry-body">
             <div class="cry-name">Дискомфорт</div>
-            <div class="cry-desc">Нервен, непостоянен. Проверете: мокър памперс, твърде топло/студено, неудобна позиция, газове.</div>
-            <span class="cry-tag">➡ Проверете и коригирайте</span>
+            <div class="cry-desc">Нервен, непостоянен плач. Проверете: мокър памперс? Твърде топло (докоснете тила — не ръцете)? Газове (корем напрегнат)?</div>
+            <span class="cry-tag">➡ Проверете и оправете</span>
           </div>
         </div>
         <div class="cry-type">
           <div class="cry-emoji">😖</div>
           <div class="cry-body">
-            <div class="cry-name">Болков плач</div>
-            <div class="cry-desc">Висок, остър, изненадващ. Бебето не се успокоява лесно. Може да задърже дъха.</div>
-            <span class="cry-tag">➡ Обадете се на лекар ако трае</span>
+            <div class="cry-name">Болка</div>
+            <div class="cry-desc">Висок, остър, изненадващ плач. Не спира с нищо. Може да задържи дъха за секунда. Не отшумява след 20–30 минути?</div>
+            <span class="cry-tag">➡ Обадете се на лекар</span>
           </div>
         </div>
       </div>
       <div class="step-card">
-        <div class="step-card-title">Метод "ПООТ"</div>
-        <div class="step-card-body">Проверявайте винаги в ред:<br>🍼 П — Плаче ли от глад?<br>👶 О — Окален ли е памперсът?<br>😴 О — Иска ли да спи?<br>🌡️ Т — Температурата добра ли е?</div>
+        <div class="step-card-title">Не се успокоява? Пробвайте по ред:</div>
+        <div class="step-card-body">1. Нахранете (дори да е яла наскоро)<br>2. Сменете памперса<br>3. Носете я изправена на рамото, тихо "шшш" до ухото<br>4. Завийте я плътно (повиване)<br>5. Разходете я в количката или колата<br><br>Ако нищо не помага и плачът е силен и необичаен — обадете се на педиатъра.</div>
       </div>
     `
   },
   guests: {
     title: 'Баби, дядовци и гости',
-    sub: 'Правила за близките на Белослава',
+    sub: 'Правила — ясни и без обяснения',
     html: `
       <div class="step-card">
         <div class="step-num-badge">🧼</div>
-        <div class="step-card-title">Хигиена — без изключение</div>
-        <div class="step-card-body">Всеки гост ТРЯБВА да измие ръце с сапун поне 20 секунди преди да докосне Белослава. Алкохолен гел 70%+ е алтернатива. Имунитетът на бебето е все още много слаб.</div>
+        <div class="step-card-title">Ръцете първо — без изключение</div>
+        <div class="step-card-body">Всеки гост мие ръце с сапун 20 секунди ПРЕДИ да докосне Белослава. Алкохолен гел 70%+ също върши работа. Не е обида — е защита. Имунитетът й е все още много слаб.</div>
       </div>
       <div class="step-card">
         <div class="do-dont">
-          <div class="do-box"><div class="do-lbl">✅ Разрешено</div><div class="do-txt">Прегръдки и гледане. Носене при измити ръце и опора на главата. Снимки и видео.</div></div>
-          <div class="dont-box"><div class="dont-lbl">❌ Забранено</div><div class="dont-txt">Целувки по лице и ръчички. Посещение при болест. Разтърсване. Силен шум.</div></div>
+          <div class="do-box"><div class="do-lbl">✅ Ок е</div><div class="do-txt">Прегръдки. Носене при измити ръце. Снимки и видео. Помощ в дома.</div></div>
+          <div class="dont-box"><div class="dont-lbl">❌ Не е ок</div><div class="dont-txt">Целувки по лицето и ръчичките. Посещение при болест. Разтърсване. Силен шум.</div></div>
         </div>
       </div>
       <div class="step-card">
         <div class="step-num-badge">🤒</div>
-        <div class="step-card-title">Кога НЕ се посещава</div>
-        <div class="step-card-body">При: настинка, кашлица, грип, херпес по устните, контакт с болен — изчакайте поне 7 дни след пълно оздравяване. По-добре да изчакате, отколкото да рискувате.</div>
+        <div class="step-card-title">При болест — без посещение</div>
+        <div class="step-card-body">Настинка, кашлица, грип, херпес на устните — изчакайте 7 дни след пълно оздравяване. Не се обиждайте и не се обяснявайте дълго. Просто: "Елате след като сте добре."</div>
       </div>
       <div class="step-card">
         <div class="step-num-badge">👵</div>
-        <div class="step-card-title">За баби и дядовци</div>
-        <div class="step-card-body">Медицината се е развила! Важно е да знаят:<br>❌ Без сън по корем<br>❌ Без мед до 1 година<br>❌ Без вода или чай<br>❌ Без патица (задавяне!)<br>✅ Доверявайте се на педиатъра<br><br>Тяхната любов е безценна — дайте им ясни правила с разбиране.</div>
+        <div class="step-card-title">За баби и дядовци — с любов</div>
+        <div class="step-card-body">Медицината се е променила. Важно е да знаят:<br>❌ Без сън по корем<br>❌ Без мед до 1 година<br>❌ Без вода или чай<br>❌ Без биберон-патица (задавяне!)<br><br>Кажете им: "Педиатърът ни каза" — лесно е и не предизвиква спор.</div>
       </div>
     `
   },
@@ -1742,6 +1861,20 @@ const DETAILS = {
     sub: 'При съмнение — обадете се на 112 ВЕДНАГА',
     html: `
       <div class="warn-banner"><div class="warn-icon">🚑</div><div class="warn-body">При съмнение — обадете се на 112. По-добре излишен звън, отколкото закъснение. Действайте СПОКОЙНО.</div></div>
+      <div class="video-card" style="border-color:rgba(176,48,64,0.3);" onclick="window.open('https://www.youtube.com/watch?v=WqIJbT8cCI8','_blank')">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/WqIJbT8cCI8/hqdefault.jpg" alt="Бебешки CPR" onerror="this.style.display='none'">
+          <div class="video-play-btn"><div class="video-play-circle"></div></div>
+        </div>
+        <div class="video-card-footer">
+          <div class="video-card-footer-icon" style="background:#B03040;">▶</div>
+          <div class="video-card-footer-text">
+            <div class="video-card-title" style="color:#B03040;">🚨 Бебешки CPR — гледайте СЕГА</div>
+            <div class="video-card-sub">Гледайте преди да се наложи. UC Davis Children's Hospital</div>
+          </div>
+          <div class="video-card-arrow">↗</div>
+        </div>
+      </div>
       <div class="step-card" style="border:1px solid rgba(176,48,64,0.25);background:#FFF8F8;">
         <div class="step-num-badge" style="background:linear-gradient(135deg,#B03040,#D04050);">1</div>
         <div class="step-card-title">🫁 Задавяне</div>
@@ -1779,9 +1912,9 @@ function openDetail(key) {
 
 // ── AI CHAT ──
 const AI_RESPONSES = {
-  'Защо плаче Белослава?': '🎵 Плачът е единственият език на Белослава. Проверете по ред: гладна? (последно хранене преди повече от 2ч?), мокра? (памперс), болки от газове? (масаж по корема по часовникова стрелка), сънена? (прозява ли се). Ако нищо не помага — просто я успокоете в прегръдка.',
-  'Кога трябва да я заведем при лекар?': '🏥 Веднага при: температура над 38°C, посиняване около устата, не яде повече от 4 часа, не мокри памперс 8+ часа, вяла е и трудно се буди. Иначе — педиатър на ден 3–5 за рутинен преглед.',
-  'Колко трябва да яде?': '🍼 При кърмене: на всеки 2–3 часа, 8–12 пъти на ден. При шише: около 60–90 мл на хранене в първата седмица. Знак, че е достатъчно: 6+ мокри памперса на ден и стабилно тегло след ден 5.',
+  'Защо плаче Белослава?': '🎵 Проверете по ред:\n1. Гладна? — последно хранене преди повече от 2 часа?\n2. Мокра? — отворете памперса\n3. Газове? — масаж на корема по часовникова стрелка, или "велосипед" с краката\n4. Сънена? — прозява ли се, търка очи?\n5. Просто иска прегръдка — и това е ок!\n\nАко нищо не помага — носете я близо до тялото и тихо "шшш" до ухото.',
+  'Кога трябва да я заведем при лекар?': '🏥 Обадете се ВЕДНАГА при:\n• Температура над 38°C\n• Синьо около устата\n• Не яде 4+ часа\n• Не мокри памперс 8+ часа\n• Много вяла — трудно се буди\n\nРутинен преглед: ден 3–5 след изписването. Не чакайте, ако нещо ви притеснява — по-добре "излишен" звън, отколкото чакане.',
+  'Колко трябва да яде?': '🍼 При кърмене: на всеки 2–3 часа, 8–12 пъти на ден.\nПри шише: 60–90 мл на хранене в първата седмица.\n\nЗнак, че е достатъчно:\n✅ 6+ мокри памперса на ден\n✅ Теглото расте след ден 5\n✅ Тя изглежда спокойна след хранене',
 };
 
 function askAI(q) {
