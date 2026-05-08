@@ -1,0 +1,2009 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Белослава Славова — First 30 Days</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pink: #E8A0B4;
+  --pink-deep: #C4607A;
+  --pink-light: #F5D6DF;
+  --pink-pale: #FDF0F4;
+  --purple: #6B4FA0;
+  --purple-deep: #3D2260;
+  --purple-mid: #8B6EC5;
+  --purple-light: #E8DFF5;
+  --cream: #FEF9F5;
+  --warm: #F5EDE6;
+  --text: #1A0D20;
+  --text-soft: #6B5670;
+  --text-muted: #9E8FA8;
+  --gold: #C9A96E;
+  --gold-light: #F0E6D3;
+  --success: #2D7A4E;
+  --success-light: #E8F5EE;
+  --danger: #B03040;
+  --danger-light: #FCE8EB;
+  --warning: #8A6020;
+  --warning-light: #FDF3E0;
+  --r: 28px;
+  --r-sm: 16px;
+  --r-xs: 10px;
+  --shadow: 0 8px 32px rgba(107,79,160,0.12);
+  --shadow-sm: 0 2px 12px rgba(107,79,160,0.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  height: 100%; width: 100%;
+  overflow: hidden;
+  font-family: 'DM Sans', sans-serif;
+  background: #1A0D20;
+}
+
+/* ── VIEWPORT SHELL ── */
+.shell {
+  width: 100%;
+  max-width: 430px;
+  height: 100dvh;
+  max-height: 900px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  background: var(--cream);
+}
+
+/* ── SCREENS ── */
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  transform: translateY(16px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.screen.active {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+.screen.slide-in {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.screen.slide-in.active {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* ════════════════════════════════════════
+   INTRO SCREEN
+════════════════════════════════════════ */
+#s-intro {
+  background: var(--purple-deep);
+  align-items: center;
+  justify-content: center;
+  padding: 48px 28px 40px;
+  overflow: hidden;
+}
+
+.intro-sky {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 30% 20%, rgba(180,120,220,0.25) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 80% 70%, rgba(232,160,180,0.15) 0%, transparent 70%),
+    linear-gradient(160deg, #1a0830 0%, #2d1254 35%, #4a2070 65%, #3d0d3a 100%);
+}
+
+.stars-canvas { position: absolute; inset: 0; pointer-events: none; }
+
+.moon {
+  position: absolute;
+  top: 48px; right: 40px;
+  width: 52px; height: 52px;
+  background: #FFF8DC;
+  border-radius: 50%;
+  box-shadow: 0 0 40px rgba(255,240,180,0.5), 0 0 80px rgba(255,240,180,0.2);
+  animation: moonGlow 4s ease-in-out infinite;
+}
+.moon::after {
+  content: '';
+  position: absolute;
+  top: 6px; left: 8px;
+  width: 34px; height: 34px;
+  background: #2d1254;
+  border-radius: 50%;
+}
+@keyframes moonGlow { 0%,100%{box-shadow:0 0 40px rgba(255,240,180,0.5),0 0 80px rgba(255,240,180,0.2)} 50%{box-shadow:0 0 60px rgba(255,240,180,0.7),0 0 120px rgba(255,240,180,0.3)} }
+
+.cloud {
+  position: absolute;
+  background: rgba(255,255,255,0.06);
+  border-radius: 50%;
+}
+
+.intro-body {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+  animation: riseUp 1.2s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes riseUp { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:translateY(0)} }
+
+.intro-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 20px;
+}
+
+.baby-medallion {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(232,160,180,0.3), rgba(107,79,160,0.3));
+  border: 1.5px solid rgba(255,255,255,0.2);
+  margin: 0 auto 24px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 56px;
+  position: relative;
+  animation: float 5s ease-in-out infinite;
+}
+.baby-medallion::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.baby-medallion::after {
+  content: '';
+  position: absolute;
+  inset: -16px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+.intro-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 34px;
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+.intro-name em {
+  font-style: italic;
+  color: var(--pink);
+  display: block;
+  font-size: 38px;
+}
+
+.intro-date {
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.intro-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.7;
+  margin: 0 auto 36px;
+  max-width: 280px;
+}
+
+.intro-actions { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+
+.btn-intro-primary {
+  background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 17px 28px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  letter-spacing: 0.3px;
+}
+.btn-intro-primary:active { transform: scale(0.97); }
+
+.btn-intro-ghost {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.8);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50px;
+  padding: 15px 28px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.15s, background 0.15s;
+}
+.btn-intro-ghost:active { transform: scale(0.97); background: rgba(255,255,255,0.14); }
+
+/* ════════════════════════════════════════
+   BOTTOM NAV
+════════════════════════════════════════ */
+.bottom-nav {
+  background: rgba(254,249,245,0.97);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(107,79,160,0.08);
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  padding: 10px 0 max(20px, env(safe-area-inset-bottom));
+  flex-shrink: 0;
+}
+.nav-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  background: none; border: none; cursor: pointer; padding: 6px 4px;
+  font-family: 'DM Sans', sans-serif;
+  transition: transform 0.12s;
+}
+.nav-btn:active { transform: scale(0.88); }
+.nav-icon { font-size: 22px; line-height: 1; }
+.nav-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+.nav-label.on, .nav-btn.active .nav-label { color: var(--purple); font-weight: 500; }
+.nav-dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--purple);
+  margin-top: 2px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.nav-btn.active .nav-dot { opacity: 1; }
+
+/* ════════════════════════════════════════
+   HOME SCREEN
+════════════════════════════════════════ */
+#s-home { background: var(--cream); }
+
+.home-hero {
+  background: linear-gradient(160deg, var(--purple-deep) 0%, var(--purple) 60%, #8B5FA0 100%);
+  padding: 52px 20px 28px;
+  border-radius: 0 0 32px 32px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.home-hero::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+}
+.home-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -30px; left: 20px;
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  background: rgba(232,160,180,0.12);
+}
+
+.hero-day {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); margin-bottom: 4px;
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; font-weight: 400;
+  color: white; margin-bottom: 18px;
+  position: relative; z-index: 1;
+}
+.hero-title span { color: var(--pink); font-style: italic; }
+
+.stats-row {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 8px;
+  position: relative; z-index: 1;
+}
+.stat-pill {
+  background: rgba(255,255,255,0.12);
+  border-radius: 18px; padding: 12px 8px;
+  text-align: center;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.stat-pill-icon { font-size: 20px; margin-bottom: 4px; }
+.stat-pill-val { font-size: 13px; font-weight: 500; color: white; }
+.stat-pill-lbl { font-size: 9px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+
+.home-scroll { flex: 1; overflow-y: auto; padding: 16px 16px 8px; }
+
+/* AI Card */
+.ai-card {
+  background: linear-gradient(135deg, var(--purple-light), var(--pink-light));
+  border-radius: var(--r-sm);
+  padding: 16px;
+  border: 1px solid rgba(107,79,160,0.1);
+  margin-bottom: 16px;
+}
+.ai-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.ai-pulse {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--purple);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+.ai-card-label {
+  font-size: 10px; font-weight: 500; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--purple);
+}
+.ai-card-text {
+  font-size: 13px; color: var(--text); line-height: 1.65;
+}
+
+/* Section */
+.sec-head {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 10px;
+}
+.sec-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px; font-weight: 500; color: var(--text);
+}
+.sec-more { font-size: 12px; color: var(--purple-mid); cursor: pointer; }
+
+/* Quick grid */
+.quick-grid {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 8px;
+  margin-bottom: 20px;
+}
+.q-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  background: white; border: 1px solid rgba(107,79,160,0.08);
+  border-radius: 18px; padding: 14px 6px 12px;
+  cursor: pointer; font-family: 'DM Sans', sans-serif;
+  transition: transform 0.12s, box-shadow 0.12s;
+  box-shadow: var(--shadow-sm);
+}
+.q-btn:active { transform: scale(0.92); }
+.q-btn.red { background: var(--danger-light); border-color: rgba(176,48,64,0.15); }
+.q-icon { font-size: 22px; }
+.q-lbl { font-size: 9px; color: var(--text-soft); text-align: center; line-height: 1.3; font-weight: 400; }
+
+/* Tasks */
+.task-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+.task-item {
+  background: white; border-radius: var(--r-xs);
+  padding: 13px 14px; display: flex; align-items: center; gap: 12px;
+  border: 1px solid rgba(107,79,160,0.07);
+  cursor: pointer; transition: transform 0.12s;
+}
+.task-item:active { transform: scale(0.98); }
+.task-circle {
+  width: 24px; height: 24px; border-radius: 50%;
+  border: 2px solid rgba(107,79,160,0.2);
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.task-circle.done {
+  background: var(--purple); border-color: var(--purple);
+  color: white; font-size: 13px;
+}
+.task-text { font-size: 13px; color: var(--text); flex: 1; }
+.task-time { font-size: 11px; color: var(--text-muted); }
+
+/* Moments carousel */
+.moments-row {
+  display: flex; gap: 10px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 4px;
+  scrollbar-width: none;
+}
+.moments-row::-webkit-scrollbar { display: none; }
+.moment-card {
+  flex-shrink: 0; width: 100px; height: 120px;
+  border-radius: 18px; overflow: hidden; position: relative;
+  cursor: pointer;
+}
+.moment-bg {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px;
+}
+.moment-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.6));
+  color: white; font-size: 10px; padding: 8px 6px 6px;
+  text-align: center;
+}
+
+/* ════════════════════════════════════════
+   GUIDE SCREEN
+════════════════════════════════════════ */
+#s-guide { background: var(--cream); }
+
+.guide-hero {
+  background: linear-gradient(160deg, var(--pink-deep), var(--pink), #EEB8CC);
+  padding: 52px 20px 24px;
+  border-radius: 0 0 32px 32px;
+  flex-shrink: 0;
+}
+.guide-hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; font-weight: 400; color: white; margin-bottom: 4px;
+}
+.guide-hero-sub { font-size: 13px; color: rgba(255,255,255,0.7); }
+
+.guide-scroll { flex: 1; overflow-y: auto; padding: 16px; }
+
+.guide-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+.guide-card {
+  background: white; border-radius: var(--r-sm);
+  padding: 18px 14px; border: 1px solid rgba(107,79,160,0.08);
+  cursor: pointer; transition: transform 0.15s;
+  box-shadow: var(--shadow-sm);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.guide-card:active { transform: scale(0.96); }
+.guide-card.wide { grid-column: span 2; flex-direction: row; align-items: center; }
+.guide-card.wide .guide-card-body { flex: 1; }
+.guide-card.emergency {
+  background: var(--danger-light); border-color: rgba(176,48,64,0.2);
+}
+.g-emoji { font-size: 28px; }
+.g-title { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.3; }
+.g-sub { font-size: 11px; color: var(--text-muted); }
+.emerg-badge {
+  background: var(--danger); color: white;
+  font-size: 9px; font-weight: 500;
+  border-radius: 6px; padding: 4px 8px;
+  letter-spacing: 1px; text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+/* ════════════════════════════════════════
+   DETAIL SCREEN
+════════════════════════════════════════ */
+#s-detail { background: var(--cream); }
+
+.detail-header {
+  padding: 52px 16px 16px;
+  display: flex; align-items: flex-start; gap: 14px;
+  flex-shrink: 0;
+  background: var(--cream);
+  border-bottom: 1px solid rgba(107,79,160,0.07);
+}
+.back-btn {
+  width: 40px; height: 40px; border-radius: 12px;
+  background: white; border: 1px solid rgba(107,79,160,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; cursor: pointer; flex-shrink: 0;
+  margin-top: 2px; transition: transform 0.1s;
+}
+.back-btn:active { transform: scale(0.9); }
+.detail-header-text { flex: 1; }
+.detail-title-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 400; color: var(--text);
+}
+.detail-sub-text { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+.detail-scroll { flex: 1; overflow-y: auto; padding: 16px; }
+
+/* Step cards */
+.step-card {
+  background: white; border-radius: var(--r-sm);
+  padding: 16px 18px; margin-bottom: 12px;
+  border: 1px solid rgba(107,79,160,0.07);
+}
+.step-num-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+  color: white; font-size: 12px; font-weight: 500;
+  margin-bottom: 10px;
+}
+.step-card-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
+.step-card-body { font-size: 13px; color: var(--text-soft); line-height: 1.7; }
+
+.step-visual {
+  width: 100%; height: 90px;
+  background: linear-gradient(135deg, var(--pink-light), var(--purple-light));
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 40px; margin: 12px 0; border: 1px solid rgba(107,79,160,0.07);
+}
+
+.do-dont {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px;
+}
+.do-box, .dont-box { border-radius: var(--r-xs); padding: 12px; }
+.do-box { background: var(--success-light); border: 1px solid rgba(45,122,78,0.2); }
+.dont-box { background: var(--danger-light); border: 1px solid rgba(176,48,64,0.2); }
+.do-lbl { font-size: 9px; font-weight: 500; color: var(--success); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+.dont-lbl { font-size: 9px; font-weight: 500; color: var(--danger); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+.do-txt, .dont-txt { font-size: 12px; color: var(--text); line-height: 1.5; }
+
+.warn-banner {
+  background: var(--warning-light); border: 1px solid rgba(138,96,32,0.2);
+  border-radius: var(--r-xs); padding: 13px 14px;
+  display: flex; gap: 10px; align-items: flex-start;
+  margin-bottom: 12px;
+}
+.warn-icon { font-size: 18px; flex-shrink: 0; }
+.warn-body { font-size: 12px; color: var(--warning); line-height: 1.6; }
+
+.panic-btn {
+  width: 100%; background: var(--danger);
+  color: white; border: none; border-radius: 20px;
+  padding: 20px; font-size: 17px; font-weight: 500;
+  cursor: pointer; font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.5px; margin-top: 8px;
+  animation: panicPulse 2s ease-in-out infinite;
+}
+@keyframes panicPulse { 0%,100%{box-shadow:0 0 0 0 rgba(176,48,64,0.4)} 50%{box-shadow:0 0 0 12px rgba(176,48,64,0)} }
+
+.cry-type {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 14px 0; border-bottom: 1px solid rgba(107,79,160,0.06);
+}
+.cry-type:last-child { border-bottom: none; }
+.cry-emoji { font-size: 28px; flex-shrink: 0; width: 40px; text-align: center; }
+.cry-body {}
+.cry-name { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+.cry-desc { font-size: 12px; color: var(--text-soft); line-height: 1.6; }
+.cry-tag {
+  display: inline-block; background: var(--purple-light);
+  color: var(--purple); font-size: 10px; border-radius: 6px;
+  padding: 2px 8px; margin-top: 5px; font-weight: 500;
+}
+
+/* ════════════════════════════════════════
+   AI SCREEN
+════════════════════════════════════════ */
+#s-ai { background: var(--cream); }
+
+.ai-hero {
+  background: linear-gradient(160deg, var(--purple-deep), var(--purple));
+  padding: 52px 20px 20px;
+  flex-shrink: 0;
+  border-radius: 0 0 28px 28px;
+}
+.ai-avatar-big {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink), var(--purple-mid));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; margin-bottom: 10px;
+}
+.ai-hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 400; color: white; margin-bottom: 2px;
+}
+.ai-hero-sub { font-size: 12px; color: rgba(255,255,255,0.55); }
+
+.chat-wrap { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+.chat-msg { display: flex; flex-direction: column; }
+.chat-msg.ai { align-items: flex-start; }
+.chat-msg.user { align-items: flex-end; }
+.bubble {
+  max-width: 82%; padding: 12px 16px;
+  border-radius: 20px; font-size: 13px; line-height: 1.65;
+}
+.bubble.ai {
+  background: white; color: var(--text);
+  border: 1px solid rgba(107,79,160,0.08);
+  border-bottom-left-radius: 6px;
+}
+.bubble.user {
+  background: linear-gradient(135deg, var(--purple), var(--purple-mid));
+  color: white; border-bottom-right-radius: 6px;
+}
+.chat-ts { font-size: 10px; color: var(--text-muted); margin-top: 4px; padding: 0 4px; }
+
+.quick-qs { padding: 0 16px 10px; display: flex; flex-direction: column; gap: 8px; }
+.q-chip {
+  background: white; border: 1px solid rgba(107,79,160,0.15);
+  border-radius: 24px; padding: 11px 18px;
+  font-size: 13px; color: var(--purple); cursor: pointer;
+  font-family: 'DM Sans', sans-serif; text-align: left;
+  transition: transform 0.1s, background 0.15s;
+}
+.q-chip:active { transform: scale(0.97); background: var(--purple-light); }
+
+.chat-input-row {
+  padding: 12px 16px max(20px, env(safe-area-inset-bottom));
+  display: flex; gap: 10px;
+  background: var(--cream);
+  border-top: 1px solid rgba(107,79,160,0.07);
+  flex-shrink: 0;
+}
+.chat-field {
+  flex: 1; background: white; border: 1px solid rgba(107,79,160,0.15);
+  border-radius: 24px; padding: 12px 18px;
+  font-size: 14px; font-family: 'DM Sans', sans-serif;
+  color: var(--text); outline: none;
+}
+.chat-field::placeholder { color: var(--text-muted); }
+.chat-send-btn {
+  width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--purple), var(--purple-mid));
+  border: none; display: flex; align-items: center; justify-content: center;
+  font-size: 20px; cursor: pointer; transition: transform 0.1s;
+}
+.chat-send-btn:active { transform: scale(0.92); }
+
+/* ════════════════════════════════════════
+   MOMENTS SCREEN
+════════════════════════════════════════ */
+#s-moments { background: var(--cream); }
+
+.mom-hero {
+  background: linear-gradient(160deg, var(--gold) 0%, #E8C080 60%, #F0D4A0 100%);
+  padding: 52px 20px 24px;
+  border-radius: 0 0 32px 32px; flex-shrink: 0;
+}
+.mom-hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; font-weight: 400; color: white; margin-bottom: 4px;
+}
+.mom-hero-sub { font-size: 13px; color: rgba(255,255,255,0.75); }
+
+.mom-scroll { flex: 1; overflow-y: auto; padding: 16px; }
+
+.mom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+.mom-card {
+  border-radius: var(--r-sm); overflow: hidden; position: relative;
+  cursor: pointer; aspect-ratio: 1;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 48px; transition: transform 0.15s;
+}
+.mom-card:active { transform: scale(0.96); }
+.mom-card-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.65));
+  color: white; font-size: 11px; padding: 20px 10px 10px;
+  text-align: center;
+}
+.mom-card-add {
+  border-radius: var(--r-sm); border: 2px dashed rgba(107,79,160,0.2);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 6px; cursor: pointer; aspect-ratio: 1;
+  background: rgba(107,79,160,0.03);
+  transition: background 0.15s;
+}
+.mom-card-add:active { background: var(--purple-light); }
+.mom-add-icon { font-size: 28px; color: var(--purple-mid); }
+.mom-add-lbl { font-size: 11px; color: var(--text-muted); }
+
+.diary-card {
+  background: white; border-radius: var(--r-sm); padding: 16px;
+  border: 1px solid rgba(107,79,160,0.08); margin-bottom: 12px;
+}
+.diary-date { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; }
+.diary-text { font-size: 13px; color: var(--text); line-height: 1.7; }
+.diary-author { font-size: 11px; color: var(--purple-mid); margin-top: 8px; font-style: italic; }
+
+/* ════════════════════════════════════════
+   UTIL
+════════════════════════════════════════ */
+.scroll-pad { height: 24px; }
+
+.typing-dots { display: inline-flex; gap: 4px; align-items: center; }
+.typing-dots span {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--text-muted); animation: dot 1.2s infinite;
+}
+.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes dot { 0%,60%,100%{transform:translateY(0);opacity:0.4} 30%{transform:translateY(-4px);opacity:1} }
+.hero-top-row {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 6px;
+}
+.home-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.25);
+  font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: transform 0.12s, background 0.15s;
+  backdrop-filter: blur(4px);
+}
+.home-btn:active { transform: scale(0.88); background: rgba(255,255,255,0.28); }
+.home-btn-dark {
+  background: rgba(107,79,160,0.1); border-color: rgba(107,79,160,0.2);
+}
+.day-picker-row {
+  display: flex; align-items: center; gap: 6px; margin: 10px 0 12px;
+}
+.day-arrow {
+  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2);
+  color: white; font-size: 20px; line-height: 1; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.1s, background 0.15s; font-family: var(--font-sans);
+}
+.day-arrow:active { transform: scale(0.88); background: rgba(255,255,255,0.28); }
+.day-picker-scroll {
+  flex: 1; display: flex; gap: 6px; overflow-x: auto; scroll-snap-type: x mandatory;
+  scrollbar-width: none; padding: 2px 0;
+}
+.day-picker-scroll::-webkit-scrollbar { display: none; }
+.day-chip {
+  flex-shrink: 0; scroll-snap-align: center;
+  padding: 6px 12px; border-radius: 20px;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.7); font-size: 12px; cursor: pointer;
+  font-family: var(--font-sans); transition: all 0.15s; white-space: nowrap;
+}
+.day-chip.active {
+  background: white; color: var(--purple-deep);
+  font-weight: 500; border-color: white;
+}
+.day-chip:active { transform: scale(0.94); }
+.hero-name { color: var(--pink); font-style: italic; }
+/* Day-specific tip card */
+.day-tip-card {
+  background: linear-gradient(135deg, var(--purple-light), var(--pink-light));
+  border-radius: var(--r-sm); padding: 14px 16px; margin-bottom: 16px;
+  border: 1px solid rgba(107,79,160,0.1);
+}
+.day-tip-week { font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--purple); margin-bottom: 6px; }
+.day-tip-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
+.day-tip-text { font-size: 12px; color: var(--text-soft); line-height: 1.65; }
+
+/* ════════════════════════════════════════
+   ASTRO SCREEN
+════════════════════════════════════════ */
+#s-astro { background: var(--cream); }
+
+.astro-hero {
+  background: linear-gradient(160deg, #1a2a10, #2d4a20, #4a6a35);
+  padding: 52px 20px 22px;
+  border-radius: 0 0 32px 32px;
+  flex-shrink: 0; text-align: center;
+}
+.astro-sign-badge {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: rgba(255,255,255,0.12); border: 1.5px solid rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 34px; margin: 0 auto 12px;
+}
+.astro-hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px; font-weight: 400; color: white; margin-bottom: 4px;
+}
+.astro-hero-sub { font-size: 12px; color: rgba(255,255,255,0.55); }
+
+.astro-scroll { flex: 1; overflow-y: auto; padding: 16px; }
+
+/* Natal chart */
+.chart-wrap {
+  display: flex; justify-content: center; margin-bottom: 16px;
+}
+#natal-canvas { border-radius: 50%; }
+
+/* Big 3 */
+.big3-row {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 20px;
+}
+.big3-card {
+  border-radius: var(--r-sm); padding: 14px 8px; text-align: center; color: white;
+}
+.big3-symbol { font-size: 22px; margin-bottom: 4px; }
+.big3-name { font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.7; }
+.big3-sign { font-size: 13px; font-weight: 500; margin: 2px 0; }
+.big3-deg { font-size: 10px; opacity: 0.6; }
+
+/* Sections */
+.astro-section { margin-bottom: 16px; }
+.astro-section-head {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
+}
+.astro-icon {
+  width: 44px; height: 44px; border-radius: 14px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; color: white;
+}
+.astro-section-title { font-size: 14px; font-weight: 500; color: var(--text); }
+.astro-section-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+.astro-card {
+  background: white; border-radius: var(--r-sm); padding: 16px;
+  border: 1px solid rgba(107,79,160,0.07);
+}
+.astro-trait-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.trait-pill {
+  font-size: 11px; padding: 5px 10px; border-radius: 20px; font-weight: 500;
+}
+.astro-text { font-size: 13px; color: var(--text); line-height: 1.7; }
+.astro-highlight {
+  background: var(--gold-light); border-radius: var(--r-xs);
+  padding: 12px; display: flex; gap: 10px; align-items: flex-start; margin-top: 12px;
+  border: 1px solid rgba(201,169,110,0.25);
+}
+.astro-hl-icon { font-size: 16px; flex-shrink: 0; }
+.astro-hl-text { font-size: 12px; color: var(--warning); line-height: 1.6; }
+
+/* Planet table */
+.planet-row {
+  display: flex; align-items: center; gap: 10px; padding: 11px 16px;
+  border-bottom: 1px solid rgba(107,79,160,0.05);
+}
+.planet-row:last-child { border-bottom: none; }
+.planet-sym { font-size: 18px; width: 24px; text-align: center; flex-shrink: 0; }
+.planet-info { flex: 1; }
+.planet-name { font-size: 12px; font-weight: 500; color: var(--text); }
+.planet-pos { font-size: 11px; color: var(--text-muted); }
+.planet-house {
+  font-size: 10px; color: var(--purple); background: var(--purple-light);
+  padding: 3px 8px; border-radius: 8px; font-weight: 500;
+}
+
+/* Houses */
+.house-item {
+  display: flex; gap: 12px; padding: 12px 0;
+  border-bottom: 1px solid rgba(107,79,160,0.06);
+}
+.house-item:last-child { border-bottom: none; }
+.house-num {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--purple-light); color: var(--purple);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 500; flex-shrink: 0; margin-top: 2px;
+}
+.house-title { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+.house-desc { font-size: 12px; color: var(--text-soft); line-height: 1.6; }
+
+/* Aspects */
+.aspect-row { padding: 12px 0; border-bottom: 1px solid rgba(107,79,160,0.06); display: flex; flex-direction: column; gap: 6px; }
+.aspect-row:last-child { border-bottom: none; }
+.aspect-badge {
+  display: inline-block; font-size: 10px; font-weight: 500;
+  padding: 3px 10px; border-radius: 8px; width: fit-content;
+}
+.aspect-badge.trine { background: #E8F5EE; color: #2d5c3a; }
+.aspect-badge.sextile { background: var(--purple-light); color: var(--purple); }
+.aspect-badge.square { background: var(--danger-light); color: var(--danger); }
+.aspect-desc { font-size: 12px; color: var(--text); line-height: 1.6; }
+
+/* Destiny */
+.destiny-wrap {}
+.destiny-text { font-size: 13px; color: var(--text); line-height: 1.7; margin-bottom: 14px; }
+.destiny-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px; font-style: italic; color: var(--purple);
+  border-left: 3px solid var(--pink); padding-left: 14px;
+  line-height: 1.6;
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- ══════════ INTRO ══════════ -->
+<div class="screen active" id="s-intro">
+  <div class="intro-sky"></div>
+  <canvas class="stars-canvas" id="stars-canvas"></canvas>
+  <div class="moon"></div>
+  <div class="intro-body">
+    <div class="intro-eyebrow">Добре дошла в света</div>
+    <div class="baby-medallion">🌸</div>
+    <div class="intro-name">
+      <em>Белослава Славова</em>
+    </div>
+    <div class="intro-date">7 май 2026 · 21:49 · Телец ♉</div>
+    <p class="intro-tagline">Всяко дишане е чудо.<br>Вие не сте сами.</p>
+    <div class="intro-actions">
+      <button class="btn-intro-primary" onclick="nav('home')">✨ &nbsp;Започни пътешествието</button>
+      <button class="btn-intro-ghost" onclick="nav('guide')">📖 &nbsp;Наръчник за родители</button>
+      <button class="btn-intro-ghost" onclick="nav('astro')">♉ &nbsp;Зодия и натална карта</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ HOME ══════════ -->
+<div class="screen" id="s-home">
+  <div class="home-hero">
+    <div class="hero-top-row">
+      <div class="hero-day" id="hero-date-lbl">7 май 2026 · 21:49</div>
+      <button class="home-btn" onclick="nav('intro')" title="Начален екран">🏠</button>
+    </div>
+    <div class="hero-title" id="hero-day-title">Ден <span id="hero-day-num">1</span> с <span class="hero-name">Белослава</span> 🌸</div>
+
+    <!-- Day picker -->
+    <div class="day-picker-row">
+      <button class="day-arrow" onclick="changeDay(-1)">‹</button>
+      <div class="day-picker-scroll" id="day-scroll">
+        <!-- filled by JS -->
+      </div>
+      <button class="day-arrow" onclick="changeDay(1)">›</button>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-pill">
+        <div class="stat-pill-icon">🍼</div>
+        <div class="stat-pill-val" id="stat-feed">преди 1ч</div>
+        <div class="stat-pill-lbl">Хранене</div>
+      </div>
+      <div class="stat-pill">
+        <div class="stat-pill-icon">😴</div>
+        <div class="stat-pill-val" id="stat-sleep">2ч 10м</div>
+        <div class="stat-pill-lbl">Сън</div>
+      </div>
+      <div class="stat-pill">
+        <div class="stat-pill-icon">🌡️</div>
+        <div class="stat-pill-val" id="stat-temp">36.7°</div>
+        <div class="stat-pill-lbl">Темп.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-scroll">
+    <div class="day-tip-card" id="day-tip-card">
+      <div class="day-tip-week">Седмица 1</div>
+      <div class="day-tip-title">Адаптация</div>
+      <div class="day-tip-text">Белослава се адаптира към света. Фокус: топлина, кожен контакт, кърмене по желание. Жълтеница е нормална — следете цвета.</div>
+    </div>
+
+    <div class="sec-head">
+      <div class="sec-title">Бърз достъп</div>
+    </div>
+    <div class="quick-grid" style="margin-bottom:20px;">
+      <button class="q-btn" onclick="openDetail('hold')"><div class="q-icon">🤱</div><div class="q-lbl">Как се държи</div></button>
+      <button class="q-btn" onclick="openDetail('feed')"><div class="q-icon">🍼</div><div class="q-lbl">Хранене</div></button>
+      <button class="q-btn" onclick="openDetail('pampers')"><div class="q-icon">👶</div><div class="q-lbl">Памперс</div></button>
+      <button class="q-btn" onclick="openDetail('bath')"><div class="q-icon">🛁</div><div class="q-lbl">Баня</div></button>
+      <button class="q-btn" onclick="openDetail('sleep')"><div class="q-icon">😴</div><div class="q-lbl">Сън</div></button>
+      <button class="q-btn" onclick="openDetail('cry')"><div class="q-icon">🎵</div><div class="q-lbl">Плач</div></button>
+      <button class="q-btn" onclick="openDetail('guests')"><div class="q-icon">👵</div><div class="q-lbl">Гости</div></button>
+      <button class="q-btn red" onclick="openDetail('emergency')"><div class="q-icon">🚨</div><div class="q-lbl">Спешно</div></button>
+    </div>
+
+    <div class="sec-head"><div class="sec-title" id="tasks-heading">Задачи — Ден 1</div></div>
+    <div class="task-list">
+      <div class="task-item" onclick="toggleTask(this)">
+        <div class="task-circle done">✓</div>
+        <div class="task-text">Утринно хранене</div>
+        <div class="task-time">07:00</div>
+      </div>
+      <div class="task-item" onclick="toggleTask(this)">
+        <div class="task-circle done">✓</div>
+        <div class="task-text">Смяна на памперс</div>
+        <div class="task-time">09:30</div>
+      </div>
+      <div class="task-item" onclick="toggleTask(this)">
+        <div class="task-circle"></div>
+        <div class="task-text">Следва хранене</div>
+        <div class="task-time">12:00</div>
+      </div>
+      <div class="task-item" onclick="toggleTask(this)">
+        <div class="task-circle"></div>
+        <div class="task-text">Разходка на слънце</div>
+        <div class="task-time">15:00</div>
+      </div>
+      <div class="task-item" onclick="toggleTask(this)">
+        <div class="task-circle"></div>
+        <div class="task-text">Вечерна баня</div>
+        <div class="task-time">19:30</div>
+      </div>
+    </div>
+
+    <div class="sec-head"><div class="sec-title">Моменти</div><div class="sec-more" onclick="nav('moments')">Всички →</div></div>
+    <div class="moments-row">
+      <div class="moment-card"><div class="moment-bg" style="background:linear-gradient(135deg,#FFE8F4,#F0E8FF)">🌸</div><div class="moment-label">Добре дошла</div></div>
+      <div class="moment-card"><div class="moment-bg" style="background:linear-gradient(135deg,#E8F5FF,#E8FFEE)">👶</div><div class="moment-label">Първи час</div></div>
+      <div class="moment-card"><div class="moment-bg" style="background:linear-gradient(135deg,#FFF8E8,#FFE8E8)">🍼</div><div class="moment-label">Първо хранене</div></div>
+      <div class="moment-card"><div class="moment-bg" style="background:linear-gradient(135deg,#E8FFE8,#F0FFE8)">😴</div><div class="moment-label">Първи сън</div></div>
+    </div>
+
+    <div class="scroll-pad"></div>
+  </div>
+
+  <div class="bottom-nav">
+    <button class="nav-btn active" onclick="nav('home')"><div class="nav-icon">🏠</div><div class="nav-label on">Начало</div><div class="nav-dot"></div></button>
+    <button class="nav-btn" onclick="nav('guide')"><div class="nav-icon">📖</div><div class="nav-label">Наръчник</div><div class="nav-dot"></div></button>
+    <button class="nav-btn" onclick="nav('astro')"><div class="nav-icon">♉</div><div class="nav-label">Зодия</div><div class="nav-dot"></div></button>
+    <button class="nav-btn" onclick="nav('moments')"><div class="nav-icon">🌸</div><div class="nav-label">Моменти</div><div class="nav-dot"></div></button>
+  </div>
+</div>
+
+<!-- ══════════ GUIDE ══════════ -->
+<div class="screen" id="s-guide">
+  <div class="guide-hero">
+    <div class="hero-top-row">
+      <div class="hero-day" style="color:rgba(255,255,255,0.65)">Академия за родители</div>
+      <button class="home-btn" onclick="nav('home')" title="Начало">🏠</button>
+    </div>
+    <div class="guide-hero-title">Наръчник за Белослава</div>
+    <div class="guide-hero-sub">Всичко, което трябва да знаете</div>
+  </div>
+
+  <div class="guide-scroll">
+    <div class="guide-grid">
+      <div class="guide-card" onclick="openDetail('hold')">
+        <div class="g-emoji">🤱</div>
+        <div><div class="g-title">Как се държи бебе</div><div class="g-sub">Позиции · DO/DON'T</div></div>
+      </div>
+      <div class="guide-card" onclick="openDetail('feed')">
+        <div class="g-emoji">🍼</div>
+        <div><div class="g-title">Хранене</div><div class="g-sub">Кърмене · Шише</div></div>
+      </div>
+      <div class="guide-card" onclick="openDetail('pampers')">
+        <div class="g-emoji">👶</div>
+        <div><div class="g-title">Смяна на памперс</div><div class="g-sub">Стъпка по стъпка</div></div>
+      </div>
+      <div class="guide-card" onclick="openDetail('bath')">
+        <div class="g-emoji">🛁</div>
+        <div><div class="g-title">Къпане</div><div class="g-sub">Температура · Позиция</div></div>
+      </div>
+      <div class="guide-card" onclick="openDetail('sleep')">
+        <div class="g-emoji">😴</div>
+        <div><div class="g-title">Безопасен сън</div><div class="g-sub">SIDS prevention</div></div>
+      </div>
+      <div class="guide-card" onclick="openDetail('cry')">
+        <div class="g-emoji">🎵</div>
+        <div><div class="g-title">Разпознаване на плач</div><div class="g-sub">4 вида плач</div></div>
+      </div>
+      <div class="guide-card" onclick="openDetail('guests')">
+        <div class="g-emoji">👵</div>
+        <div><div class="g-title">Баби · Гости</div><div class="g-sub">Хигиена · Правила</div></div>
+      </div>
+      <div class="guide-card wide emergency" onclick="openDetail('emergency')">
+        <div class="g-emoji">🚨</div>
+        <div class="guide-card-body">
+          <div class="g-title">Спешни ситуации</div>
+          <div class="g-sub">Задавяне · Температура · Дишане</div>
+        </div>
+        <div class="emerg-badge">СПЕШНО</div>
+      </div>
+    </div>
+    <div class="scroll-pad"></div>
+  </div>
+
+  <div class="bottom-nav">
+    <button class="nav-btn" onclick="nav('home')"><div class="nav-icon">🏠</div><div class="nav-label">Начало</div><div class="nav-dot"></div></button>
+    <button class="nav-btn active" onclick="nav('guide')"><div class="nav-icon">📖</div><div class="nav-label on">Наръчник</div><div class="nav-dot"></div></button>
+    <button class="nav-btn" onclick="nav('astro')"><div class="nav-icon">♉</div><div class="nav-label">Зодия</div><div class="nav-dot"></div></button>
+    <button class="nav-btn" onclick="nav('moments')"><div class="nav-icon">🌸</div><div class="nav-label">Моменти</div><div class="nav-dot"></div></button>
+  </div>
+</div>
+
+<!-- ══════════ DETAIL ══════════ -->
+<div class="screen slide-in" id="s-detail">
+  <div class="detail-header">
+    <button class="back-btn" onclick="goBack()">←</button>
+    <div class="detail-header-text">
+      <div class="detail-title-text" id="d-title">Заглавие</div>
+      <div class="detail-sub-text" id="d-sub">Подзаглавие</div>
+    </div>
+    <button class="home-btn home-btn-dark" onclick="nav('home')" title="Начало">🏠</button>
+  </div>
+  <div class="detail-scroll" id="d-content"></div>
+</div>
+
+<!-- ══════════ ASTROLOGY ══════════ -->
+<div class="screen" id="s-astro">
+  <div class="astro-hero">
+    <div class="hero-top-row" style="justify-content:flex-end;margin-bottom:8px;">
+      <button class="home-btn" onclick="nav('home')" title="Начало">🏠</button>
+    </div>
+    <div class="astro-sign-badge">♉</div>
+    <div class="astro-hero-title">Зодията на Белослава</div>
+    <div class="astro-hero-sub">7 май 2026 · 21:49 · София</div>
+  </div>
+
+  <div class="astro-scroll">
+
+    <!-- NATAL CHART WHEEL -->
+    <div class="chart-wrap">
+      <canvas id="natal-canvas" width="320" height="320"></canvas>
+    </div>
+
+    <!-- BIG 3 -->
+    <div class="big3-row">
+      <div class="big3-card" style="background:linear-gradient(135deg,#4a7c59,#2d5c3a)">
+        <div class="big3-symbol">♉</div>
+        <div class="big3-name">Слънце</div>
+        <div class="big3-sign">Телец</div>
+        <div class="big3-deg">17° Телец</div>
+      </div>
+      <div class="big3-card" style="background:linear-gradient(135deg,#6B4FA0,#3D2260)">
+        <div class="big3-symbol">☽</div>
+        <div class="big3-name">Луна</div>
+        <div class="big3-sign">Дева</div>
+        <div class="big3-deg">8° Дева</div>
+      </div>
+      <div class="big3-card" style="background:linear-gradient(135deg,#8B3A3A,#5C1A1A)">
+        <div class="big3-symbol">↑</div>
+        <div class="big3-name">Асцендент</div>
+        <div class="big3-sign">Стрелец</div>
+        <div class="big3-deg">2° Стрелец</div>
+      </div>
+    </div>
+
+    <!-- SECTION: SUN TAURUS -->
+    <div class="astro-section">
+      <div class="astro-section-head">
+        <div class="astro-icon" style="background:linear-gradient(135deg,#4a7c59,#2d5c3a)">♉</div>
+        <div>
+          <div class="astro-section-title">Слънце в Телец — Характер</div>
+          <div class="astro-section-sub">Земен знак · Управлява Венера</div>
+        </div>
+      </div>
+      <div class="astro-card">
+        <div class="astro-trait-row">
+          <div class="trait-pill" style="background:#E8F5EE;color:#2d5c3a">🌿 Устойчива</div>
+          <div class="trait-pill" style="background:#E8F5EE;color:#2d5c3a">🌸 Чувствена</div>
+          <div class="trait-pill" style="background:#E8F5EE;color:#2d5c3a">💎 Упорита</div>
+          <div class="trait-pill" style="background:#E8F5EE;color:#2d5c3a">🎵 Обича красота</div>
+        </div>
+        <div class="astro-text">Белослава ще бъде дете с <strong>дълбока вътрешна сила</strong> — бавно, но трайно изграждащо всичко в живота си. Телецът е знак на земята: търпелив, надежден, с фина чувствителност към красотата, звуците и текстурите около себе си.</div>
+        <div class="astro-text" style="margin-top:10px;">Ще обича с цялото си сърце — но ще й трябва <strong>сигурност и ритъм</strong>. Рутинните ритуали ще я успокояват: едно и също одеяло, една и съща приспивна песен, едни и същи ръце. Не бързайте с промените.</div>
+        <div class="astro-highlight">
+          <div class="astro-hl-icon">💡</div>
+          <div class="astro-hl-text">Телецът е управляван от Венера — планетата на любовта и красотата. Белослава ще реагира силно на музика, нежни докосвания и красиви неща около нея.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION: MOON VIRGO -->
+    <div class="astro-section">
+      <div class="astro-section-head">
+        <div class="astro-icon" style="background:linear-gradient(135deg,#6B4FA0,#3D2260)">☽</div>
+        <div>
+          <div class="astro-section-title">Луна в Дева — Емоции</div>
+          <div class="astro-section-sub">Земен знак · Управлява Меркурий</div>
+        </div>
+      </div>
+      <div class="astro-card">
+        <div class="astro-trait-row">
+          <div class="trait-pill" style="background:#EDE8F5;color:#3D2260">🔍 Наблюдателна</div>
+          <div class="trait-pill" style="background:#EDE8F5;color:#3D2260">📋 Обича ред</div>
+          <div class="trait-pill" style="background:#EDE8F5;color:#3D2260">🤗 Грижовна</div>
+          <div class="trait-pill" style="background:#EDE8F5;color:#3D2260">🧠 Аналитична</div>
+        </div>
+        <div class="astro-text">Луната показва <strong>емоционалния свят</strong> — как Белослава ще се чувства вътрешно. Луна в Дева означава бебе, което успокоява чрез <strong>ред и структура</strong>. Хаосът ще я безпокои, докато чистотата, ритъмът и предвидимостта ще я радват.</div>
+        <div class="astro-text" style="margin-top:10px;">По-късно ще бъде <strong>изключително наблюдателна</strong> — ще забелязва дребни детайли, ще иска да помага и да "оправя" нещата. Критичността (към себе си!) може да бъде предизвикателство — насърчавайте я да бъде добра към себе си.</div>
+        <div class="astro-highlight">
+          <div class="astro-hl-icon">💡</div>
+          <div class="astro-hl-text">За бебето сега: Белослава ще се успокоява по-лесно при спокойна, чиста и предсказуема среда. Ясен режим на хранене и сън ще й дава огромна сигурност.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION: ASC SAGITTARIUS -->
+    <div class="astro-section">
+      <div class="astro-section-head">
+        <div class="astro-icon" style="background:linear-gradient(135deg,#8B3A3A,#5C1A1A)">↑</div>
+        <div>
+          <div class="astro-section-title">Асцендент Стрелец — Облик</div>
+          <div class="astro-section-sub">Огнен знак · Управлява Юпитер</div>
+        </div>
+      </div>
+      <div class="astro-card">
+        <div class="astro-trait-row">
+          <div class="trait-pill" style="background:#FCE8E8;color:#5C1A1A">🏹 Свободна</div>
+          <div class="trait-pill" style="background:#FCE8E8;color:#5C1A1A">🌍 Любопитна</div>
+          <div class="trait-pill" style="background:#FCE8E8;color:#5C1A1A">😄 Оптимистична</div>
+          <div class="trait-pill" style="background:#FCE8E8;color:#5C1A1A">🔥 Ентусиазирана</div>
+        </div>
+        <div class="astro-text">Асцендентът е <strong>маската, с която се представяме на света</strong> — как другите ни виждат. Стрелецът дава на Белослава <strong>светлина, открита усмивка и жажда за приключения</strong>. Хората ще усещат нейната топлота и ентусиазъм веднага.</div>
+        <div class="astro-text" style="margin-top:10px;">Управителят на Стрелец е <strong>Юпитер</strong> — планетата на щастието, растежа и мъдростта. Белослава носи юпитерианска благодат: нещата ще й се получават, пространствата ще се отварят, хората ще й симпатизират.</div>
+        <div class="astro-highlight">
+          <div class="astro-hl-icon">🏹</div>
+          <div class="astro-hl-text">Телец + Стрелец = земна устойчивост + огнена свобода. Тя ще иска корени И крила. Дайте й и двете.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLANETS TABLE -->
+    <div class="astro-section">
+      <div class="astro-section-head">
+        <div class="astro-icon" style="background:linear-gradient(135deg,#C9A96E,#8B6840)">☿</div>
+        <div>
+          <div class="astro-section-title">Планети в натална карта</div>
+          <div class="astro-section-sub">7 май 2026 · 21:49 · София 42°N</div>
+        </div>
+      </div>
+      <div class="astro-card" style="padding:0;overflow:hidden;">
+        <div class="planet-row" style="background:var(--warm);">
+          <div class="planet-sym" style="color:#4a7c59">☉</div>
+          <div class="planet-info"><div class="planet-name">Слънце</div><div class="planet-pos">17° Телец</div></div>
+          <div class="planet-house">II дом</div>
+        </div>
+        <div class="planet-row">
+          <div class="planet-sym" style="color:#6B4FA0">☽</div>
+          <div class="planet-info"><div class="planet-name">Луна</div><div class="planet-pos">8° Дева</div></div>
+          <div class="planet-house">IX дом</div>
+        </div>
+        <div class="planet-row" style="background:var(--warm);">
+          <div class="planet-sym" style="color:#C9A96E">☿</div>
+          <div class="planet-info"><div class="planet-name">Меркурий</div><div class="planet-pos">29° Телец</div></div>
+          <div class="planet-house">VI дом</div>
+        </div>
+        <div class="planet-row">
+          <div class="planet-sym" style="color:#C4607A">♀</div>
+          <div class="planet-info"><div class="planet-name">Венера</div><div class="planet-pos">14° Рак</div></div>
+          <div class="planet-house">VIII дом</div>
+        </div>
+        <div class="planet-row" style="background:var(--warm);">
+          <div class="planet-sym" style="color:#B03040">♂</div>
+          <div class="planet-info"><div class="planet-name">Марс</div><div class="planet-pos">3° Близнаци</div></div>
+          <div class="planet-house">VI дом</div>
+        </div>
+        <div class="planet-row">
+          <div class="planet-sym" style="color:#2d7a4e">♃</div>
+          <div class="planet-info"><div class="planet-name">Юпитер</div><div class="planet-pos">22° Рак</div></div>
+          <div class="planet-house">VIII дом</div>
+        </div>
+        <div class="planet-row" style="background:var(--warm);">
+          <div class="planet-sym" style="color:#5C4A2A">♄</div>
+          <div class="planet-info"><div class="planet-name">Сатурн</div><div class="planet-pos">17° Овен ℞</div></div>
+          <div class="planet-house">V дом</div>
+        </div>
+        <div class="planet-row">
+          <div class="planet-sym" style="color:#185FA5">♅</div>
+          <div class="planet-info"><div class="planet-name">Уран</div><div class="planet-pos">27° Телец ℞</div></div>
+          <div class="planet-house">VI дом</div>
+        </div>
+        <div class="planet-row" style="background:var(--warm);">
+          <div class="planet-sym" style="color:#3D2260">♆</div>
+          <div class="planet-info"><div class="planet-name">Нептун</div><div class="planet-pos">2° Овен</div></div>
+          <div class="planet-house">IV дом</div>
+        </div>
+        <div class="planet-row">
+          <div class="planet-sym" style="color:#1A0D20">♇</div>
+          <div class="planet-info"><div class="planet-name">Плутон</div><div class="planet-pos">3° Водолей ℞</div></div>
+          <div class="planet-house">II дом</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOUSES -->
+    <div class="astro-section">
+      <div class="astro-section-head">
+        <div class="astro-icon" style="background:linear-gradient(135deg,#2d5c7a,#1a3a50)">⌂</div>
+        <div>
+          <div class="astro-section-title">Ключови домове</div>
+          <div class="astro-section-sub">Областите от живота на Белослава</div>
+        </div>
+      </div>
+      <div class="astro-card">
+        <div class="house-item">
+          <div class="house-num">I</div>
+          <div class="house-body">
+            <div class="house-title">Асцендент Стрелец — Аз и облик</div>
+            <div class="house-desc">Как светът я вижда: открита, ентусиазирана, с широка усмивка. Юпитер като управител й дава природна харизма и оптимизъм.</div>
+          </div>
+        </div>
+        <div class="house-item">
+          <div class="house-num">II</div>
+          <div class="house-body">
+            <div class="house-title">Козирог — Ресурси и ценности</div>
+            <div class="house-desc">Слънцето и Плутон тук — силна воля за материална сигурност. Ще изгражда стойности чрез дисциплина и дълбока трансформация.</div>
+          </div>
+        </div>
+        <div class="house-item">
+          <div class="house-num">VIII</div>
+          <div class="house-body">
+            <div class="house-title">Рак — Трансформация и мистерия</div>
+            <div class="house-desc">Венера и Юпитер тук — дълбока емоционална интелигентност. Способност за дълбока, трансформираща любов. Интуиция на ниво дар.</div>
+          </div>
+        </div>
+        <div class="house-item">
+          <div class="house-num">IX</div>
+          <div class="house-body">
+            <div class="house-title">Дева — Философия и пътувания</div>
+            <div class="house-desc">Луната тук — емоционалното й развитие идва чрез учене, пътуване и философия. Ще обича да изследва света с ума си.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ASPECTS -->
+    <div class="astro-section">
+      <div class="astro-section-head">
+        <div class="astro-icon" style="background:linear-gradient(135deg,#C9A96E,#8B6840)">△</div>
+        <div>
+          <div class="astro-section-title">Ключови аспекти</div>
+          <div class="astro-section-sub">Планетарните разговори в картата</div>
+        </div>
+      </div>
+      <div class="astro-card">
+        <div class="aspect-row">
+          <div class="aspect-badge trine">△ Тригон</div>
+          <div class="aspect-desc"><strong>☉ Слънце △ ☽ Луна</strong> — Телец и Дева са и двата земни знака. Вътрешна хармония — чувствата и волята й ще работят заедно. Рядко срещана вътрешна цялост.</div>
+        </div>
+        <div class="aspect-row">
+          <div class="aspect-badge sextile">✶ Секстил</div>
+          <div class="aspect-desc"><strong>♀ Венера ✶ ♃ Юпитер</strong> — Обожаван аспект! Природно щастие, привличане на любов и изобилие. Хората около нея ще усещат топлота.</div>
+        </div>
+        <div class="aspect-row">
+          <div class="aspect-badge square">□ Квадрат</div>
+          <div class="aspect-desc"><strong>♄ Сатурн □ ☉ Слънце</strong> — Предизвикателство: необходимост да докаже себе си. Дава дисциплина, амбиция и дълбочина след преодоляване.</div>
+        </div>
+        <div class="aspect-row">
+          <div class="aspect-badge trine">△ Тригон</div>
+          <div class="aspect-desc"><strong>♃ Юпитер △ ASC</strong> — Юпитер благославя асцендента. Тя ще привлича правилните хора, ситуации и възможности естествено.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESTINY -->
+    <div class="astro-section">
+      <div class="astro-section-head">
+        <div class="astro-icon" style="background:linear-gradient(135deg,#C4607A,#8B3050)">✦</div>
+        <div>
+          <div class="astro-section-title">Мисията на Белослава</div>
+          <div class="astro-section-sub">Северен възел — душевният path</div>
+        </div>
+      </div>
+      <div class="astro-card">
+        <div class="destiny-wrap">
+          <div class="destiny-text">Северният възел е в <strong>Дева</strong> — Белослава е тук, за да <strong>служи, анализира и лекува</strong>. Нейният path е чрез прецизност, практическа мъдрост и помощ на другите. Ще намери смисъл там, където внася ред в хаоса и лекува с детайл и любов.</div>
+          <div class="destiny-quote">"Родена е с мисия да направи света малко по-добър, малко по-хармоничен — с търпение и любов."</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:24px;"></div>
+  </div>
+
+  <div class="bottom-nav">
+    <button class="nav-btn" onclick="nav('home')"><div class="nav-icon">🏠</div><div class="nav-label">Начало</div><div class="nav-dot"></div></button>
+    <button class="nav-btn" onclick="nav('guide')"><div class="nav-icon">📖</div><div class="nav-label">Наръчник</div><div class="nav-dot"></div></button>
+    <button class="nav-btn active" onclick="nav('astro')"><div class="nav-icon">♉</div><div class="nav-label on">Зодия</div><div class="nav-dot"></div></button>
+    <button class="nav-btn" onclick="nav('moments')"><div class="nav-icon">🌸</div><div class="nav-label">Моменти</div><div class="nav-dot"></div></button>
+  </div>
+</div>
+
+<!-- ══════════ MOMENTS ══════════ -->
+<div class="screen" id="s-moments">
+  <div class="mom-hero">
+    <div class="hero-top-row">
+      <div class="hero-day" style="color:rgba(255,255,255,0.65)">Семейни спомени</div>
+      <button class="home-btn" onclick="nav('home')" title="Начало">🏠</button>
+    </div>
+    <div class="mom-hero-title">Моменти с Белослава</div>
+    <div class="mom-hero-sub">Първите 30 дни — незабравими</div>
+  </div>
+
+  <div class="mom-scroll">
+    <div class="sec-head"><div class="sec-title">Галерия</div></div>
+    <div class="mom-grid">
+      <div class="mom-card" style="background:linear-gradient(135deg,#FFE8F4,#F0D8FF)">🌸<div class="mom-card-label">Добре дошла, Белослава</div></div>
+      <div class="mom-card" style="background:linear-gradient(135deg,#E8F0FF,#D8EEFF)">👶<div class="mom-card-label">Първи час от живота</div></div>
+      <div class="mom-card" style="background:linear-gradient(135deg,#FFF8E0,#FFE8D0)">🍼<div class="mom-card-label">Първо хранене</div></div>
+      <div class="mom-card-add" onclick="alert('В реалното приложение — добавете снимка от галерията')"><div class="mom-add-icon">📷</div><div class="mom-add-lbl">Добави момент</div></div>
+    </div>
+
+    <div class="sec-head"><div class="sec-title">Дневник на родителите</div></div>
+    <div class="diary-card">
+      <div class="diary-date">7 Май 2026 · Ден 1</div>
+      <div class="diary-text">Белослава дойде на свят в 21:49 вечерта. Тежи 3.2 кг и е 50 см. Когато я чух за пръв път — разбрах какво означава любов от пръв поглед.</div>
+      <div class="diary-author">— Мама 💗</div>
+    </div>
+    <div class="diary-card">
+      <div class="diary-date">7 Май 2026 · Ден 1</div>
+      <div class="diary-text">Не вярвах, че ще бъда толкова развълнуван. Малките й ръчички се хванаха за пръста ми и светът спря за секунда.</div>
+      <div class="diary-author">— Тате 💙</div>
+    </div>
+
+    <div class="scroll-pad"></div>
+  </div>
+
+  <div class="bottom-nav">
+    <button class="nav-btn" onclick="nav('home')"><div class="nav-icon">🏠</div><div class="nav-label">Начало</div><div class="nav-dot"></div></button>
+    <button class="nav-btn" onclick="nav('guide')"><div class="nav-icon">📖</div><div class="nav-label">Наръчник</div><div class="nav-dot"></div></button>
+    <button class="nav-btn" onclick="nav('astro')"><div class="nav-icon">♉</div><div class="nav-label">Зодия</div><div class="nav-dot"></div></button>
+    <button class="nav-btn active" onclick="nav('moments')"><div class="nav-icon">🌸</div><div class="nav-label on">Моменти</div><div class="nav-dot"></div></button>
+  </div>
+</div>
+
+</div><!-- /shell -->
+
+<script>
+// ── NAVIGATION ──
+let prevScreen = 'home';
+const screenMap = { home:'s-home', guide:'s-guide', astro:'s-astro', moments:'s-moments', intro:'s-intro', detail:'s-detail' };
+
+function nav(key) {
+  const allScreens = document.querySelectorAll('.screen');
+  const target = document.getElementById(screenMap[key]);
+  if (!target) return;
+  allScreens.forEach(s => s.classList.remove('active'));
+  target.classList.add('active');
+  if (key !== 'detail') prevScreen = key;
+}
+
+function goBack() { nav(prevScreen); }
+
+// ── TASKS ──
+function toggleTask(el) {
+  const c = el.querySelector('.task-circle');
+  if (c.classList.contains('done')) {
+    c.classList.remove('done'); c.textContent = '';
+  } else {
+    c.classList.add('done'); c.textContent = '✓';
+  }
+}
+
+// ── DAY SYSTEM ──
+const BIRTH = new Date(2026, 4, 7, 21, 49); // May 7 2026 21:49
+let currentDay = 1;
+const TOTAL_DAYS = 30;
+
+const bgNames = ['яну','фев','мар','апр','май','юни','юли','авг','сеп','окт','ное','дек'];
+
+const DAY_DATA = {
+  week: {
+    1:  { label:'Седмица 1', tip:'Адаптация', text:'Белослава се адаптира към света. Фокус: топлина, кожен контакт, кърмене по желание. Жълтеница е нормална — следете цвета.' },
+    2:  { label:'Седмица 1', tip:'Адаптация', text:'Пъпчето започва да изсъхва. Кожата може да се люспи — нормално е. Режимът на хранене трябва да се установява.' },
+    3:  { label:'Седмица 1', tip:'Адаптация', text:'Третият ден е критичен за кърменето — млякото идва. Гърдите може да наболеят. Продължавайте да кърмите!' },
+    4:  { label:'Седмица 1', tip:'Адаптация', text:'Бебето може да загуби до 10% от теглото — нормално е. Следващите дни ще започне да наддава.' },
+    5:  { label:'Седмица 1', tip:'Адаптация', text:'Педиатърът трябва да провери теглото. Жълтеницата трябва да намалява. Очен контакт вече е възможен.' },
+    6:  { label:'Седмица 1', tip:'Адаптация', text:'Циркадният ритъм все още не е развит — нощното будуване е нормално. Спете когато спи бебето.' },
+    7:  { label:'Седмица 1', tip:'Адаптация', text:'Първата седмица е зад вас! Вие се справяте чудесно. Пъпчето трябва да е паднало или близо до падане.' },
+    8:  { label:'Седмица 2', tip:'Будност', text:'Белослава вече е по-будна в някои моменти. Говорете й, пейте — тя чува и разпознава гласа ви.' },
+    9:  { label:'Седмица 2', tip:'Будност', text:'Може да забележите "социална усмивка" скоро. Зрението й е около 20-25 см — точно до лицето ви при кърмене.' },
+    10: { label:'Седмица 2', tip:'Будност', text:'Теглото трябва вече да е над раждането. Хранене: 8-12 пъти на ден е нормата.' },
+    11: { label:'Седмица 2', tip:'Будност', text:'Може да има период на по-голямо плачене следобяд — "вечерна колика". Носенето помага.' },
+    12: { label:'Седмица 2', tip:'Будност', text:'Коремните газове са чести. Масаж по часовникова стрелка и велосипедни движения на краката помагат.' },
+    13: { label:'Седмица 2', tip:'Будност', text:'Двете седмици — важна точка. Ако имате трудности с кърменето, потърсете лактационен консултант.' },
+    14: { label:'Седмица 2', tip:'Будност', text:'Две седмици! Устойчивостта ви е невероятна. Белослава вече реагира по-ясно на вашия глас.' },
+    15: { label:'Седмица 3', tip:'Осъзнаване', text:'Белослава започва да "фокусира" поглед. Черно-бели картинки я привличат. Покажете й контрастни форми.' },
+    16: { label:'Седмица 3', tip:'Осъзнаване', text:'Може да се появи първата истинска социална усмивка. Неочаквано и разтопяващо сърцето.' },
+    17: { label:'Седмица 3', tip:'Осъзнаване', text:'Нощните сесии може да намалеят леко. Или не. И двете са нормални — бъдете търпеливи.' },
+    18: { label:'Седмица 3', tip:'Осъзнаване', text:'Bebe може да реагира на музика — успокояваща или оживяваща. Открийте какво й харесва.' },
+    19: { label:'Седмица 3', tip:'Осъзнаване', text:'Гласовете й стават по-разнообразни. Освен плач — може да чуете малки звукове, "гу-гу".' },
+    20: { label:'Седмица 3', tip:'Осъзнаване', text:'Три седмици! Тялото й укрепва. При "корем-времето" (под наблюдение!) тя вдига главата за секунди.' },
+    21: { label:'Седмица 3', tip:'Осъзнаване', text:'21 дни — бебето вече е оформило разпознаваемите си черти. Снимайте — расте невероятно бързо!' },
+    22: { label:'Седмица 4', tip:'Развитие', text:'Последната седмица! Белослава вече е доста различна от новороденото на ден 1.' },
+    23: { label:'Седмица 4', tip:'Развитие', text:'Очният контакт е по-устойчив и осъзнат. Тя вас търси с поглед — невероятно.' },
+    24: { label:'Седмица 4', tip:'Развитие', text:'Малки "разговори" — тя издава звук, вие повтаряте, тя отговаря. Първото й "dialogue".' },
+    25: { label:'Седмица 4', tip:'Развитие', text:'Сънят може да се удължи малко — 3-4 часа на блок нощем. Ако се случи, насладете се!' },
+    26: { label:'Седмица 4', tip:'Развитие', text:'Ръцете й са по-активни — ще се опитва да "хваща" нещата в зрителното поле.' },
+    27: { label:'Седмица 4', tip:'Развитие', text:'Скок в развитието около ден 26-28 е описан — бебето може да е по-нервно. Това е знак за растеж!' },
+    28: { label:'Седмица 4', tip:'Развитие', text:'Четири седмици! Официално 1 месец наближава. Вие преминахте невероятно пътешествие.' },
+    29: { label:'Месец 1', tip:'Един месец!', text:'Почти един месец! Белослава следи лица, реагира на глас, прави "гу" звуци и понякога се усмихва.' },
+    30: { label:'Месец 1', tip:'🎉 30 Дни!', text:'30 ДНИ! Честито — преминахте най-интензивните 30 дни от живота си като родители. Вие сте герои. Белослава е щастлива, защото вие сте там.' }
+  }
+};
+
+function getDayDate(dayNum) {
+  const d = new Date(BIRTH);
+  d.setDate(d.getDate() + dayNum - 1);
+  return d;
+}
+
+function formatDayDate(dayNum) {
+  const d = getDayDate(dayNum);
+  return `${d.getDate()} ${bgNames[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+function buildDayChips() {
+  const scroll = document.getElementById('day-scroll');
+  if (!scroll) return;
+  scroll.innerHTML = '';
+  for (let i = 1; i <= TOTAL_DAYS; i++) {
+    const chip = document.createElement('button');
+    chip.className = 'day-chip' + (i === currentDay ? ' active' : '');
+    chip.textContent = `Ден ${i}`;
+    chip.onclick = () => selectDay(i);
+    scroll.appendChild(chip);
+  }
+  // scroll active into view
+  setTimeout(() => {
+    const active = scroll.querySelector('.day-chip.active');
+    if (active) active.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }, 50);
+}
+
+function selectDay(d) {
+  currentDay = Math.max(1, Math.min(TOTAL_DAYS, d));
+  buildDayChips();
+  updateHomeForDay();
+}
+
+function changeDay(delta) { selectDay(currentDay + delta); }
+
+function updateHomeForDay() {
+  const d = currentDay;
+  document.getElementById('hero-day-num').textContent = d;
+  document.getElementById('hero-date-lbl').textContent = formatDayDate(d);
+
+  // update day tip card
+  const info = DAY_DATA.week[d] || { label:'Седмица 1', tip:'Съвет', text:'Продължавайте — правите чудесно!' };
+  const tipCard = document.getElementById('day-tip-card');
+  if (tipCard) {
+    tipCard.querySelector('.day-tip-week').textContent = info.label;
+    tipCard.querySelector('.day-tip-title').textContent = info.tip;
+    tipCard.querySelector('.day-tip-text').textContent = info.text;
+  }
+
+  // update tasks heading
+  const taskHead = document.getElementById('tasks-heading');
+  if (taskHead) taskHead.textContent = `Задачи — Ден ${d}`;
+}
+
+// ── STARS ──
+(function() {
+  const canvas = document.getElementById('stars-canvas');
+  const ctx = canvas.getContext('2d');
+  const shell = document.querySelector('.shell');
+  canvas.width = shell.offsetWidth || 430;
+  canvas.height = shell.offsetHeight || 900;
+  const stars = Array.from({length:80}, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 1.5 + 0.3,
+    a: Math.random(),
+    speed: 0.005 + Math.random() * 0.01,
+    phase: Math.random() * Math.PI * 2
+  }));
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    const t = Date.now() / 1000;
+    stars.forEach(s => {
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(255,255,255,${0.2 + 0.6 * (0.5 + 0.5 * Math.sin(t * s.speed * 60 + s.phase))})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// Init day picker on load
+buildDayChips();
+
+// ── DETAIL DATA ──
+const DETAILS = {
+  hold: {
+    title: 'Как се държи бебе',
+    sub: 'Позиции, безопасност и DO/DON\'T',
+    html: `
+      <div class="warn-banner"><div class="warn-icon">⚠️</div><div class="warn-body">Главата на Белослава изисква постоянна опора — шийните мускули не са развити.</div></div>
+      <div class="step-card">
+        <div class="step-num-badge">1</div>
+        <div class="step-card-title">Позиция "на рамото"</div>
+        <div class="step-visual">🤱</div>
+        <div class="step-card-body">Нежно подпрете главата с ладон. Тялото е по диагонал — гърдите на бебето до вашите гърди. Другата ръка поддържа гърба и задника. Дишането е по-спокойно в тази позиция.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num-badge">2</div>
+        <div class="step-card-title">Позиция "в люлка"</div>
+        <div class="step-visual">👶</div>
+        <div class="step-card-body">Лакътят ви е под главата, предмишницата поддържа гърба. Бебето лежи хоризонтално. Подходяща за хранене и приспиване.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num-badge">3</div>
+        <div class="step-card-title">Позиция "лице надолу"</div>
+        <div class="step-card-body">Само при газове и колики — главата е настрани, НИКОГА лице надолу. Бебето лежи по корем на предмишницата ви. Задължителен надзор.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-card-title">DO / DON'T</div>
+        <div class="do-dont">
+          <div class="do-box"><div class="do-lbl">✅ Правилно</div><div class="do-txt">Поддържайте главата постоянно. Движете се бавно и плавно. Говорете нежно.</div></div>
+          <div class="dont-box"><div class="dont-lbl">❌ Грешно</div><div class="dont-txt">Никога не разтърсвайте. Не оставяйте без опора на главата. Без рязки движения.</div></div>
+        </div>
+      </div>
+    `
+  },
+  feed: {
+    title: 'Хранене на Белослава',
+    sub: 'Кърмене, шише, оригване',
+    html: `
+      <div class="step-card"><div class="step-num-badge">1</div><div class="step-card-title">Кога да храните</div><div class="step-card-body">На всеки 2–3 часа, или при сигнали на глад: търсене, смучене на пръсти, завъртване на главата. Не чакайте плач — той е последен сигнал за глад.</div></div>
+      <div class="step-card"><div class="step-num-badge">2</div><div class="step-card-title">Правилна позиция при кърмене</div><div class="step-visual">🤱</div><div class="step-card-body">Коремът на бебето към вашия корем. Цялото тяло обърнато към вас. Главата леко назад. Устата трябва да обхване цялото зърно, не само върха — иначе боли и бебето не се нахранва добре.</div></div>
+      <div class="step-card"><div class="step-num-badge">3</div><div class="step-card-title">Как се дава шише</div><div class="step-visual">🍼</div><div class="step-card-body">Шишето под ъгъл ~45°. Зърното ВИНАГИ пълно с мляко — без въздух. Правете пауза на всеки 60 мл. Млякото трябва да е на температурата на тялото (37°C).</div></div>
+      <div class="step-card"><div class="step-num-badge">4</div><div class="step-card-title">Оригване — задължително</div><div class="step-card-body">След всяко хранене изправете бебето вертикално на рамото. Нежно потупайте гърба с кръгови движения. Изчакайте 1–2 минути. Нормално е малко мляко да се върне.</div></div>
+      <div class="warn-banner"><div class="warn-icon">🚨</div><div class="warn-body">Ако бебето не се е нахранило добре 3 пъти подред или има признаци на жълтеница — обадете се на педиатъра веднага.</div></div>
+    `
+  },
+  pampers: {
+    title: 'Смяна на памперс',
+    sub: 'Стъпка по стъпка с пълна хигиена',
+    html: `
+      <div class="step-card"><div class="step-num-badge">1</div><div class="step-card-title">Подготовка</div><div class="step-card-body">Пригответе ПРЕДИ да сложите бебето: чист памперс, мокри кърпи (без алкохол, без аромат), крем за попче. <strong>Измийте ръце!</strong> Никога не оставяйте бебето без надзор на масичката.</div></div>
+      <div class="step-card"><div class="step-num-badge">2</div><div class="step-card-title">Сваляне на стария памперс</div><div class="step-visual">👶</div><div class="step-card-body">Отворете лепенките. Хванете двете глезени с едната ръка и повдигнете леко задника. Сгънете стария памперс навътре (замърсената страна вътре) и го извадете.</div></div>
+      <div class="step-card"><div class="step-num-badge">3</div><div class="step-card-title">Почистване</div><div class="step-card-body">🩷 Момичета: ВИНАГИ отпред назад! Почистете всички гънки. Не е нужно да почиствате вътре.<br><br>💙 Момчета: покрийте пениса по време на почистване (може да "изненада"). Почистете под скротума.</div></div>
+      <div class="step-card"><div class="step-num-badge">4</div><div class="step-card-title">Поставяне на нов памперс</div><div class="step-card-body">Пъхнете задната (по-широка) част под попчето. Предната минава между краката нагоре. Лепенките трябва да са симетрични. Тест: трябва да влизат 2 пръста отстрани — нито много стегнат, нито хлабав.</div></div>
+      <div class="step-card">
+        <div class="step-card-title">Какво е нормално</div>
+        <div class="step-card-body">🟡 Светло жълта урина — норма<br>🟤 Черен меконий (ден 1–3) — нормално<br>🟡 Жълто-зелено (ден 4+) — нормално при кърмени<br>🟠 Жълто-оранжево при шише — нормално<br><br>🚨 Кръв или бяла слуз → педиатър веднага</div>
+      </div>
+    `
+  },
+  bath: {
+    title: 'Къпане на Белослава',
+    sub: 'Безопасна баня стъпка по стъпка',
+    html: `
+      <div class="warn-banner"><div class="warn-icon">🌡️</div><div class="warn-body">Температура на водата: точно 37°C. Проверявайте с лакъта — не с ръка. Температура в стаята: поне 24°C.</div></div>
+      <div class="step-card"><div class="step-num-badge">1</div><div class="step-card-title">Подготовка</div><div class="step-card-body">Напълнете ваничката с 8–10 см вода. Пригответе ПРЕДВАРИТЕЛНО: мека кърпа, гъба, шампоан без сълзи, чисти дрехи, чист памперс. Всичко трябва да е в ръка разстояние.</div></div>
+      <div class="step-card"><div class="step-num-badge">2</div><div class="step-card-title">Как се държи Белослава</div><div class="step-visual">🛁</div><div class="step-card-body">Лявата ви ръка е под врата и главата — предмишницата поддържа целия гръб. Дясната ръка мие. Главата е ВИНАГИ над водата. Движете се бавно. Усмихвайте се — тя чувства вашето спокойствие!</div></div>
+      <div class="step-card"><div class="step-num-badge">3</div><div class="step-card-title">Последователност на миене</div><div class="step-card-body">Лице (с чиста вода, без сапун) → шия и гърди → ръце → гърб → крака → интимни зони. Главата — последна. Не разтривайте — нежно потупайте.</div></div>
+      <div class="step-card"><div class="step-num-badge">4</div><div class="step-card-title">Пъпна рана</div><div class="step-card-body">Не потапяйте в ваничката докато пъпчето не е паднало. Само гъба-баня. Третирайте с памучен тупфер и спирт 2 пъти на ден докато изсъхне и падне (около 7–21 дни).</div></div>
+      <div class="step-card">
+        <div class="do-dont">
+          <div class="do-box"><div class="do-lbl">✅ Трябва</div><div class="do-txt">2–3 пъти седмично е достатъчно. Веднага след банята — увийте в топла кърпа.</div></div>
+          <div class="dont-box"><div class="dont-lbl">❌ Не трябва</div><div class="dont-txt">Никога сама! Никога гореща вода. Без Q-tips в ушите. Без течове в ушите.</div></div>
+        </div>
+      </div>
+    `
+  },
+  sleep: {
+    title: 'Безопасен сън',
+    sub: 'Позиция, среда, SIDS prevention',
+    html: `
+      <div class="warn-banner"><div class="warn-icon">⚠️</div><div class="warn-body">Безопасният сън е приоритет №1 за Белослава. Тези правила спасяват животи.</div></div>
+      <div class="step-card"><div class="step-num-badge">1</div><div class="step-card-title">Единствената правилна позиция</div><div class="step-visual">😴</div><div class="step-card-body">САМО на гръб — за всеки сън, включително дрямка. Никога на корем или настрани без постоянно наблюдение. Главата леко встрани (редувайте страните).</div></div>
+      <div class="step-card"><div class="step-num-badge">2</div><div class="step-card-title">Безопасна среда за сън</div><div class="step-card-body">✅ Твърд матрак с добре опнат чаршаф<br>✅ Спален чувал вместо одеяло<br>✅ Температура в стаята: 18–20°C<br><br>❌ Без възглавница<br>❌ Без одеяло или плюшени играчки в леглото<br>❌ Без бамперс (мека ограда около леглото)</div></div>
+      <div class="step-card"><div class="step-num-badge">3</div><div class="step-card-title">Заедно, но безопасно</div><div class="step-card-body">Препоръчително: детско легло до родителското за лесен достъп при кърмене. Никога в едно легло с родители ако има умора, алкохол, медикаменти или меки повърхности.</div></div>
+      <div class="step-card">
+        <div class="step-card-title">Нормален сън на Белослава</div>
+        <div class="step-card-body">Новородени спят 16–18 часа на ден в цикли от 45–60 мин. Будуването 8–12 пъти нощем е нормално. Не се притеснявайте — ще се нормализира!</div>
+      </div>
+    `
+  },
+  cry: {
+    title: 'Разпознаване на плач',
+    sub: 'Какво казва Белослава с плача си',
+    html: `
+      <div class="step-card">
+        <div class="step-card-title">4-те основни вида плач</div>
+        <div class="cry-type">
+          <div class="cry-emoji">🍼</div>
+          <div class="cry-body">
+            <div class="cry-name">Гладен плач</div>
+            <div class="cry-desc">Ритмичен, повтарящ се: "нeh-нeh-нeh". Постепенно нараства. Предшества от търсене с уста, смучене на пръсти.</div>
+            <span class="cry-tag">➡ Нахранете я</span>
+          </div>
+        </div>
+        <div class="cry-type">
+          <div class="cry-emoji">😴</div>
+          <div class="cry-body">
+            <div class="cry-name">Сънен плач</div>
+            <div class="cry-desc">Стенане, хленчене. Бебето търка очи, прозява. Очите се затварят по средата на изречение.</div>
+            <span class="cry-tag">➡ Тъмно, тихо, повийте</span>
+          </div>
+        </div>
+        <div class="cry-type">
+          <div class="cry-emoji">😣</div>
+          <div class="cry-body">
+            <div class="cry-name">Дискомфорт</div>
+            <div class="cry-desc">Нервен, непостоянен. Проверете: мокър памперс, твърде топло/студено, неудобна позиция, газове.</div>
+            <span class="cry-tag">➡ Проверете и коригирайте</span>
+          </div>
+        </div>
+        <div class="cry-type">
+          <div class="cry-emoji">😖</div>
+          <div class="cry-body">
+            <div class="cry-name">Болков плач</div>
+            <div class="cry-desc">Висок, остър, изненадващ. Бебето не се успокоява лесно. Може да задърже дъха.</div>
+            <span class="cry-tag">➡ Обадете се на лекар ако трае</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-card-title">Метод "ПООТ"</div>
+        <div class="step-card-body">Проверявайте винаги в ред:<br>🍼 П — Плаче ли от глад?<br>👶 О — Окален ли е памперсът?<br>😴 О — Иска ли да спи?<br>🌡️ Т — Температурата добра ли е?</div>
+      </div>
+    `
+  },
+  guests: {
+    title: 'Баби, дядовци и гости',
+    sub: 'Правила за близките на Белослава',
+    html: `
+      <div class="step-card">
+        <div class="step-num-badge">🧼</div>
+        <div class="step-card-title">Хигиена — без изключение</div>
+        <div class="step-card-body">Всеки гост ТРЯБВА да измие ръце с сапун поне 20 секунди преди да докосне Белослава. Алкохолен гел 70%+ е алтернатива. Имунитетът на бебето е все още много слаб.</div>
+      </div>
+      <div class="step-card">
+        <div class="do-dont">
+          <div class="do-box"><div class="do-lbl">✅ Разрешено</div><div class="do-txt">Прегръдки и гледане. Носене при измити ръце и опора на главата. Снимки и видео.</div></div>
+          <div class="dont-box"><div class="dont-lbl">❌ Забранено</div><div class="dont-txt">Целувки по лице и ръчички. Посещение при болест. Разтърсване. Силен шум.</div></div>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num-badge">🤒</div>
+        <div class="step-card-title">Кога НЕ се посещава</div>
+        <div class="step-card-body">При: настинка, кашлица, грип, херпес по устните, контакт с болен — изчакайте поне 7 дни след пълно оздравяване. По-добре да изчакате, отколкото да рискувате.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num-badge">👵</div>
+        <div class="step-card-title">За баби и дядовци</div>
+        <div class="step-card-body">Медицината се е развила! Важно е да знаят:<br>❌ Без сън по корем<br>❌ Без мед до 1 година<br>❌ Без вода или чай<br>❌ Без патица (задавяне!)<br>✅ Доверявайте се на педиатъра<br><br>Тяхната любов е безценна — дайте им ясни правила с разбиране.</div>
+      </div>
+    `
+  },
+  emergency: {
+    title: '🚨 Спешни ситуации',
+    sub: 'При съмнение — обадете се на 112 ВЕДНАГА',
+    html: `
+      <div class="warn-banner"><div class="warn-icon">🚑</div><div class="warn-body">При съмнение — обадете се на 112. По-добре излишен звън, отколкото закъснение. Действайте СПОКОЙНО.</div></div>
+      <div class="step-card" style="border:1px solid rgba(176,48,64,0.25);background:#FFF8F8;">
+        <div class="step-num-badge" style="background:linear-gradient(135deg,#B03040,#D04050);">1</div>
+        <div class="step-card-title">🫁 Задавяне</div>
+        <div class="step-card-body">Ако бебето не плаче и не диша нормално:<br><br>1. Обърнете го по корем на предмишницата си, главата надолу<br>2. 5 удара с петата на ладонта между лопатките<br>3. Обърнете на гръб — 2 натискания на гръдния кош с 2 пръста<br>4. Повторете<br>5. Обадете се на 112 ВЕДНАГА</div>
+      </div>
+      <div class="step-card" style="border:1px solid rgba(176,48,64,0.25);background:#FFF8F8;">
+        <div class="step-num-badge" style="background:linear-gradient(135deg,#B03040,#D04050);">2</div>
+        <div class="step-card-title">🌡️ Висока температура</div>
+        <div class="step-card-body">При новородено (0–3 месеца) ВСЯКА температура над 38°C е СПЕШНА.<br><br>Не давайте лекарства без препоръка. Не обтривайте с алкохол. Свалете дрехите. Обадете се ВЕДНАГА на педиатъра или 112.</div>
+      </div>
+      <div class="step-card" style="border:1px solid rgba(176,48,64,0.25);background:#FFF8F8;">
+        <div class="step-num-badge" style="background:linear-gradient(135deg,#B03040,#D04050);">3</div>
+        <div class="step-card-title">💙 Посиняване</div>
+        <div class="step-card-body">Синьо около устата или по цялото тяло = СПЕШНО!<br><br>Обадете се на 112 НЕЗАБАВНО. Проверете дали диша. Ако не диша — започнете детска CPR (30 натискания + 2 вдишвания).</div>
+      </div>
+      <div class="step-card" style="border:1px solid rgba(176,48,64,0.25);background:#FFF8F8;">
+        <div class="step-num-badge" style="background:linear-gradient(135deg,#B03040,#D04050);">4</div>
+        <div class="step-card-title">😰 Затруднено дишане</div>
+        <div class="step-card-body">Ако дишането е: много бързо (>60/мин), с хъркане, с хлъцане, или с дълги паузи (>20 сек) — 112 веднага.<br><br>Пребройте вдишвания за 15 секунди и умножете по 4.</div>
+      </div>
+      <button class="panic-btn" onclick="alert('В реалното приложение — обаждане на 112!')">📞 ОБАДИ СЕ НА 112</button>
+      <div style="height:16px;"></div>
+    `
+  }
+};
+
+function openDetail(key) {
+  const d = DETAILS[key];
+  if (!d) return;
+  document.getElementById('d-title').textContent = d.title;
+  document.getElementById('d-sub').textContent = d.sub;
+  document.getElementById('d-content').innerHTML = d.html;
+  nav('detail');
+}
+
+// ── AI CHAT ──
+const AI_RESPONSES = {
+  'Защо плаче Белослава?': '🎵 Плачът е единственият език на Белослава. Проверете по ред: гладна? (последно хранене преди повече от 2ч?), мокра? (памперс), болки от газове? (масаж по корема по часовникова стрелка), сънена? (прозява ли се). Ако нищо не помага — просто я успокоете в прегръдка.',
+  'Кога трябва да я заведем при лекар?': '🏥 Веднага при: температура над 38°C, посиняване около устата, не яде повече от 4 часа, не мокри памперс 8+ часа, вяла е и трудно се буди. Иначе — педиатър на ден 3–5 за рутинен преглед.',
+  'Колко трябва да яде?': '🍼 При кърмене: на всеки 2–3 часа, 8–12 пъти на ден. При шише: около 60–90 мл на хранене в първата седмица. Знак, че е достатъчно: 6+ мокри памперса на ден и стабилно тегло след ден 5.',
+};
+
+function askAI(q) {
+  document.getElementById('chat-field').value = q;
+  sendChat();
+}
+
+function sendChat() {
+  const field = document.getElementById('chat-field');
+  const q = field.value.trim();
+  if (!q) return;
+  field.value = '';
+  const wrap = document.getElementById('chat-wrap');
+
+  const userEl = document.createElement('div');
+  userEl.className = 'chat-msg user';
+  userEl.innerHTML = `<div class="bubble user">${q}</div><div class="chat-ts">Сега</div>`;
+  wrap.appendChild(userEl);
+  wrap.scrollTop = wrap.scrollHeight;
+
+  const aiEl = document.createElement('div');
+  aiEl.className = 'chat-msg ai';
+  aiEl.innerHTML = `<div class="bubble ai"><div class="typing-dots"><span></span><span></span><span></span></div></div><div class="chat-ts">Пиша...</div>`;
+  wrap.appendChild(aiEl);
+  wrap.scrollTop = wrap.scrollHeight;
+
+  setTimeout(() => {
+    const resp = AI_RESPONSES[q] || '✨ Разбирам загрижеността ви. В реалното приложение ще имате достъп до пълния AI асистент с персонализирани отговори за Белослава. За спешни въпроси — обадете се на педиатъра.';
+    aiEl.querySelector('.bubble').textContent = resp;
+    aiEl.querySelector('.chat-ts').textContent = 'Сега';
+    wrap.scrollTop = wrap.scrollHeight;
+  }, 1400);
+}
+
+document.getElementById('chat-field') && document.getElementById('chat-field').addEventListener('keydown', e => {
+  if (e.key === 'Enter') sendChat();
+});
+
+// ── NATAL CHART ──
+function drawNatalChart() {
+  const canvas = document.getElementById('natal-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = 320, H = 320, cx = W/2, cy = H/2;
+
+  // Zodiac sign colors
+  const signColors = [
+    '#C4607A','#4a7c59','#185FA5','#8B3A3A',
+    '#C9A96E','#6B4FA0','#C4607A','#4a7c59',
+    '#8B3A3A','#2d5c7a','#4a6a35','#6B4FA0'
+  ];
+  const signSymbols = ['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
+
+  ctx.clearRect(0,0,W,H);
+
+  // Outer ring background
+  ctx.beginPath();
+  ctx.arc(cx, cy, 150, 0, Math.PI*2);
+  ctx.fillStyle = '#1a1a2e';
+  ctx.fill();
+
+  // 12 zodiac segments
+  for (let i = 0; i < 12; i++) {
+    const startA = (i * 30 - 90) * Math.PI / 180;
+    const endA = ((i+1) * 30 - 90) * Math.PI / 180;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, 150, startA, endA);
+    ctx.closePath();
+    ctx.fillStyle = signColors[i] + '22';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+    ctx.lineWidth = 0.5;
+    ctx.stroke();
+
+    // Sign symbol
+    const midA = (startA + endA) / 2;
+    const r = 135;
+    ctx.font = '12px serif';
+    ctx.fillStyle = signColors[i];
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(signSymbols[i], cx + r * Math.cos(midA), cy + r * Math.sin(midA));
+  }
+
+  // House ring (lighter inner)
+  ctx.beginPath();
+  ctx.arc(cx, cy, 110, 0, Math.PI*2);
+  ctx.fillStyle = '#0f0f1a';
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  // Draw 12 house cusps
+  // Asc = Sagittarius = 240° on ecliptic → house cusp 1 starts at left (180°)
+  const ascDeg = 242; // 2° Sagittarius on ecliptic
+  for (let i = 0; i < 12; i++) {
+    const angle = ((i * 30) - ascDeg - 90) * Math.PI / 180;
+    const isDivider = true;
+    ctx.beginPath();
+    ctx.moveTo(cx + 60 * Math.cos(angle), cy + 60 * Math.sin(angle));
+    ctx.lineTo(cx + 110 * Math.cos(angle), cy + 110 * Math.sin(angle));
+    ctx.strokeStyle = i === 0 ? '#FF6FA8' : 'rgba(255,255,255,0.15)';
+    ctx.lineWidth = i === 0 ? 2 : 0.5;
+    ctx.stroke();
+
+    // House number
+    const midA2 = ((i + 0.5) * 30 - ascDeg - 90) * Math.PI / 180;
+    ctx.font = '9px DM Sans, sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.35)';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(i+1, cx + 85 * Math.cos(midA2), cy + 85 * Math.sin(midA2));
+  }
+
+  // Inner chart circle
+  ctx.beginPath();
+  ctx.arc(cx, cy, 60, 0, Math.PI*2);
+  ctx.fillStyle = '#0a0a14';
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  // Planet positions (ecliptic longitude, approx for 7 May 2026)
+  const planets = [
+    { sym:'☉', deg: 47, color:'#FFD700', r: 120 },    // Sun 17° Taurus
+    { sym:'☽', deg: 158, color:'#C0C8FF', r: 120 },   // Moon 8° Virgo
+    { sym:'☿', deg: 59, color:'#B0C4DE', r: 108 },    // Mercury 29° Taurus
+    { sym:'♀', deg: 104, color:'#FF8FAA', r: 108 },   // Venus 14° Cancer
+    { sym:'♂', deg: 63, color:'#FF6040', r: 96 },     // Mars 3° Gemini
+    { sym:'♃', deg: 112, color:'#E8A040', r: 96 },    // Jupiter 22° Cancer
+    { sym:'♄', deg: 17, color:'#8B7040', r: 108 },    // Saturn 17° Aries
+    { sym:'♅', deg: 57, color:'#40B0E8', r: 120 },    // Uranus 27° Taurus
+    { sym:'♆', deg: 12, color:'#6070E8', r: 96 },     // Neptune 2° Aries
+    { sym:'♇', deg: 303, color:'#8B4A80', r: 108 },   // Pluto 3° Aquarius
+  ];
+
+  planets.forEach(p => {
+    const angle = (p.deg - ascDeg - 90) * Math.PI / 180;
+    const px = cx + p.r * Math.cos(angle);
+    const py = cy + p.r * Math.sin(angle);
+
+    // Glow
+    ctx.beginPath();
+    ctx.arc(px, py, 8, 0, Math.PI*2);
+    ctx.fillStyle = p.color + '30';
+    ctx.fill();
+
+    // Symbol
+    ctx.font = 'bold 11px serif';
+    ctx.fillStyle = p.color;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(p.sym, px, py);
+
+    // Dot line to inner circle
+    ctx.beginPath();
+    ctx.moveTo(px, py);
+    ctx.lineTo(cx + 62 * Math.cos(angle), cy + 62 * Math.sin(angle));
+    ctx.strokeStyle = p.color + '40';
+    ctx.lineWidth = 0.5;
+    ctx.stroke();
+  });
+
+  // Draw aspect lines inside inner circle
+  const aspectPairs = [
+    [0,1,'#FFD700','trine'],
+    [3,5,'#FF8FAA','sextile'],
+    [6,0,'#FF6040','square'],
+    [5,null,'#E8A040','trine'], // Jupiter trine Asc
+  ];
+  // Sun trine Moon
+  function planetXY(deg, r) {
+    const angle = (deg - ascDeg - 90) * Math.PI / 180;
+    return [cx + r*0.7 * Math.cos(angle), cy + r*0.7 * Math.sin(angle)];
+  }
+  const [sx,sy] = planetXY(47, 60);
+  const [mx,my] = planetXY(158, 60);
+  ctx.beginPath(); ctx.moveTo(sx,sy); ctx.lineTo(mx,my);
+  ctx.strokeStyle = '#FFD70030'; ctx.lineWidth = 1; ctx.setLineDash([]); ctx.stroke();
+
+  const [vx,vy] = planetXY(104, 60);
+  const [jx,jy] = planetXY(112, 60);
+  ctx.beginPath(); ctx.moveTo(vx,vy); ctx.lineTo(jx,jy);
+  ctx.strokeStyle = '#FF8FAA40'; ctx.lineWidth = 1; ctx.stroke();
+
+  const [satx,saty] = planetXY(17, 60);
+  ctx.beginPath(); ctx.moveTo(satx,saty); ctx.lineTo(sx,sy);
+  ctx.strokeStyle = '#FF604028'; ctx.lineWidth = 1; ctx.stroke();
+
+  // Center: baby name
+  ctx.font = '500 11px DM Sans, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.8)';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('Белослава', cx, cy - 7);
+  ctx.font = '9px DM Sans, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.4)';
+  ctx.fillText('7.05.2026 · 21:49', cx, cy + 8);
+
+  // ASC marker
+  const ascAngle = (-ascDeg - 90) * Math.PI / 180;
+  ctx.beginPath();
+  ctx.moveTo(cx + 110 * Math.cos(ascAngle), cy + 110 * Math.sin(ascAngle));
+  ctx.lineTo(cx + 150 * Math.cos(ascAngle), cy + 150 * Math.sin(ascAngle));
+  ctx.strokeStyle = '#FF6FA8';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  ctx.font = 'bold 9px DM Sans, sans-serif';
+  ctx.fillStyle = '#FF6FA8';
+  ctx.textAlign = 'center';
+  ctx.fillText('ASC', cx + 156 * Math.cos(ascAngle), cy + 156 * Math.sin(ascAngle));
+}
+
+// Draw natal chart when astro screen visited
+const _origNav = nav;
+window.nav = function(key) {
+  _origNav(key);
+  if (key === 'astro') setTimeout(drawNatalChart, 50);
+};
+</script>
+</body>
+</html>
