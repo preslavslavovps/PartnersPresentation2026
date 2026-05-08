@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Белослава Славова — First 30 Days</title>
+<title>Белослава Славова — Първите 30 дни</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
@@ -1024,6 +1024,8 @@ html, body {
       <button class="q-btn" onclick="openDetail('cry')"><div class="q-icon">🎵</div><div class="q-lbl">Плач</div></button>
       <button class="q-btn" onclick="openDetail('guests')"><div class="q-icon">👵</div><div class="q-lbl">Гости</div></button>
       <button class="q-btn red" onclick="openDetail('emergency')"><div class="q-icon">🚨</div><div class="q-lbl">Спешно</div></button>
+      <button class="q-btn" style="background:linear-gradient(135deg,#FFF0F0,#FFE4E4);border-color:rgba(176,48,64,0.18);grid-column:span 2;flex-direction:row;gap:10px;padding:14px 14px;" onclick="openDetail('firstaid')"><div class="q-icon" style="font-size:26px;">🏥</div><div style="text-align:left;"><div class="q-lbl" style="font-size:11px;font-weight:600;color:#B03040;line-height:1.4;">Първа помощ</div><div class="q-lbl" style="font-size:10px;color:#B03040;opacity:0.8;">10 сценария + видеа</div></div></button>
+      <button class="q-btn" style="background:linear-gradient(135deg,#F0F0FF,#E8E4FF);border-color:rgba(107,79,160,0.18);grid-column:span 2;flex-direction:row;gap:10px;padding:14px 14px;" onclick="openDetail('tips')"><div class="q-icon" style="font-size:26px;">💡</div><div style="text-align:left;"><div class="q-lbl" style="font-size:11px;font-weight:600;color:#6B4FA0;line-height:1.4;">Съвети за нови родители</div><div class="q-lbl" style="font-size:10px;color:#6B4FA0;opacity:0.8;">Позиции · Масаж · Сън + видеа</div></div></button>
     </div>
 
     <div class="sec-head"><div class="sec-title" id="tasks-heading">Задачи — Ден 1</div></div>
@@ -1089,7 +1091,7 @@ html, body {
     <div class="guide-grid">
       <div class="guide-card" onclick="openDetail('hold')">
         <div class="g-emoji">🤱</div>
-        <div><div class="g-title">Как се държи бебе</div><div class="g-sub">Позиции · DO/DON'T</div></div>
+        <div><div class="g-title">Как се държи бебе</div><div class="g-sub">Позиции · Правилно/Грешно</div></div>
       </div>
       <div class="guide-card" onclick="openDetail('feed')">
         <div class="g-emoji">🍼</div>
@@ -1105,7 +1107,7 @@ html, body {
       </div>
       <div class="guide-card" onclick="openDetail('sleep')">
         <div class="g-emoji">😴</div>
-        <div><div class="g-title">Безопасен сън</div><div class="g-sub">SIDS prevention</div></div>
+        <div><div class="g-title">Безопасен сън</div><div class="g-sub">Профилактика на SIDS</div></div>
       </div>
       <div class="guide-card" onclick="openDetail('cry')">
         <div class="g-emoji">🎵</div>
@@ -1441,7 +1443,7 @@ html, body {
       <div class="mom-card" style="background:linear-gradient(135deg,#FFE8F4,#F0D8FF)">🌸<div class="mom-card-label">Добре дошла, Белослава</div></div>
       <div class="mom-card" style="background:linear-gradient(135deg,#E8F0FF,#D8EEFF)">👶<div class="mom-card-label">Първи час от живота</div></div>
       <div class="mom-card" style="background:linear-gradient(135deg,#FFF8E0,#FFE8D0)">🍼<div class="mom-card-label">Първо хранене</div></div>
-      <div class="mom-card-add" onclick="alert('В реалното приложение — добавете снимка от галерията')"><div class="mom-add-icon">📷</div><div class="mom-add-lbl">Добави момент</div></div>
+      <div class="mom-card-add" onclick="alert('Добавете снимка от галерията')"><div class="mom-add-icon">📷</div><div class="mom-add-lbl">Добави момент</div></div>
     </div>
 
     <div class="sec-head"><div class="sec-title">Дневник на родителите</div></div>
@@ -1634,14 +1636,14 @@ const DETAILS = {
       <div class="warn-banner"><div class="warn-icon">⚠️</div><div class="warn-body">Главата на Белослава трябва ВИНАГИ да е подпряна — шийните мускули са слаби. Дръжте и когато я прехвърляте от ръка на ръка.</div></div>
       <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=wFGr9axK8eQ','_blank')">
         <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/wFGr9axK8eQ/hqdefault.jpg" alt="Как се държи бебе" onerror="this.style.display='none'">
+          <img src="https://img.youtube.com/vi/wFGr9axK8eQ/hqdefault.jpg" alt="Как се държи бебе" onerror="this.parentElement.style.background='#1a1a2e'">
           <div class="video-play-btn"><div class="video-play-circle"></div></div>
         </div>
         <div class="video-card-footer">
           <div class="video-card-footer-icon">▶</div>
           <div class="video-card-footer-text">
             <div class="video-card-title">Как се държи новородено бебе</div>
-            <div class="video-card-sub">Boston Children's Hospital · YouTube</div>
+            <div class="video-card-sub">Детска болница Бостън · YouTube</div>
           </div>
           <div class="video-card-arrow">↗</div>
         </div>
@@ -1677,16 +1679,16 @@ const DETAILS = {
     sub: 'Кърмене, шише, оригване',
     html: `
       <div class="step-card"><div class="step-num-badge">1</div><div class="step-card-title">Кога да храните</div><div class="step-card-body">На всеки 2–3 часа, или при ранни сигнали на глад: търсене с уста, смучене на пръсти, завъртване на глава. <strong>Не чакайте плача</strong> — той е последният сигнал. Хранете ~8–12 пъти на ден.</div></div>
-      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=S5RijIXcHlk','_blank')">
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=wsNR3cnjoAY','_blank')">
         <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/S5RijIXcHlk/hqdefault.jpg" alt="Кърмене" onerror="this.style.display='none'">
+          <img src="https://img.youtube.com/vi/wsNR3cnjoAY/hqdefault.jpg" alt="Кърмене" onerror="this.parentElement.style.background='#1a1a2e'">
           <div class="video-play-btn"><div class="video-play-circle"></div></div>
         </div>
         <div class="video-card-footer">
           <div class="video-card-footer-icon">▶</div>
           <div class="video-card-footer-text">
-            <div class="video-card-title">Как се кърми бебе — стъпка по стъпка</div>
-            <div class="video-card-sub">Nemours KidsHealth · YouTube</div>
+            <div class="video-card-title">Как се залавя бебето при кърмене — правилна техника</div>
+            <div class="video-card-sub">Ръководство за кърмене · 2023</div>
           </div>
           <div class="video-card-arrow">↗</div>
         </div>
@@ -1704,7 +1706,7 @@ const DETAILS = {
       <div class="step-card"><div class="step-num-badge">1</div><div class="step-card-title">Подготовка</div><div class="step-card-body">Пригответе ПРЕДИ да сложите бебето: чист памперс, мокри кърпи (без алкохол, без аромат), крем за попче. <strong>Измийте ръце!</strong> Никога не оставяйте бебето без надзор на масичката.</div></div>
       <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=MN402tbByR0','_blank')">
         <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/MN402tbByR0/hqdefault.jpg" alt="Смяна на памперс" onerror="this.style.display='none'">
+          <img src="https://img.youtube.com/vi/MN402tbByR0/hqdefault.jpg" alt="Смяна на памперс" onerror="this.parentElement.style.background='#1a1a2e'">
           <div class="video-play-btn"><div class="video-play-circle"></div></div>
         </div>
         <div class="video-card-footer">
@@ -1732,7 +1734,7 @@ const DETAILS = {
       <div class="warn-banner"><div class="warn-icon">🌡️</div><div class="warn-body">Температура на водата: точно 37°C. Проверявайте с лакъта — не с ръка. Температура в стаята: поне 24°C.</div></div>
       <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=907EhHuntd4','_blank')">
         <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/907EhHuntd4/hqdefault.jpg" alt="Баня на новородено" onerror="this.style.display='none'">
+          <img src="https://img.youtube.com/vi/907EhHuntd4/hqdefault.jpg" alt="Баня на новородено" onerror="this.parentElement.style.background='#1a1a2e'">
           <div class="video-play-btn"><div class="video-play-circle"></div></div>
         </div>
         <div class="video-card-footer">
@@ -1761,16 +1763,16 @@ const DETAILS = {
     sub: 'Позиция, среда, какво е нормално',
     html: `
       <div class="warn-banner"><div class="warn-icon">⚠️</div><div class="warn-body">Позицията за сън е най-важното правило. Прочетете и го запомнете наизуст.</div></div>
-      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=hWo5sKFKkvo','_blank')">
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=NXmjGbBLP60','_blank')">
         <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/hWo5sKFKkvo/hqdefault.jpg" alt="Безопасен сън" onerror="this.style.display='none'">
+          <img src="https://img.youtube.com/vi/NXmjGbBLP60/hqdefault.jpg" alt="Безопасен сън" onerror="this.parentElement.style.background='#1a1a2e'">
           <div class="video-play-btn"><div class="video-play-circle"></div></div>
         </div>
         <div class="video-card-footer">
           <div class="video-card-footer-icon">▶</div>
           <div class="video-card-footer-text">
-            <div class="video-card-title">Безопасен сън за новородено</div>
-            <div class="video-card-sub">Safe Sleep Guidelines · YouTube</div>
+            <div class="video-card-title">5 правила за безопасен сън на бебето (АПП)</div>
+            <div class="video-card-sub">Американска академия по педиатрия · 2023</div>
           </div>
           <div class="video-card-arrow">↗</div>
         </div>
@@ -1856,21 +1858,219 @@ const DETAILS = {
       </div>
     `
   },
-  emergency: {
-    title: '🚨 Спешни ситуации',
-    sub: 'При съмнение — обадете се на 112 ВЕДНАГА',
+  firstaid: {
+    title: '🏥 Първа помощ',
+    sub: '10 сценария — знайте какво да правите',
     html: `
-      <div class="warn-banner"><div class="warn-icon">🚑</div><div class="warn-body">При съмнение — обадете се на 112. По-добре излишен звън, отколкото закъснение. Действайте СПОКОЙНО.</div></div>
-      <div class="video-card" style="border-color:rgba(176,48,64,0.3);" onclick="window.open('https://www.youtube.com/watch?v=WqIJbT8cCI8','_blank')">
+      <div class="warn-banner"><div class="warn-icon">🚑</div><div class="warn-body">При всяко съмнение за спешна ситуация — обадете се на 112. Не губете ценни секунди в колебание.</div></div>
+
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=z-3IAG_974o','_blank')">
         <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/WqIJbT8cCI8/hqdefault.jpg" alt="Бебешки CPR" onerror="this.style.display='none'">
+          <img src="https://img.youtube.com/vi/z-3IAG_974o/hqdefault.jpg" alt="Задавяне при бебе" onerror="this.parentElement.style.background='#1a1a2e'">
           <div class="video-play-btn"><div class="video-play-circle"></div></div>
         </div>
         <div class="video-card-footer">
           <div class="video-card-footer-icon" style="background:#B03040;">▶</div>
           <div class="video-card-footer-text">
-            <div class="video-card-title" style="color:#B03040;">🚨 Бебешки CPR — гледайте СЕГА</div>
-            <div class="video-card-sub">Гледайте преди да се наложи. UC Davis Children's Hospital</div>
+            <div class="video-card-title" style="color:#B03040;">🫁 Задавяне при бебе — Британски Червен кръст</div>
+            <div class="video-card-sub">Стъпка по стъпка: удари по гърба + натискания на гърдите · 2024</div>
+          </div>
+          <div class="video-card-arrow">↗</div>
+        </div>
+      </div>
+
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=01jpBkoQr4Y','_blank')">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/01jpBkoQr4Y/hqdefault.jpg" alt="Infant CPR" onerror="this.parentElement.style.background='#1a1a2e'">
+          <div class="video-play-btn"><div class="video-play-circle"></div></div>
+        </div>
+        <div class="video-card-footer">
+          <div class="video-card-footer-icon" style="background:#B03040;">▶</div>
+          <div class="video-card-footer-text">
+            <div class="video-card-title" style="color:#B03040;">💙 Infant CPR — стъпка по стъпка</div>
+            <div class="video-card-sub">30 натискания + 2 вдишвания · 2024</div>
+          </div>
+          <div class="video-card-arrow">↗</div>
+        </div>
+      </div>
+
+      <div class="step-card" style="border:1px solid rgba(176,48,64,0.2);background:#FFF8F8;">
+        <div class="step-num-badge" style="background:linear-gradient(135deg,#B03040,#D04050);">1</div>
+        <div class="step-card-title">🫁 Задавяне</div>
+        <div class="step-card-body">Ако бебето не плаче, не диша, посиняло е:<br><br>1. Обърнете по корем на предмишницата, главата надолу<br>2. 5 удара с петата на ладонта между лопатките<br>3. Обърнете на гръб — 2 натискания с 2 пръста на гръдния кош<br>4. Повторете до освобождаване<br>5. ☎️ 112 ВЕДНАГА при първа стъпка</div>
+      </div>
+      <div class="step-card" style="border:1px solid rgba(176,48,64,0.2);background:#FFF8F8;">
+        <div class="step-num-badge" style="background:linear-gradient(135deg,#B03040,#D04050);">2</div>
+        <div class="step-card-title">🌡️ Висока температура (38°C+)</div>
+        <div class="step-card-body">При новородено до 3 месеца ВСЯКА температура над 38°C е СПЕШНА.<br><br>1. Свалете дрехите — оставете само бодито<br>2. Измерете ректално за точност<br>3. Не давайте лекарства без препоръка на лекар<br>4. Не обтривайте с алкохол — опасно!<br>5. ☎️ Педиатър или 112 ВЕДНАГА</div>
+      </div>
+      <div class="step-card" style="border:1px solid rgba(176,48,64,0.2);background:#FFF8F8;">
+        <div class="step-num-badge" style="background:linear-gradient(135deg,#B03040,#D04050);">3</div>
+        <div class="step-card-title">💙 Посиняване около устата</div>
+        <div class="step-card-body">Синьо/лилаво оцветяване = СПЕШНО!<br><br>1. ☎️ 112 НЕЗАБАВНО<br>2. Проверете дишането (слушайте, гледайте гърдите)<br>3. Ако не диша — детска CPR: 30 натискания + 2 леки вдишвания<br>4. Не оставяйте бебето само</div>
+      </div>
+      <div class="step-card" style="border:1px solid rgba(176,48,64,0.2);background:#FFF8F8;">
+        <div class="step-num-badge" style="background:linear-gradient(135deg,#B03040,#D04050);">4</div>
+        <div class="step-card-title">😰 Затруднено дишане</div>
+        <div class="step-card-body">Пребройте вдишвания за 15 сек × 4.<br><br>🚨 Спешно при:<br>• Над 60 вдишвания/мин<br>• Хъркане или свирене<br>• Паузи над 20 сек<br>• Ноздрите се разширяват при дишане<br>• Кожата между ребрата хлътва</div>
+      </div>
+      <div class="step-card" style="border:1px solid rgba(138,96,32,0.2);background:#FFFBF0;">
+        <div class="step-num-badge" style="background:linear-gradient(135deg,#C9A96E,#8B6840);">5</div>
+        <div class="step-card-title">🤕 Падане от повърхност</div>
+        <div class="step-card-body">1. НЕ местете рязко<br>2. Проверете за наранявания<br>3. Наблюдавайте: плаче ли нормално? Буди ли се?<br>4. ☎️ 112 при: загуба на съзнание, повръщане, необичаен плач, подутина<br>5. При съмнение — педиатър</div>
+      </div>
+      <div class="step-card" style="border:1px solid rgba(138,96,32,0.2);background:#FFFBF0;">
+        <div class="step-num-badge" style="background:linear-gradient(135deg,#C9A96E,#8B6840);">6</div>
+        <div class="step-card-title">💊 Поглъщане на предмет</div>
+        <div class="step-card-body">Ако диша нормално:<br>• Не слагайте пръст в устата<br>• ☎️ Педиатър веднага<br><br>Батерия или монета → 🚨 Спешно към болница — батериите са много опасни дори при нормално дишане!</div>
+      </div>
+      <div class="step-card" style="border:1px solid rgba(138,96,32,0.2);background:#FFFBF0;">
+        <div class="step-num-badge" style="background:linear-gradient(135deg,#C9A96E,#8B6840);">7</div>
+        <div class="step-card-title">🔥 Изгаряне</div>
+        <div class="step-card-body">1. Охладете с хладка (НЕ студена) вода 10–20 мин<br>2. Не слагайте масло, паста или лед<br>3. Покрийте с чиста кърпа<br>4. ☎️ Мехури, бяла/черна кожа, лице → 112<br>5. Не спукайте мехурите</div>
+      </div>
+      <div class="step-card" style="border:1px solid rgba(138,96,32,0.2);background:#FFFBF0;">
+        <div class="step-num-badge" style="background:linear-gradient(135deg,#C9A96E,#8B6840);">8</div>
+        <div class="step-card-title">😵 Конвулсии / Гърч</div>
+        <div class="step-card-body">1. ☎️ 112 ВЕДНАГА<br>2. Наредете на страни (не на гръб)<br>3. НЕ слагайте нищо в устата<br>4. НЕ задържайте — само предпазвайте<br>5. Засечете времето на гърча</div>
+      </div>
+      <div class="step-card" style="border:1px solid rgba(45,122,78,0.2);background:#F0FFF5;">
+        <div class="step-num-badge" style="background:linear-gradient(135deg,#2D7A4E,#1a5c35);">9</div>
+        <div class="step-card-title">🤧 Запушен нос</div>
+        <div class="step-card-body">Бебетата дишат само през носа!<br><br>1. Физиологичен серум — 1–2 капки в ноздрата<br>2. Изчакайте 30 сек<br>3. Аспиратор — нежно засмучете<br>4. Повдигнете главата на 15°<br>5. ☎️ Синьо около устата → 112</div>
+      </div>
+      <div class="step-card" style="border:1px solid rgba(45,122,78,0.2);background:#F0FFF5;">
+        <div class="step-num-badge" style="background:linear-gradient(135deg,#2D7A4E,#1a5c35);">10</div>
+        <div class="step-card-title">🌿 Алергична реакция</div>
+        <div class="step-card-body">1. Спрете контакта с алергена<br>2. Проверете дишането<br>3. ☎️ Оток на лицето/устните или задух → 112<br>4. Леки обриви → педиатър до 1 час<br>5. Запишете какво е приемала</div>
+      </div>
+      <button class="panic-btn" onclick="window.open('tel:112')">📞 ОБАДИ СЕ НА 112</button>
+      <div style="height:16px;"></div>
+    `
+  },
+  tips: {
+    title: '💡 Съвети за нови родители',
+    sub: 'Позиции, масаж, сън и грижа',
+    html: `
+      <div class="ai-card" style="margin-bottom:16px;">
+        <div class="ai-card-header"><div class="ai-pulse"></div><div class="ai-card-label">Ръководство</div></div>
+        <div class="ai-card-text">Всичко за спокойните първи 30 дни — позиции при носене, масаж, вечерен ритуал и грижа за себе си.</div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-card-title">🤱 Позиции при носене</div>
+        <div class="video-card" style="margin:10px 0 14px;" onclick="window.open('https://www.youtube.com/watch?v=-wdSjH6LZVA','_blank')">
+          <div class="video-thumb">
+            <img src="https://img.youtube.com/vi/-wdSjH6LZVA/hqdefault.jpg" alt="Позиции при носене" onerror="this.parentElement.style.background='#1a1a2e'">
+            <div class="video-play-btn"><div class="video-play-circle"></div></div>
+          </div>
+          <div class="video-card-footer">
+            <div class="video-card-footer-icon">▶</div>
+            <div class="video-card-footer-text">
+              <div class="video-card-title">Позиции при носене на новородено</div>
+              <div class="video-card-sub">Всички позиции · стъпка по стъпка · 2024</div>
+            </div>
+            <div class="video-card-arrow">↗</div>
+          </div>
+        </div>
+        <div class="step-card-body" style="margin-bottom:10px;"><strong>На рамото</strong> — Главата на рамото ви, ладонта под задника. Идеална след хранене — помага за оригване. Говорете тихо до ухото — гласът ви я успокоява.</div>
+        <div class="step-card-body" style="margin-bottom:10px;"><strong>Люлка (хоризонтално)</strong> — Главата в лакъта, предмишницата поддържа гърба. За хранене и гледане в очите. Поклащайте бавно.</div>
+        <div class="step-card-body" style="margin-bottom:10px;"><strong>По корем на ръката</strong> — За газове. Главата в лакъта, тялото по предмишницата. САМО при надзор, НИКОГА за сън.</div>
+        <div class="step-card-body" style="margin-bottom:12px;"><strong>Вертикална</strong> — Главата на рамото, тялото изправено. Помага при рефлукс. Много бебета предпочитат тази.</div>
+        <div class="do-dont">
+          <div class="do-box"><div class="do-lbl">✅ Винаги</div><div class="do-txt">Поддържайте главата. Движете бавно. Топли ръце преди да я вземете.</div></div>
+          <div class="dont-box"><div class="dont-lbl">❌ Никога</div><div class="dont-txt">Без да подпирате главата. Рязко движение. Разтърсване при игра.</div></div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-card-title">👶 Масаж на бебето</div>
+        <div class="video-card" style="margin:10px 0 14px;" onclick="window.open('https://www.youtube.com/watch?v=x1mhaB2kfjM','_blank')">
+          <div class="video-thumb">
+            <img src="https://img.youtube.com/vi/x1mhaB2kfjM/hqdefault.jpg" alt="Baby Massage AAP" onerror="this.parentElement.style.background='#1a1a2e'">
+            <div class="video-play-btn"><div class="video-play-circle"></div></div>
+          </div>
+          <div class="video-card-footer">
+            <div class="video-card-footer-icon">▶</div>
+            <div class="video-card-footer-text">
+              <div class="video-card-title">Как да масажирате бебето — 6 лесни начина (АПП)</div>
+              <div class="video-card-sub">Американска академия по педиатрия · 2024</div>
+            </div>
+            <div class="video-card-arrow">↗</div>
+          </div>
+        </div>
+        <div class="step-card-body" style="margin-bottom:10px;"><strong>Кога:</strong> 30–45 мин след хранене, при будна и спокойна Белослава. <strong>С какво:</strong> бебешко масажно или кокосово масло.</div>
+        <div class="step-card-body" style="margin-bottom:8px;">🌀 <strong>Корем (за газове):</strong> Кръгове по часовникова стрелка около пъпа с 2 пръста. После "I Love You" — чертайте буквите по корема отляво надясно.</div>
+        <div class="step-card-body" style="margin-bottom:8px;">🦵 <strong>Крака:</strong> Стиснете бедрото и плъзнете до стъпалото. Завъртете нежно всеки пръст.</div>
+        <div class="step-card-body" style="margin-bottom:8px;">💪 <strong>Ръце:</strong> Отворете стиснатото юмруче. Плъзнете от рамото до китката. Масажирайте дланичката с палеца.</div>
+        <div class="step-card-body">🔙 <strong>Гръб:</strong> По корем на коленете ви. Плавни движения надолу. Малки кръгове покрай гръбнака (не върху него).</div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-card-title">⏰ "Корем-времето" (Tummy Time)</div>
+        <div class="video-card" style="margin:10px 0 14px;" onclick="window.open('https://www.youtube.com/watch?v=CwlJc7ufXTE','_blank')">
+          <div class="video-thumb">
+            <img src="https://img.youtube.com/vi/CwlJc7ufXTE/hqdefault.jpg" alt="Tummy Time" onerror="this.parentElement.style.background='#1a1a2e'">
+            <div class="video-play-btn"><div class="video-play-circle"></div></div>
+          </div>
+          <div class="video-card-footer">
+            <div class="video-card-footer-icon">▶</div>
+            <div class="video-card-footer-text">
+              <div class="video-card-title">Как се прави "корем-времето" с новороденото</div>
+              <div class="video-card-sub">Enfamil · Правилна техника стъпка по стъпка · 2023</div>
+            </div>
+            <div class="video-card-arrow">↗</div>
+          </div>
+        </div>
+        <div class="step-card-body" style="margin-bottom:8px;">2–3 минути, 3–4 пъти дневно при надзор. Укрепва шийните мускули — важно за развитието!</div>
+        <div class="step-card-body" style="margin-bottom:6px;">• Поставете на твърда равна повърхност</div>
+        <div class="step-card-body" style="margin-bottom:6px;">• Легнете пред нея и говорете — тя ще се опита да вдигне главата</div>
+        <div class="step-card-body">• НИКОГА за сън, САМО при надзор</div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-card-title">😴 Ритуал за сън</div>
+        <div class="step-card-body" style="margin-bottom:10px;">Последователността е ключова — мозъкът обича предвидимост. <strong>Започвайте от 6–7 вечерта.</strong></div>
+        <div class="step-card-body" style="margin-bottom:6px;">🛁 <strong>Стъпка 1 — Вана:</strong> 37°C, тиха музика, 5–10 мин, приглушена светлина.</div>
+        <div class="step-card-body" style="margin-bottom:6px;">🧴 <strong>Стъпка 2 — Масаж:</strong> 5–10 мин. Топло масло, нежни движения, тихи думи.</div>
+        <div class="step-card-body" style="margin-bottom:6px;">🍼 <strong>Стъпка 3 — Хранене:</strong> В полутъмна стая, без стимулация.</div>
+        <div class="step-card-body" style="margin-bottom:6px;">📖 <strong>Стъпка 4 — Приказка/песен:</strong> Едно и също всяка вечер. Гласът ви е най-успокояващото нещо.</div>
+        <div class="step-card-body">🌙 <strong>Стъпка 5 — Сън:</strong> Слагайте я сънена, но будна. Учи се да заспива сама постепенно.</div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-card-title">🌸 Кожен контакт "кенгуру"</div>
+        <div class="step-card-body" style="margin-bottom:10px;">Кожа до кожа регулира температурата, сърдечния ритъм и дишането. Намалява стреса за двамата.</div>
+        <div class="step-card-body" style="margin-bottom:6px;">• Минимум 1–2 часа дневно в първите седмици</div>
+        <div class="step-card-body" style="margin-bottom:6px;">• Бебето изправено на гърдите ви, само с памперс</div>
+        <div class="step-card-body">• Татко може (и трябва!) — не само мама</div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-card-title">💗 Грижа за себе си (мама и тате)</div>
+        <div class="step-card-body" style="margin-bottom:8px;">😴 <strong>Сън:</strong> Спете когато тя спи — чистенето чака.</div>
+        <div class="step-card-body" style="margin-bottom:8px;">🤝 <strong>Разпределете:</strong> Един се грижи за бебето, другият спи. После сменяйте.</div>
+        <div class="step-card-body" style="margin-bottom:8px;">💬 <strong>Говорете си:</strong> Умората предизвиква напрежение. Нормално е.</div>
+        <div class="step-card-body">🌱 <strong>Baby blues:</strong> Тъга и раздразнителност в първите 2 седмици е нормално. Ако продължи над 2 седмици — говорете с лекар.</div>
+      </div>
+      <div style="height:16px;"></div>
+    `
+  },
+  emergency: {
+    title: '🚨 Спешни ситуации',
+    sub: 'При съмнение — обадете се на 112 ВЕДНАГА',
+    html: `
+      <div class="warn-banner"><div class="warn-icon">🚑</div><div class="warn-body">При съмнение — обадете се на 112. По-добре излишен звън, отколкото закъснение. Действайте СПОКОЙНО.</div></div>
+      <div class="video-card" style="border-color:rgba(176,48,64,0.3);" onclick="window.open('https://www.youtube.com/watch?v=01jpBkoQr4Y','_blank')">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/01jpBkoQr4Y/hqdefault.jpg" alt="Infant CPR" onerror="this.parentElement.style.background='#1a1a2e'">
+          <div class="video-play-btn"><div class="video-play-circle"></div></div>
+        </div>
+        <div class="video-card-footer">
+          <div class="video-card-footer-icon" style="background:#B03040;">▶</div>
+          <div class="video-card-footer-text">
+            <div class="video-card-title" style="color:#B03040;">🚨 Infant CPR — Гледайте СЕГА</div>
+            <div class="video-card-sub">30 натискания + 2 вдишвания · Стъпка по стъпка · 2024</div>
           </div>
           <div class="video-card-arrow">↗</div>
         </div>
@@ -1895,7 +2095,7 @@ const DETAILS = {
         <div class="step-card-title">😰 Затруднено дишане</div>
         <div class="step-card-body">Ако дишането е: много бързо (>60/мин), с хъркане, с хлъцане, или с дълги паузи (>20 сек) — 112 веднага.<br><br>Пребройте вдишвания за 15 секунди и умножете по 4.</div>
       </div>
-      <button class="panic-btn" onclick="alert('В реалното приложение — обаждане на 112!')">📞 ОБАДИ СЕ НА 112</button>
+      <button class="panic-btn" onclick="alert('Набирате 112!')">📞 ОБАДИ СЕ НА 112</button>
       <div style="height:16px;"></div>
     `
   }
@@ -1942,7 +2142,7 @@ function sendChat() {
   wrap.scrollTop = wrap.scrollHeight;
 
   setTimeout(() => {
-    const resp = AI_RESPONSES[q] || '✨ Разбирам загрижеността ви. В реалното приложение ще имате достъп до пълния AI асистент с персонализирани отговори за Белослава. За спешни въпроси — обадете се на педиатъра.';
+    const resp = AI_RESPONSES[q] || '✨ Разбирам загрижеността ви. За спешни въпроси — обадете се на педиатъра. Тук можете да питате: "Защо плаче Белослава?", "Кога трябва да я заведем при лекар?" или "Колко трябва да яде?"';
     aiEl.querySelector('.bubble').textContent = resp;
     aiEl.querySelector('.chat-ts').textContent = 'Сега';
     wrap.scrollTop = wrap.scrollHeight;
