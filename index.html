@@ -68,6 +68,15 @@ section{padding:104px 24px;position:relative}
 .tint{background:var(--cloud)}
 .sec-title{font-size:clamp(28px,4vw,44px)}
 
+/* animated section separators (scroll-linked) */
+.sep{position:relative;height:3px;width:min(var(--maxw),calc(100% - 48px));margin:10px auto;
+  background:rgba(120,80,40,.12);border-radius:100px}
+.sep i{position:absolute;left:0;top:0;height:100%;width:0;background:var(--grad);border-radius:100px;
+  box-shadow:0 0 14px rgba(245,130,31,.55);transition:width .12s linear}
+.sep i::after{content:'';position:absolute;right:-3px;top:50%;transform:translateY(-50%);width:9px;height:9px;
+  border-radius:50%;background:#fff;box-shadow:0 0 10px 2px rgba(245,130,31,.9);opacity:0;transition:opacity .25s}
+.sep i.on::after{opacity:1}
+
 /* reveal */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
 .reveal.in{opacity:1;transform:none}
@@ -148,7 +157,31 @@ section{padding:104px 24px;position:relative}
 .tier .split div small{font-size:12px;opacity:.85}
 .note{font-size:13px;color:var(--ink-soft);margin-top:20px}
 
-/* ---------- steps (real sequence) ---------- */
+/* ---------- reseller model ---------- */
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-top:44px;align-items:start}
+.res-benefits ul{list-style:none;padding:0;margin:0}
+.res-benefits li{position:relative;padding:15px 0 15px 38px;font-size:16px;border-top:1px solid var(--line)}
+.res-benefits li:first-child{border-top:0}
+.res-benefits li::before{content:'✓';position:absolute;left:0;top:15px;color:#fff;background:var(--grad);
+  width:22px;height:22px;border-radius:50%;font-size:12px;display:grid;place-items:center;font-weight:700}
+.rtiers{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:var(--shadow)}
+.rtiers-head{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px}
+.rtier{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 18px;border-radius:14px;
+  border:1px solid var(--line);margin-top:12px;background:#fff;transition:.25s}
+.rtier:first-of-type{margin-top:0}
+.rtier:hover{border-color:var(--flame);transform:translateX(4px)}
+.rtier .rt-name{font-family:'Sora',sans-serif;font-weight:700;font-size:16px;display:flex;align-items:center;gap:12px}
+.rtier .rt-dot{width:11px;height:11px;border-radius:50%;flex:none}
+.rtier .rt-vol{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-soft);font-weight:500;margin-left:2px}
+.rtier .rt-off{font-family:'Sora',sans-serif;font-weight:800;font-size:14px;padding:8px 15px;border-radius:100px;white-space:nowrap;color:#fff}
+.rtier .rt-off small{font-weight:600;font-size:12px;opacity:.9}
+.rt1 .rt-dot{background:var(--sun)} .rt1 .rt-off{background:#f7a41c}
+.rt2 .rt-dot{background:var(--flame)} .rt2 .rt-off{background:var(--flame)}
+.rt3 .rt-dot{background:#f0641d} .rt3 .rt-off{background:#f0641d}
+.rtier.hot{background:var(--grad-soft);border-color:var(--flame)}
+.rtier.hot .rt-dot{background:var(--grad)} .rtier.hot .rt-off{background:var(--grad)}
+
+
 .steps{margin-top:44px;counter-reset:st}
 .step{display:grid;grid-template-columns:64px 1fr;gap:24px;padding:22px 0;border-top:1px solid var(--line);align-items:start}
 .step:first-child{border-top:0}
@@ -267,14 +300,16 @@ button:focus-visible,.tu-btn:focus-visible{outline:3px solid var(--sun);outline-
     <h1>Grow your business on top of an EU trust infrastructure.</h1>
     <p>Sell or embed qualified eID and e-signature into your platform — and earn on every client you bring to Evrotrust.</p>
     <div class="hero-stats">
-      <div><b>200+</b><small>clients</small></div>
-      <div><b>15</b><small>major EU banks</small></div>
-      <div><b>1.8M+</b><small>users</small></div>
+      <div><b>250+</b><small>clients</small></div>
+      <div><b>15+</b><small>major EU banks</small></div>
+      <div><b>2.5M+</b><small>users</small></div>
       <div><b>61</b><small>nationalities</small></div>
     </div>
     <div class="scroll-cue"><span class="dot"></span> Scroll to explore</div>
   </div>
 </header>
+
+<div class="sep"><i></i></div>
 
 <!-- MODELS -->
 <section class="reveal" id="s-models">
@@ -312,6 +347,50 @@ button:focus-visible,.tu-btn:focus-visible{outline:3px solid var(--sun);outline-
     </div>
   </div>
 </section>
+
+<div class="sep"><i></i></div>
+
+<!-- RESELLER MODEL -->
+<section class="reveal" id="s-reseller">
+  <div class="wrap">
+    <div class="eyebrow">Reseller model · pricing</div>
+    <h2 class="frame sec-title">The Reseller model</h2>
+    <p class="lead" style="margin-top:20px">Client ownership sits with you. Sign a Reseller contract, buy prepaid Trust Unit packages at a discount, and set your own pricing.</p>
+
+    <div class="res-grid">
+      <div class="res-benefits">
+        <ul>
+          <li>Prepaid Trust Unit packages at reseller discounts.</li>
+          <li>Suitable for software platform providers.</li>
+          <li>One-time integration for embedded solutions.</li>
+          <li>Bundle trust services with your own pricing.</li>
+          <li>End price negotiated directly with your clients.</li>
+        </ul>
+      </div>
+      <div class="rtiers">
+        <div class="rtiers-head">Reseller tiers · 12-month TU volume</div>
+        <div class="rtier rt1">
+          <span class="rt-name"><span class="rt-dot"></span>Starter</span>
+          <span class="rt-off">5%<small> off</small></span>
+        </div>
+        <div class="rtier rt2">
+          <span class="rt-name"><span class="rt-dot"></span>Silver <span class="rt-vol">· 36,000 TU</span></span>
+          <span class="rt-off">7%<small> off</small></span>
+        </div>
+        <div class="rtier rt3">
+          <span class="rt-name"><span class="rt-dot"></span>Gold <span class="rt-vol">· 72,000 TU</span></span>
+          <span class="rt-off">10%<small> off</small></span>
+        </div>
+        <div class="rtier hot">
+          <span class="rt-name"><span class="rt-dot"></span>Platinum <span class="rt-vol">· 240,000 TU</span></span>
+          <span class="rt-off">15%<small> off</small></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"><i></i></div>
 
 <!-- REFERRAL ECONOMICS -->
 <section class="tint reveal" id="s-referral">
@@ -354,6 +433,8 @@ button:focus-visible,.tu-btn:focus-visible{outline:3px solid var(--sun);outline-
     </div>
   </div>
 </section>
+
+<div class="sep"><i></i></div>
 
 <!-- TRUST UNITS -->
 <section class="reveal" id="s-tu">
@@ -408,6 +489,8 @@ button:focus-visible,.tu-btn:focus-visible{outline:3px solid var(--sun);outline-
   </div>
 </section>
 
+<div class="sep"><i></i></div>
+
 <!-- WHY -->
 <section class="tint reveal" id="s-why">
   <div class="wrap">
@@ -425,10 +508,10 @@ button:focus-visible,.tu-btn:focus-visible{outline:3px solid var(--sun);outline-
     </div>
 
     <div class="counters">
-      <div><b data-to="200" data-suffix="+">0</b><small>clients</small></div>
-      <div><b data-to="15">0</b><small>major EU banks</small></div>
+      <div><b data-to="250" data-suffix="+">0</b><small>clients</small></div>
+      <div><b data-to="15" data-suffix="+">0</b><small>major EU banks</small></div>
       <div><b data-to="11">0</b><small>countries</small></div>
-      <div><b data-to="1.8" data-suffix="M+" data-dec="1">0</b><small>users</small></div>
+      <div><b data-to="2.5" data-suffix="M+" data-dec="1">0</b><small>users</small></div>
       <div><b data-to="61">0</b><small>nationalities</small></div>
     </div>
 
@@ -447,6 +530,8 @@ button:focus-visible,.tu-btn:focus-visible{outline:3px solid var(--sun);outline-
     </div>
   </div>
 </section>
+
+<div class="sep"><i></i></div>
 
 <!-- USE CASES (stacked) -->
 <section class="reveal" id="s-usecases">
@@ -543,6 +628,8 @@ button:focus-visible,.tu-btn:focus-visible{outline:3px solid var(--sun);outline-
   </div>
 </section>
 
+<div class="sep"><i></i></div>
+
 <!-- CTA -->
 <section class="cta reveal" id="s-cta">
   <div class="wrap">
@@ -567,6 +654,22 @@ button:focus-visible,.tu-btn:focus-visible{outline:3px solid var(--sun);outline-
   }
   document.addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
+  /* scroll-linked separator fill (fills going down, empties going up) */
+  var seps = Array.prototype.slice.call(document.querySelectorAll('.sep i'));
+  function updateSeps(){
+    var vh = window.innerHeight, start = vh*0.95, end = vh*0.42;
+    seps.forEach(function(el){
+      var r = el.parentNode.getBoundingClientRect();
+      var p = (start - r.top)/(start-end);
+      p = Math.max(0, Math.min(1, p));
+      el.style.width = (p*100).toFixed(1)+'%';
+      el.classList.toggle('on', p>0.015 && p<0.985);
+    });
+  }
+  if(rm){ seps.forEach(function(el){ el.style.width='100%'; }); }
+  else { document.addEventListener('scroll', updateSeps, {passive:true});
+         window.addEventListener('resize', updateSeps); updateSeps(); }
+
   /* reveal on scroll */
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
@@ -575,7 +678,7 @@ button:focus-visible,.tu-btn:focus-visible{outline:3px solid var(--sun);outline-
 
   /* side dot nav */
   var sections = Array.prototype.slice.call(document.querySelectorAll('section[id], header[id]'));
-  var labels = {'s-hero':'Intro','s-models':'Models','s-referral':'Earnings','s-tu':'Trust Units','s-why':'Why us','s-usecases':'Use-cases','s-cta':'Contact'};
+  var labels = {'s-hero':'Intro','s-models':'Models','s-reseller':'Reseller','s-referral':'Earnings','s-tu':'Trust Units','s-why':'Why us','s-usecases':'Use-cases','s-cta':'Contact'};
   var dotsWrap = document.getElementById('dots');
   var dotBtns = sections.map(function(sec){
     var b=document.createElement('button');
