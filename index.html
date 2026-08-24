@@ -1,2342 +1,642 @@
 <!DOCTYPE html>
-<html lang="bg">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Белослава Славова — Първите 30 дни</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evrotrust Partner Program</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --pink: #E8A0B4;
-  --pink-deep: #C4607A;
-  --pink-light: #F5D6DF;
-  --pink-pale: #FDF0F4;
-  --purple: #6B4FA0;
-  --purple-deep: #3D2260;
-  --purple-mid: #8B6EC5;
-  --purple-light: #E8DFF5;
-  --cream: #FEF9F5;
-  --warm: #F5EDE6;
-  --text: #1A0D20;
-  --text-soft: #6B5670;
-  --text-muted: #9E8FA8;
-  --gold: #C9A96E;
-  --gold-light: #F0E6D3;
-  --success: #2D7A4E;
-  --success-light: #E8F5EE;
-  --danger: #B03040;
-  --danger-light: #FCE8EB;
-  --warning: #8A6020;
-  --warning-light: #FDF3E0;
-  --r: 28px;
-  --r-sm: 16px;
-  --r-xs: 10px;
-  --shadow: 0 8px 32px rgba(107,79,160,0.12);
-  --shadow-sm: 0 2px 12px rgba(107,79,160,0.08);
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-
-html, body {
-  height: 100%; width: 100%;
-  overflow: hidden;
-  font-family: 'DM Sans', sans-serif;
-  background: #1A0D20;
-}
-
-/* ── VIEWPORT SHELL ── */
-.shell {
-  width: 100%;
-  max-width: 430px;
-  height: 100dvh;
-  max-height: 900px;
-  margin: 0 auto;
-  position: relative;
-  overflow: hidden;
-  background: var(--cream);
-}
-
-/* ── SCREENS ── */
-.screen {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  transform: translateY(16px);
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-.screen.active {
-  opacity: 1;
-  pointer-events: all;
-  transform: translateY(0);
-}
-.screen.slide-in {
-  transform: translateX(100%);
-  opacity: 0;
-}
-.screen.slide-in.active {
-  transform: translateX(0);
-  opacity: 1;
-}
-
-/* ════════════════════════════════════════
-   INTRO SCREEN
-════════════════════════════════════════ */
-#s-intro {
-  background: var(--purple-deep);
-  align-items: center;
-  justify-content: center;
-  padding: 48px 28px 40px;
-  overflow: hidden;
-}
-
-.intro-sky {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 40% at 30% 20%, rgba(180,120,220,0.25) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 60% at 80% 70%, rgba(232,160,180,0.15) 0%, transparent 70%),
-    linear-gradient(160deg, #1a0830 0%, #2d1254 35%, #4a2070 65%, #3d0d3a 100%);
-}
-
-.stars-canvas { position: absolute; inset: 0; pointer-events: none; }
-
-.moon {
-  position: absolute;
-  top: 48px; right: 40px;
-  width: 52px; height: 52px;
-  background: #FFF8DC;
-  border-radius: 50%;
-  box-shadow: 0 0 40px rgba(255,240,180,0.5), 0 0 80px rgba(255,240,180,0.2);
-  animation: moonGlow 4s ease-in-out infinite;
-}
-.moon::after {
-  content: '';
-  position: absolute;
-  top: 6px; left: 8px;
-  width: 34px; height: 34px;
-  background: #2d1254;
-  border-radius: 50%;
-}
-@keyframes moonGlow { 0%,100%{box-shadow:0 0 40px rgba(255,240,180,0.5),0 0 80px rgba(255,240,180,0.2)} 50%{box-shadow:0 0 60px rgba(255,240,180,0.7),0 0 120px rgba(255,240,180,0.3)} }
-
-.cloud {
-  position: absolute;
-  background: rgba(255,255,255,0.06);
-  border-radius: 50%;
-}
-
-.intro-body {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  width: 100%;
-  animation: riseUp 1.2s cubic-bezier(0.16,1,0.3,1) both;
-}
-@keyframes riseUp { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:translateY(0)} }
-
-.intro-eyebrow {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
-  margin-bottom: 20px;
-}
-
-.baby-medallion {
-  width: 120px; height: 120px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, rgba(232,160,180,0.3), rgba(107,79,160,0.3));
-  border: 1.5px solid rgba(255,255,255,0.2);
-  margin: 0 auto 24px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 56px;
-  position: relative;
-  animation: float 5s ease-in-out infinite;
-}
-.baby-medallion::before {
-  content: '';
-  position: absolute;
-  inset: -8px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.1);
-}
-.baby-medallion::after {
-  content: '';
-  position: absolute;
-  inset: -16px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.05);
-}
-@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-
-.intro-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 34px;
-  font-weight: 300;
-  color: #fff;
-  line-height: 1.2;
-  margin-bottom: 6px;
-  letter-spacing: 0.5px;
-}
-.intro-name em {
-  font-style: italic;
-  color: var(--pink);
-  display: block;
-  font-size: 38px;
-}
-
-.intro-date {
-  font-size: 12px;
-  color: rgba(255,255,255,0.4);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
-
-.intro-tagline {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 17px;
-  font-style: italic;
-  font-weight: 300;
-  color: rgba(255,255,255,0.65);
-  line-height: 1.7;
-  margin: 0 auto 36px;
-  max-width: 280px;
-}
-
-.intro-actions { display: flex; flex-direction: column; gap: 10px; width: 100%; }
-
-.btn-intro-primary {
-  background: linear-gradient(135deg, var(--pink), var(--pink-deep));
-  color: white;
-  border: none;
-  border-radius: 50px;
-  padding: 17px 28px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: transform 0.15s, box-shadow 0.15s;
-  letter-spacing: 0.3px;
-}
-.btn-intro-primary:active { transform: scale(0.97); }
-
-.btn-intro-ghost {
-  background: rgba(255,255,255,0.08);
-  color: rgba(255,255,255,0.8);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 50px;
-  padding: 15px 28px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  cursor: pointer;
-  transition: transform 0.15s, background 0.15s;
-}
-.btn-intro-ghost:active { transform: scale(0.97); background: rgba(255,255,255,0.14); }
-
-/* ════════════════════════════════════════
-   BOTTOM NAV
-════════════════════════════════════════ */
-.bottom-nav {
-  background: rgba(254,249,245,0.97);
-  backdrop-filter: blur(12px);
-  border-top: 1px solid rgba(107,79,160,0.08);
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  padding: 10px 0 max(20px, env(safe-area-inset-bottom));
-  flex-shrink: 0;
-}
-.nav-btn {
-  display: flex; flex-direction: column; align-items: center; gap: 4px;
-  background: none; border: none; cursor: pointer; padding: 6px 4px;
-  font-family: 'DM Sans', sans-serif;
-  transition: transform 0.12s;
-}
-.nav-btn:active { transform: scale(0.88); }
-.nav-icon { font-size: 22px; line-height: 1; }
-.nav-label {
-  font-size: 10px;
-  color: var(--text-muted);
-  font-weight: 400;
-  letter-spacing: 0.3px;
-}
-.nav-label.on, .nav-btn.active .nav-label { color: var(--purple); font-weight: 500; }
-.nav-dot {
-  width: 4px; height: 4px; border-radius: 50%;
-  background: var(--purple);
-  margin-top: 2px;
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-.nav-btn.active .nav-dot { opacity: 1; }
-
-/* ════════════════════════════════════════
-   HOME SCREEN
-════════════════════════════════════════ */
-#s-home { background: var(--cream); }
-
-.home-hero {
-  background: linear-gradient(160deg, var(--purple-deep) 0%, var(--purple) 60%, #8B5FA0 100%);
-  padding: 52px 20px 28px;
-  border-radius: 0 0 32px 32px;
-  position: relative;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.home-hero::before {
-  content: '';
-  position: absolute;
-  top: -40px; right: -40px;
-  width: 160px; height: 160px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.05);
-}
-.home-hero::after {
-  content: '';
-  position: absolute;
-  bottom: -30px; left: 20px;
-  width: 100px; height: 100px;
-  border-radius: 50%;
-  background: rgba(232,160,180,0.12);
-}
-
-.hero-day {
-  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-  color: rgba(255,255,255,0.5); margin-bottom: 4px;
-}
-.hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 26px; font-weight: 400;
-  color: white; margin-bottom: 18px;
-  position: relative; z-index: 1;
-}
-.hero-title span { color: var(--pink); font-style: italic; }
-
-.stats-row {
-  display: grid; grid-template-columns: repeat(3,1fr); gap: 8px;
-  position: relative; z-index: 1;
-}
-.stat-pill {
-  background: rgba(255,255,255,0.12);
-  border-radius: 18px; padding: 12px 8px;
-  text-align: center;
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,0.12);
-}
-.stat-pill-icon { font-size: 20px; margin-bottom: 4px; }
-.stat-pill-val { font-size: 13px; font-weight: 500; color: white; }
-.stat-pill-lbl { font-size: 9px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
-
-.home-scroll { flex: 1; overflow-y: auto; padding: 16px 16px 8px; }
-
-/* AI Card */
-.ai-card {
-  background: linear-gradient(135deg, var(--purple-light), var(--pink-light));
-  border-radius: var(--r-sm);
-  padding: 16px;
-  border: 1px solid rgba(107,79,160,0.1);
-  margin-bottom: 16px;
-}
-.ai-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-.ai-pulse {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--purple);
-  animation: pulse 2s infinite;
-}
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
-.ai-card-label {
-  font-size: 10px; font-weight: 500; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--purple);
-}
-.ai-card-text {
-  font-size: 13px; color: var(--text); line-height: 1.65;
-}
-
-/* Section */
-.sec-head {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 10px;
-}
-.sec-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 19px; font-weight: 500; color: var(--text);
-}
-.sec-more { font-size: 12px; color: var(--purple-mid); cursor: pointer; }
-
-/* Quick grid */
-.quick-grid {
-  display: grid; grid-template-columns: repeat(4,1fr); gap: 8px;
-  margin-bottom: 20px;
-}
-.q-btn {
-  display: flex; flex-direction: column; align-items: center; gap: 6px;
-  background: white; border: 1px solid rgba(107,79,160,0.08);
-  border-radius: 18px; padding: 14px 6px 12px;
-  cursor: pointer; font-family: 'DM Sans', sans-serif;
-  transition: transform 0.12s, box-shadow 0.12s;
-  box-shadow: var(--shadow-sm);
-}
-.q-btn:active { transform: scale(0.92); }
-.q-btn.red { background: var(--danger-light); border-color: rgba(176,48,64,0.15); }
-.q-icon { font-size: 22px; }
-.q-lbl { font-size: 9px; color: var(--text-soft); text-align: center; line-height: 1.3; font-weight: 400; }
-
-/* Tasks */
-.task-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
-.task-item {
-  background: white; border-radius: var(--r-xs);
-  padding: 13px 14px; display: flex; align-items: center; gap: 12px;
-  border: 1px solid rgba(107,79,160,0.07);
-  cursor: pointer; transition: transform 0.12s;
-}
-.task-item:active { transform: scale(0.98); }
-.task-circle {
-  width: 24px; height: 24px; border-radius: 50%;
-  border: 2px solid rgba(107,79,160,0.2);
-  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s;
-}
-.task-circle.done {
-  background: var(--purple); border-color: var(--purple);
-  color: white; font-size: 13px;
-}
-.task-text { font-size: 13px; color: var(--text); flex: 1; }
-.task-time { font-size: 11px; color: var(--text-muted); }
-
-/* Moments carousel */
-.moments-row {
-  display: flex; gap: 10px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 4px;
-  scrollbar-width: none;
-}
-.moments-row::-webkit-scrollbar { display: none; }
-.moment-card {
-  flex-shrink: 0; width: 100px; height: 120px;
-  border-radius: 18px; overflow: hidden; position: relative;
-  cursor: pointer;
-}
-.moment-bg {
-  width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 36px;
-}
-.moment-label {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  background: linear-gradient(transparent, rgba(0,0,0,0.6));
-  color: white; font-size: 10px; padding: 8px 6px 6px;
-  text-align: center;
-}
-
-/* ════════════════════════════════════════
-   GUIDE SCREEN
-════════════════════════════════════════ */
-#s-guide { background: var(--cream); }
-
-.guide-hero {
-  background: linear-gradient(160deg, var(--pink-deep), var(--pink), #EEB8CC);
-  padding: 52px 20px 24px;
-  border-radius: 0 0 32px 32px;
-  flex-shrink: 0;
-}
-.guide-hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 26px; font-weight: 400; color: white; margin-bottom: 4px;
-}
-.guide-hero-sub { font-size: 13px; color: rgba(255,255,255,0.7); }
-
-.guide-scroll { flex: 1; overflow-y: auto; padding: 16px; }
-
-.guide-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-}
-.guide-card {
-  background: white; border-radius: var(--r-sm);
-  padding: 18px 14px; border: 1px solid rgba(107,79,160,0.08);
-  cursor: pointer; transition: transform 0.15s;
-  box-shadow: var(--shadow-sm);
-  display: flex; flex-direction: column; gap: 8px;
-}
-.guide-card:active { transform: scale(0.96); }
-.guide-card.wide { grid-column: span 2; flex-direction: row; align-items: center; }
-.guide-card.wide .guide-card-body { flex: 1; }
-.guide-card.emergency {
-  background: var(--danger-light); border-color: rgba(176,48,64,0.2);
-}
-.g-emoji { font-size: 28px; }
-.g-title { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.3; }
-.g-sub { font-size: 11px; color: var(--text-muted); }
-.emerg-badge {
-  background: var(--danger); color: white;
-  font-size: 9px; font-weight: 500;
-  border-radius: 6px; padding: 4px 8px;
-  letter-spacing: 1px; text-transform: uppercase;
-  flex-shrink: 0;
-}
-
-/* ════════════════════════════════════════
-   DETAIL SCREEN
-════════════════════════════════════════ */
-#s-detail { background: var(--cream); }
-
-.detail-header {
-  padding: 52px 16px 16px;
-  display: flex; align-items: flex-start; gap: 14px;
-  flex-shrink: 0;
-  background: var(--cream);
-  border-bottom: 1px solid rgba(107,79,160,0.07);
-}
-.back-btn {
-  width: 40px; height: 40px; border-radius: 12px;
-  background: white; border: 1px solid rgba(107,79,160,0.1);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px; cursor: pointer; flex-shrink: 0;
-  margin-top: 2px; transition: transform 0.1s;
-}
-.back-btn:active { transform: scale(0.9); }
-.detail-header-text { flex: 1; }
-.detail-title-text {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px; font-weight: 400; color: var(--text);
-}
-.detail-sub-text { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-
-.detail-scroll { flex: 1; overflow-y: auto; padding: 16px; }
-
-/* Step cards */
-.step-card {
-  background: white; border-radius: var(--r-sm);
-  padding: 16px 18px; margin-bottom: 12px;
-  border: 1px solid rgba(107,79,160,0.07);
-}
-.step-num-badge {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 26px; height: 26px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--pink), var(--pink-deep));
-  color: white; font-size: 12px; font-weight: 500;
-  margin-bottom: 10px;
-}
-.step-card-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
-.step-card-body { font-size: 13px; color: var(--text-soft); line-height: 1.7; }
-
-.step-visual {
-  width: 100%; height: 90px;
-  background: linear-gradient(135deg, var(--pink-light), var(--purple-light));
-  border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 40px; margin: 12px 0; border: 1px solid rgba(107,79,160,0.07);
-}
-
-.do-dont {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px;
-}
-.do-box, .dont-box { border-radius: var(--r-xs); padding: 12px; }
-.do-box { background: var(--success-light); border: 1px solid rgba(45,122,78,0.2); }
-.dont-box { background: var(--danger-light); border: 1px solid rgba(176,48,64,0.2); }
-.do-lbl { font-size: 9px; font-weight: 500; color: var(--success); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
-.dont-lbl { font-size: 9px; font-weight: 500; color: var(--danger); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
-.do-txt, .dont-txt { font-size: 12px; color: var(--text); line-height: 1.5; }
-
-.warn-banner {
-  background: var(--warning-light); border: 1px solid rgba(138,96,32,0.2);
-  border-radius: var(--r-xs); padding: 13px 14px;
-  display: flex; gap: 10px; align-items: flex-start;
-  margin-bottom: 12px;
-}
-.warn-icon { font-size: 18px; flex-shrink: 0; }
-.warn-body { font-size: 12px; color: var(--warning); line-height: 1.6; }
-
-/* ── VIDEO CARD ── */
-.video-card {
-  background: white; border-radius: var(--r-sm);
-  border: 1px solid rgba(107,79,160,0.1);
-  overflow: hidden; margin-bottom: 12px;
-  cursor: pointer; text-decoration: none; display: block;
-  transition: transform 0.15s, box-shadow 0.15s;
-}
-.video-card:active { transform: scale(0.98); }
-.video-thumb {
-  width: 100%; aspect-ratio: 16/9;
-  position: relative; overflow: hidden;
-  background: #0f0f0f;
-}
-.video-thumb img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-}
-.video-play-btn {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(0,0,0,0.25);
-}
-.video-play-circle {
-  width: 52px; height: 52px; border-radius: 50%;
-  background: rgba(255,0,0,0.9);
-  display: flex; align-items: center; justify-content: center;
-}
-.video-play-circle::after {
-  content: '';
-  border-style: solid;
-  border-width: 10px 0 10px 18px;
-  border-color: transparent transparent transparent white;
-  margin-left: 4px;
-}
-.video-card-footer {
-  display: flex; align-items: center; gap: 8px;
-  padding: 10px 14px;
-}
-.video-card-footer-icon {
-  width: 24px; height: 24px; border-radius: 50%;
-  background: var(--purple); color: white;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 9px; flex-shrink: 0;
-}
-.video-card-footer-text { flex: 1; }
-.video-card-title { font-size: 12px; font-weight: 500; color: var(--text); }
-.video-card-sub { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
-.video-card-arrow { font-size: 16px; color: var(--text-muted); }
-
-.panic-btn {
-  width: 100%; background: var(--danger);
-  color: white; border: none; border-radius: 20px;
-  padding: 20px; font-size: 17px; font-weight: 500;
-  cursor: pointer; font-family: 'DM Sans', sans-serif;
-  letter-spacing: 0.5px; margin-top: 8px;
-  animation: panicPulse 2s ease-in-out infinite;
-}
-@keyframes panicPulse { 0%,100%{box-shadow:0 0 0 0 rgba(176,48,64,0.4)} 50%{box-shadow:0 0 0 12px rgba(176,48,64,0)} }
-
-.cry-type {
-  display: flex; gap: 12px; align-items: flex-start;
-  padding: 14px 0; border-bottom: 1px solid rgba(107,79,160,0.06);
-}
-.cry-type:last-child { border-bottom: none; }
-.cry-emoji { font-size: 28px; flex-shrink: 0; width: 40px; text-align: center; }
-.cry-body {}
-.cry-name { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
-.cry-desc { font-size: 12px; color: var(--text-soft); line-height: 1.6; }
-.cry-tag {
-  display: inline-block; background: var(--purple-light);
-  color: var(--purple); font-size: 10px; border-radius: 6px;
-  padding: 2px 8px; margin-top: 5px; font-weight: 500;
-}
-
-/* ════════════════════════════════════════
-   AI SCREEN
-════════════════════════════════════════ */
-#s-ai { background: var(--cream); }
-
-.ai-hero {
-  background: linear-gradient(160deg, var(--purple-deep), var(--purple));
-  padding: 52px 20px 20px;
-  flex-shrink: 0;
-  border-radius: 0 0 28px 28px;
-}
-.ai-avatar-big {
-  width: 52px; height: 52px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--pink), var(--purple-mid));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 24px; margin-bottom: 10px;
-}
-.ai-hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px; font-weight: 400; color: white; margin-bottom: 2px;
-}
-.ai-hero-sub { font-size: 12px; color: rgba(255,255,255,0.55); }
-
-.chat-wrap { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 14px; }
-.chat-msg { display: flex; flex-direction: column; }
-.chat-msg.ai { align-items: flex-start; }
-.chat-msg.user { align-items: flex-end; }
-.bubble {
-  max-width: 82%; padding: 12px 16px;
-  border-radius: 20px; font-size: 13px; line-height: 1.65;
-}
-.bubble.ai {
-  background: white; color: var(--text);
-  border: 1px solid rgba(107,79,160,0.08);
-  border-bottom-left-radius: 6px;
-}
-.bubble.user {
-  background: linear-gradient(135deg, var(--purple), var(--purple-mid));
-  color: white; border-bottom-right-radius: 6px;
-}
-.chat-ts { font-size: 10px; color: var(--text-muted); margin-top: 4px; padding: 0 4px; }
-
-.quick-qs { padding: 0 16px 10px; display: flex; flex-direction: column; gap: 8px; }
-.q-chip {
-  background: white; border: 1px solid rgba(107,79,160,0.15);
-  border-radius: 24px; padding: 11px 18px;
-  font-size: 13px; color: var(--purple); cursor: pointer;
-  font-family: 'DM Sans', sans-serif; text-align: left;
-  transition: transform 0.1s, background 0.15s;
-}
-.q-chip:active { transform: scale(0.97); background: var(--purple-light); }
-
-.chat-input-row {
-  padding: 12px 16px max(20px, env(safe-area-inset-bottom));
-  display: flex; gap: 10px;
-  background: var(--cream);
-  border-top: 1px solid rgba(107,79,160,0.07);
-  flex-shrink: 0;
-}
-.chat-field {
-  flex: 1; background: white; border: 1px solid rgba(107,79,160,0.15);
-  border-radius: 24px; padding: 12px 18px;
-  font-size: 14px; font-family: 'DM Sans', sans-serif;
-  color: var(--text); outline: none;
-}
-.chat-field::placeholder { color: var(--text-muted); }
-.chat-send-btn {
-  width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0;
-  background: linear-gradient(135deg, var(--purple), var(--purple-mid));
-  border: none; display: flex; align-items: center; justify-content: center;
-  font-size: 20px; cursor: pointer; transition: transform 0.1s;
-}
-.chat-send-btn:active { transform: scale(0.92); }
-
-/* ════════════════════════════════════════
-   MOMENTS SCREEN
-════════════════════════════════════════ */
-#s-moments { background: var(--cream); }
-
-.mom-hero {
-  background: linear-gradient(160deg, var(--gold) 0%, #E8C080 60%, #F0D4A0 100%);
-  padding: 52px 20px 24px;
-  border-radius: 0 0 32px 32px; flex-shrink: 0;
-}
-.mom-hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 26px; font-weight: 400; color: white; margin-bottom: 4px;
-}
-.mom-hero-sub { font-size: 13px; color: rgba(255,255,255,0.75); }
-
-.mom-scroll { flex: 1; overflow-y: auto; padding: 16px; }
-
-.mom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-.mom-card {
-  border-radius: var(--r-sm); overflow: hidden; position: relative;
-  cursor: pointer; aspect-ratio: 1;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 48px; transition: transform 0.15s;
-}
-.mom-card:active { transform: scale(0.96); }
-.mom-card-label {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  background: linear-gradient(transparent, rgba(0,0,0,0.65));
-  color: white; font-size: 11px; padding: 20px 10px 10px;
-  text-align: center;
-}
-.mom-card-add {
-  border-radius: var(--r-sm); border: 2px dashed rgba(107,79,160,0.2);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 6px; cursor: pointer; aspect-ratio: 1;
-  background: rgba(107,79,160,0.03);
-  transition: background 0.15s;
-}
-.mom-card-add:active { background: var(--purple-light); }
-.mom-add-icon { font-size: 28px; color: var(--purple-mid); }
-.mom-add-lbl { font-size: 11px; color: var(--text-muted); }
-
-.diary-card {
-  background: white; border-radius: var(--r-sm); padding: 16px;
-  border: 1px solid rgba(107,79,160,0.08); margin-bottom: 12px;
-}
-.diary-date { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; }
-.diary-text { font-size: 13px; color: var(--text); line-height: 1.7; }
-.diary-author { font-size: 11px; color: var(--purple-mid); margin-top: 8px; font-style: italic; }
-
-/* ════════════════════════════════════════
-   UTIL
-════════════════════════════════════════ */
-.scroll-pad { height: 24px; }
-
-.typing-dots { display: inline-flex; gap: 4px; align-items: center; }
-.typing-dots span {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--text-muted); animation: dot 1.2s infinite;
-}
-.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
-.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-@keyframes dot { 0%,60%,100%{transform:translateY(0);opacity:0.4} 30%{transform:translateY(-4px);opacity:1} }
-.hero-top-row {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 6px;
-}
-.home-btn {
-  width: 36px; height: 36px; border-radius: 50%;
-  background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.25);
-  font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; transition: transform 0.12s, background 0.15s;
-  backdrop-filter: blur(4px);
-}
-.home-btn:active { transform: scale(0.88); background: rgba(255,255,255,0.28); }
-.home-btn-dark {
-  background: rgba(107,79,160,0.1); border-color: rgba(107,79,160,0.2);
-}
-.day-picker-row {
-  display: flex; align-items: center; gap: 6px; margin: 10px 0 12px;
-}
-.day-arrow {
-  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
-  background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2);
-  color: white; font-size: 20px; line-height: 1; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: transform 0.1s, background 0.15s; font-family: var(--font-sans);
-}
-.day-arrow:active { transform: scale(0.88); background: rgba(255,255,255,0.28); }
-.day-picker-scroll {
-  flex: 1; display: flex; gap: 6px; overflow-x: auto; scroll-snap-type: x mandatory;
-  scrollbar-width: none; padding: 2px 0;
-}
-.day-picker-scroll::-webkit-scrollbar { display: none; }
-.day-chip {
-  flex-shrink: 0; scroll-snap-align: center;
-  padding: 6px 12px; border-radius: 20px;
-  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
-  color: rgba(255,255,255,0.7); font-size: 12px; cursor: pointer;
-  font-family: var(--font-sans); transition: all 0.15s; white-space: nowrap;
-}
-.day-chip.active {
-  background: white; color: var(--purple-deep);
-  font-weight: 500; border-color: white;
-}
-.day-chip:active { transform: scale(0.94); }
-.hero-name { color: var(--pink); font-style: italic; }
-/* Day-specific tip card */
-.day-tip-card {
-  background: linear-gradient(135deg, var(--purple-light), var(--pink-light));
-  border-radius: var(--r-sm); padding: 14px 16px; margin-bottom: 16px;
-  border: 1px solid rgba(107,79,160,0.1);
-}
-.day-tip-week { font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--purple); margin-bottom: 6px; }
-.day-tip-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
-.day-tip-text { font-size: 12px; color: var(--text-soft); line-height: 1.65; }
-
-/* ════════════════════════════════════════
-   ASTRO SCREEN
-════════════════════════════════════════ */
-#s-astro { background: var(--cream); }
-
-.astro-hero {
-  background: linear-gradient(160deg, #1a2a10, #2d4a20, #4a6a35);
-  padding: 52px 20px 22px;
-  border-radius: 0 0 32px 32px;
-  flex-shrink: 0; text-align: center;
-}
-.astro-sign-badge {
-  width: 64px; height: 64px; border-radius: 50%;
-  background: rgba(255,255,255,0.12); border: 1.5px solid rgba(255,255,255,0.2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 34px; margin: 0 auto 12px;
-}
-.astro-hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 24px; font-weight: 400; color: white; margin-bottom: 4px;
-}
-.astro-hero-sub { font-size: 12px; color: rgba(255,255,255,0.55); }
-
-.astro-scroll { flex: 1; overflow-y: auto; padding: 16px; }
-
-/* Natal chart */
-.chart-wrap {
-  display: flex; justify-content: center; margin-bottom: 16px;
-}
-#natal-canvas { border-radius: 50%; }
-
-/* Big 3 */
-.big3-row {
-  display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 20px;
-}
-.big3-card {
-  border-radius: var(--r-sm); padding: 14px 8px; text-align: center; color: white;
-}
-.big3-symbol { font-size: 22px; margin-bottom: 4px; }
-.big3-name { font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.7; }
-.big3-sign { font-size: 13px; font-weight: 500; margin: 2px 0; }
-.big3-deg { font-size: 10px; opacity: 0.6; }
-
-/* Sections */
-.astro-section { margin-bottom: 16px; }
-.astro-section-head {
-  display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
-}
-.astro-icon {
-  width: 44px; height: 44px; border-radius: 14px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px; color: white;
-}
-.astro-section-title { font-size: 14px; font-weight: 500; color: var(--text); }
-.astro-section-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
-
-.astro-card {
-  background: white; border-radius: var(--r-sm); padding: 16px;
-  border: 1px solid rgba(107,79,160,0.07);
-}
-.astro-trait-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-.trait-pill {
-  font-size: 11px; padding: 5px 10px; border-radius: 20px; font-weight: 500;
-}
-.astro-text { font-size: 13px; color: var(--text); line-height: 1.7; }
-.astro-highlight {
-  background: var(--gold-light); border-radius: var(--r-xs);
-  padding: 12px; display: flex; gap: 10px; align-items: flex-start; margin-top: 12px;
-  border: 1px solid rgba(201,169,110,0.25);
-}
-.astro-hl-icon { font-size: 16px; flex-shrink: 0; }
-.astro-hl-text { font-size: 12px; color: var(--warning); line-height: 1.6; }
-
-/* Planet table */
-.planet-row {
-  display: flex; align-items: center; gap: 10px; padding: 11px 16px;
-  border-bottom: 1px solid rgba(107,79,160,0.05);
-}
-.planet-row:last-child { border-bottom: none; }
-.planet-sym { font-size: 18px; width: 24px; text-align: center; flex-shrink: 0; }
-.planet-info { flex: 1; }
-.planet-name { font-size: 12px; font-weight: 500; color: var(--text); }
-.planet-pos { font-size: 11px; color: var(--text-muted); }
-.planet-house {
-  font-size: 10px; color: var(--purple); background: var(--purple-light);
-  padding: 3px 8px; border-radius: 8px; font-weight: 500;
-}
-
-/* Houses */
-.house-item {
-  display: flex; gap: 12px; padding: 12px 0;
-  border-bottom: 1px solid rgba(107,79,160,0.06);
-}
-.house-item:last-child { border-bottom: none; }
-.house-num {
-  width: 28px; height: 28px; border-radius: 50%;
-  background: var(--purple-light); color: var(--purple);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 500; flex-shrink: 0; margin-top: 2px;
-}
-.house-title { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
-.house-desc { font-size: 12px; color: var(--text-soft); line-height: 1.6; }
-
-/* Aspects */
-.aspect-row { padding: 12px 0; border-bottom: 1px solid rgba(107,79,160,0.06); display: flex; flex-direction: column; gap: 6px; }
-.aspect-row:last-child { border-bottom: none; }
-.aspect-badge {
-  display: inline-block; font-size: 10px; font-weight: 500;
-  padding: 3px 10px; border-radius: 8px; width: fit-content;
-}
-.aspect-badge.trine { background: #E8F5EE; color: #2d5c3a; }
-.aspect-badge.sextile { background: var(--purple-light); color: var(--purple); }
-.aspect-badge.square { background: var(--danger-light); color: var(--danger); }
-.aspect-desc { font-size: 12px; color: var(--text); line-height: 1.6; }
-
-/* Destiny */
-.destiny-wrap {}
-.destiny-text { font-size: 13px; color: var(--text); line-height: 1.7; margin-bottom: 14px; }
-.destiny-quote {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 16px; font-style: italic; color: var(--purple);
-  border-left: 3px solid var(--pink); padding-left: 14px;
-  line-height: 1.6;
+:root{
+  --ink:#241d18;
+  --ink-soft:#6a5f57;
+  --sun:#fdb813;
+  --flame:#f5821f;
+  --ember:#ee4023;
+  --teal:#16a085;
+  --cloud:#fff8f0;
+  --paper:#ffffff;
+  --night:#181310;
+  --line:#f0e2d2;
+  --grad:linear-gradient(120deg,#fdb813 0%,#f5821f 48%,#ee4023 100%);
+  --grad-soft:linear-gradient(120deg,#fff3df 0%,#ffe9d6 100%);
+  --shadow:0 30px 70px -40px rgba(120,45,15,.55);
+  --maxw:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:hidden;max-width:100%}
+body{
+  margin:0;font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--ink);
+  background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:'Sora',system-ui,sans-serif;font-weight:700;line-height:1.1;margin:0;color:var(--ink)}
+.mono{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums}
+section,header{scroll-margin-top:60px}
+
+/* ---------- progress + brand bar ---------- */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--grad);z-index:60;transition:width .12s linear}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.82);
+  backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:var(--maxw);margin:0 auto;padding:14px 24px;display:flex;align-items:center}
+.brand{font-family:'Sora',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.5px;color:var(--ink);display:flex;align-items:center;gap:1px}
+.brand .v{color:var(--ember);transform:scaleX(.9)}
+.brand-tag{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft)}
+
+/* ---------- side dot nav ---------- */
+.dots{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:55;display:flex;flex-direction:column;gap:14px}
+.dots button{width:11px;height:11px;padding:0;border-radius:50%;border:1.5px solid rgba(150,110,80,.5);
+  background:transparent;cursor:pointer;transition:.25s;position:relative}
+.dots button:hover{border-color:var(--flame)}
+.dots button.on{background:var(--grad);border-color:transparent;transform:scale(1.25)}
+.dots button span{position:absolute;right:22px;top:50%;transform:translateY(-50%);white-space:nowrap;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink);
+  background:#fff;border:1px solid var(--line);padding:4px 10px;border-radius:100px;opacity:0;pointer-events:none;transition:.2s;box-shadow:var(--shadow)}
+.dots button:hover span{opacity:1}
+
+/* ---------- frame signature ---------- */
+.frame{position:relative;display:inline-block;padding:6px 22px}
+.frame::before,.frame::after{content:'';position:absolute;width:26px;height:26px;opacity:0;transition:opacity .6s ease .2s}
+.frame::before{top:0;left:0;border-top:2px solid currentColor;border-left:2px solid currentColor}
+.frame::after{bottom:0;right:0;border-bottom:2px solid currentColor;border-right:2px solid currentColor}
+.reveal.in .frame::before,.reveal.in .frame::after,.frame.show::before,.frame.show::after{opacity:1}
+
+/* ---------- layout ---------- */
+section{padding:104px 24px;position:relative}
+.wrap{max-width:var(--maxw);margin:0 auto}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--flame);font-weight:600;margin-bottom:18px}
+.lead{font-size:19px;color:var(--ink-soft);max-width:660px}
+.tint{background:var(--cloud)}
+.sec-title{font-size:clamp(28px,4vw,44px)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- hero ---------- */
+.hero{background:var(--grad);color:#fff;min-height:92vh;display:flex;align-items:center;
+  padding:154px 24px 96px;overflow:hidden;position:relative}
+.hero::after{content:'';position:absolute;inset:0;background:
+  radial-gradient(1200px 520px at 82% -12%,rgba(255,255,255,.28),transparent 60%),
+  radial-gradient(900px 500px at -5% 110%,rgba(238,64,35,.35),transparent 60%);pointer-events:none;z-index:1}
+.hero .wrap{position:relative;z-index:3}
+.hero h1{color:#fff;font-size:clamp(38px,6vw,74px);font-weight:800;letter-spacing:-1.5px;max-width:16ch;
+  text-shadow:0 2px 30px rgba(120,40,10,.25)}
+.hero .frame{color:#fff;margin-bottom:26px}
+.hero .frame span{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:4px;text-transform:uppercase}
+.hero p{color:rgba(255,255,255,.95);font-size:20px;max-width:580px;margin:26px 0 0}
+
+/* hero animated Europe map */
+.hero-viz{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+.hero-viz .mapdots circle{fill:rgba(255,255,255,.5)}
+.hero-viz .arc{fill:none;stroke:rgba(255,255,255,.9);stroke-width:1.6;stroke-linecap:round;
+  stroke-dasharray:600;stroke-dashoffset:600;animation:arcflow 3.6s cubic-bezier(.45,0,.25,1) infinite}
+@keyframes arcflow{0%{stroke-dashoffset:600;opacity:.15}30%{opacity:1}55%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:-600;opacity:.15}}
+.hero-viz .ring{fill:none;stroke:#fff;stroke-width:1.5;transform-box:fill-box;transform-origin:center;
+  animation:ringpulse 2.9s ease-out infinite}
+@keyframes ringpulse{0%{transform:scale(1);opacity:.7}70%{opacity:0}100%{transform:scale(3.6);opacity:0}}
+.hero-viz .hub{fill:#fff;transform-box:fill-box;transform-origin:center;
+  filter:drop-shadow(0 0 5px rgba(255,255,255,.85));animation:hubpulse 2.9s ease-in-out infinite}
+.hero-viz .hub.sofia{fill:var(--sun);filter:drop-shadow(0 0 9px rgba(253,184,19,.95))}
+@keyframes hubpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.28)}}
+
+.hero-stats{display:flex;gap:14px;margin-top:52px;flex-wrap:wrap}
+.hero-stats div{color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);
+  border-radius:16px;padding:16px 22px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);min-width:120px}
+.hero-stats b{font-family:'Sora',sans-serif;font-size:32px;font-weight:800;display:block;line-height:1}
+.hero-stats small{font-size:13px;opacity:.9;letter-spacing:.5px}
+.scroll-cue{margin-top:56px;display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.92);
+  font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase}
+.scroll-cue .dot{width:26px;height:42px;border:2px solid rgba(255,255,255,.7);border-radius:14px;position:relative}
+.scroll-cue .dot::after{content:'';position:absolute;left:50%;top:8px;width:4px;height:8px;background:#fff;border-radius:2px;transform:translateX(-50%);animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{0%,100%{opacity:0;transform:translate(-50%,0)}40%{opacity:1}80%{opacity:0;transform:translate(-50%,12px)}}
+
+/* ---------- model cards ---------- */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:44px}
+.model{border:1px solid var(--line);border-radius:20px;padding:34px;background:var(--paper);
+  transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;position:relative;overflow:hidden;
+  box-shadow:0 1px 0 rgba(0,0,0,.02)}
+.model:hover{transform:translateY(-6px);box-shadow:0 26px 60px -30px rgba(238,64,35,.45)}
+.model .tag{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:600}
+.model.ref .tag{color:var(--flame)}
+.model.res .tag{color:var(--teal)}
+.model h3{font-size:26px;margin:10px 0 6px}
+.model .who{font-size:14px;color:var(--ink-soft);margin-bottom:20px}
+.model ul{list-style:none;padding:0;margin:0}
+.model li{position:relative;padding:9px 0 9px 30px;font-size:15px;border-top:1px solid var(--line)}
+.model li:first-child{border-top:0}
+.model li::before{content:'';position:absolute;left:4px;top:16px;width:9px;height:9px;border-radius:50%}
+.model.ref li::before{background:var(--flame)}
+.model.res li::before{background:var(--teal)}
+.bar{height:5px;width:100%;position:absolute;top:0;left:0}
+.model.ref .bar{background:var(--grad)}
+.model.res .bar{background:linear-gradient(120deg,#16a085,#1abc9c)}
+
+/* ---------- tiers ---------- */
+.tiers{display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px;margin-top:44px}
+.tier{border-radius:18px;padding:30px;color:#fff;position:relative;overflow:hidden;min-height:230px;display:flex;flex-direction:column;
+  box-shadow:var(--shadow)}
+.tier.t1{background:linear-gradient(150deg,#fdb813,#f7a41c)}
+.tier.t2{background:linear-gradient(150deg,#f5821f,#ee4023)}
+.tier.t3{background:linear-gradient(150deg,#2b2b2b,#4a4a4a)}
+.tier .lvl{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;opacity:.85}
+.tier h4{color:#fff;font-size:21px;margin:6px 0 14px}
+.tier .pct{font-family:'Sora',sans-serif;font-weight:800;font-size:52px;line-height:1;margin-top:auto}
+.tier .pct small{font-size:16px;font-weight:600;opacity:.9}
+.tier p{font-size:13.5px;margin:8px 0 0;opacity:.95}
+.tier .split{display:flex;gap:24px;margin-top:auto}
+.tier .split div span{display:block;font-family:'Sora',sans-serif;font-weight:800;font-size:34px;line-height:1}
+.tier .split div small{font-size:12px;opacity:.85}
+.note{font-size:13px;color:var(--ink-soft);margin-top:20px}
+
+/* ---------- steps (real sequence) ---------- */
+.steps{margin-top:44px;counter-reset:st}
+.step{display:grid;grid-template-columns:64px 1fr;gap:24px;padding:22px 0;border-top:1px solid var(--line);align-items:start}
+.step:first-child{border-top:0}
+.step .num{counter-increment:st;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:15px;
+  width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:#fff;background:var(--grad)}
+.step .num::before{content:counter(st,decimal-leading-zero)}
+.step h4{font-size:18px;margin-bottom:4px}
+.step p{margin:0;color:var(--ink-soft);font-size:15px}
+
+/* ---------- TU explorer ---------- */
+.tu-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;margin-top:44px;align-items:center}
+.tu-btns{display:flex;flex-wrap:wrap;gap:12px}
+.tu-btn{font-family:'Inter',sans-serif;font-size:14px;font-weight:600;padding:12px 18px;border-radius:100px;
+  border:1.5px solid var(--line);background:var(--paper);cursor:pointer;transition:.2s;color:var(--ink)}
+.tu-btn:hover{border-color:var(--flame)}
+.tu-btn.active{background:var(--grad);color:#fff;border-color:transparent}
+.tu-readout{background:var(--night);color:#fff;border-radius:22px;padding:40px;text-align:center;box-shadow:var(--shadow)}
+.tu-readout .val{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:64px;line-height:1;color:var(--sun)}
+.tu-readout .val small{font-size:22px;color:#fff}
+.tu-readout .desc{margin-top:14px;font-size:15px;color:rgba(255,255,255,.82);min-height:44px}
+.tu-readout .hint{margin-top:18px;font-size:12px;font-family:'IBM Plex Mono',monospace;letter-spacing:1px;color:var(--teal);text-transform:uppercase}
+
+/* map flow */
+.flow{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:40px;
+  background:var(--grad-soft);border:1px solid var(--line);border-radius:22px;padding:30px}
+.flow .node{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 22px;text-align:center;font-weight:600;font-size:14px}
+.flow .node small{display:block;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--flame);font-weight:600;margin-top:3px}
+.flow .arr{color:var(--flame);font-size:22px;font-weight:700}
+
+/* ---------- why / reasons ---------- */
+.reasons{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:44px}
+.reason{padding:26px;border-radius:16px;background:var(--paper);border:1px solid var(--line);transition:.25s}
+.reason:hover{border-color:var(--flame);background:var(--grad-soft);transform:translateY(-3px)}
+.reason h4{font-size:17px;color:var(--flame);margin-bottom:6px}
+.reason p{margin:0;font-size:14.5px;color:var(--ink-soft)}
+
+/* counters */
+.counters{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;margin-top:52px;text-align:center}
+.counters b{font-family:'Sora',sans-serif;font-weight:800;font-size:clamp(30px,4vw,46px);color:var(--ember);display:block;line-height:1}
+.counters small{font-size:13px;color:var(--ink-soft);letter-spacing:.3px}
+
+/* trusted */
+.trust-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.trust-row span{border:1px solid var(--line);border-radius:100px;padding:9px 18px;font-size:14px;font-weight:500;color:var(--ink-soft);background:#fff}
+.mc{margin-top:40px;background:var(--night);color:#fff;border-radius:20px;padding:34px;display:grid;grid-template-columns:1fr 1fr;gap:14px 40px;box-shadow:var(--shadow)}
+.mc h3{color:#fff;grid-column:1/-1;font-size:22px}
+.mc div{padding-left:26px;position:relative;font-size:15px;color:rgba(255,255,255,.86)}
+.mc div::before{content:'✓';position:absolute;left:0;color:var(--sun);font-weight:700}
+
+/* ---------- use-cases (stacked) ---------- */
+.uc-block{margin-top:44px;padding-top:36px;border-top:1px solid var(--line)}
+.uc-block:first-of-type{border-top:0;padding-top:0}
+.uc-head{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:2px;text-transform:uppercase;
+  color:#fff;background:var(--grad);display:inline-block;padding:8px 18px;border-radius:100px;margin-bottom:24px}
+.panel-cols{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+.uc-col h4{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--flame);margin-bottom:14px}
+.uc-col ul{list-style:none;padding:0;margin:0}
+.uc-col li{padding:9px 0 9px 26px;position:relative;font-size:14.5px;border-top:1px solid var(--line)}
+.uc-col li:first-child{border-top:0}
+.uc-col li::before{content:'';position:absolute;left:2px;top:16px;width:8px;height:8px;border-radius:50%;background:var(--flame)}
+
+/* ---------- CTA ---------- */
+.cta{background:var(--grad);color:#fff;text-align:center;overflow:hidden;position:relative}
+.cta::after{content:'';position:absolute;inset:0;background:radial-gradient(700px 360px at 50% -20%,rgba(255,255,255,.25),transparent 60%);pointer-events:none}
+.cta .wrap{position:relative;z-index:2}
+.cta h2{color:#fff;font-size:clamp(30px,4.5vw,52px);letter-spacing:-1px}
+.cta p{color:rgba(255,255,255,.94);font-size:18px;margin:16px auto 30px;max-width:540px}
+.cta .contacts{font-family:'IBM Plex Mono',monospace;font-size:16px;margin-top:26px;color:#fff}
+.cta .contacts span{opacity:.7;margin:0 8px}
+
+footer{background:var(--night);color:rgba(255,255,255,.55);text-align:center;padding:34px 24px;font-size:13px}
+
+/* focus */
+button:focus-visible,.tu-btn:focus-visible{outline:3px solid var(--sun);outline-offset:3px;border-radius:6px}
+
+/* ---------- responsive ---------- */
+@media(max-width:860px){
+  .grid2,.tiers,.tu-wrap,.reasons,.panel-cols,.mc{grid-template-columns:1fr}
+  .counters{grid-template-columns:1fr 1fr}
+  section{padding:74px 22px}
+  .hero{min-height:auto;padding:130px 22px 80px}
+  .tu-readout{order:-1}
+  .brand-tag{display:none}
+  .dots{display:none}
+  .hero-stats div{min-width:calc(50% - 7px);flex:1}
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .scroll-cue .dot::after{animation:none}
+  .hero-viz .arc{stroke-dashoffset:0;animation:none;opacity:.85}
+  .hero-viz .hub,.hero-viz .ring,.hero-viz .mapdots circle{animation:none;opacity:1}
 }
 </style>
 </head>
 <body>
-<div class="shell">
 
-<!-- ══════════ INTRO ══════════ -->
-<div class="screen active" id="s-intro">
-  <div class="intro-sky"></div>
-  <canvas class="stars-canvas" id="stars-canvas"></canvas>
-  <div class="moon"></div>
-  <div class="intro-body">
-    <div class="intro-eyebrow">Добре дошла в света</div>
-    <div class="baby-medallion">🌸</div>
-    <div class="intro-name">
-      <em>Белослава Славова</em>
-    </div>
-    <div class="intro-date">7 май 2026 · 21:49 · Телец ♉</div>
-    <p class="intro-tagline">Вашият личен наръчник<br>за първите 30 дни с Белослава.</p>
-    <div class="intro-actions">
-      <button class="btn-intro-primary" onclick="nav('home')">✨ &nbsp;Започни пътешествието</button>
-      <button class="btn-intro-ghost" onclick="nav('guide')">📖 &nbsp;Наръчник за родители</button>
-      <button class="btn-intro-ghost" onclick="nav('astro')">♉ &nbsp;Зодия и натална карта</button>
-    </div>
+<div id="progress"></div>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <span class="brand">e<span class="v">v</span>rotrust</span>
+    <span class="brand-tag">Partner Program</span>
   </div>
 </div>
 
-<!-- ══════════ HOME ══════════ -->
-<div class="screen" id="s-home">
-  <div class="home-hero">
-    <div class="hero-top-row">
-      <div class="hero-day" id="hero-date-lbl">7 май 2026 · 21:49</div>
-      <button class="home-btn" onclick="nav('intro')" title="Начален екран">🏠</button>
-    </div>
-    <div class="hero-title" id="hero-day-title">Ден <span id="hero-day-num">1</span> с <span class="hero-name">Белослава</span> 🌸</div>
+<!-- side dot nav -->
+<nav class="dots" id="dots" aria-label="Sections"></nav>
 
-    <!-- Day picker -->
-    <div class="day-picker-row">
-      <button class="day-arrow" onclick="changeDay(-1)">‹</button>
-      <div class="day-picker-scroll" id="day-scroll">
-        <!-- filled by JS -->
-      </div>
-      <button class="day-arrow" onclick="changeDay(1)">›</button>
-    </div>
+<!-- HERO -->
+<header class="hero" id="s-hero">
+  <svg class="hero-viz" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="1"/></pattern><radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="rgba(255,255,255,.22)"/><stop offset="1" stop-color="rgba(255,255,255,0)"/></radialGradient></defs><rect width="1200" height="700" fill="url(#grid)"/><circle cx="727" cy="514" r="240" fill="url(#glow)"/><g class="mapdots"><circle cx="405" cy="340" r="2.1"/><circle cx="405" cy="355" r="2.1"/><circle cx="405" cy="370" r="2.1"/><circle cx="420" cy="325" r="2.1"/><circle cx="420" cy="340" r="2.1"/><circle cx="420" cy="355" r="2.1"/><circle cx="420" cy="505" r="2.1"/><circle cx="420" cy="520" r="2.1"/><circle cx="420" cy="535" r="2.1"/><circle cx="420" cy="550" r="2.1"/><circle cx="420" cy="565" r="2.1"/><circle cx="420" cy="580" r="2.1"/><circle cx="420" cy="595" r="2.1"/><circle cx="435" cy="325" r="2.1"/><circle cx="435" cy="340" r="2.1"/><circle cx="435" cy="505" r="2.1"/><circle cx="435" cy="520" r="2.1"/><circle cx="435" cy="535" r="2.1"/><circle cx="435" cy="550" r="2.1"/><circle cx="435" cy="565" r="2.1"/><circle cx="435" cy="580" r="2.1"/><circle cx="435" cy="595" r="2.1"/><circle cx="435" cy="610" r="2.1"/><circle cx="450" cy="265" r="2.1"/><circle cx="450" cy="280" r="2.1"/><circle cx="450" cy="295" r="2.1"/><circle cx="450" cy="310" r="2.1"/><circle cx="450" cy="385" r="2.1"/><circle cx="450" cy="505" r="2.1"/><circle cx="450" cy="520" r="2.1"/><circle cx="450" cy="535" r="2.1"/><circle cx="450" cy="550" r="2.1"/><circle cx="450" cy="565" r="2.1"/><circle cx="450" cy="580" r="2.1"/><circle cx="450" cy="595" r="2.1"/><circle cx="450" cy="610" r="2.1"/><circle cx="465" cy="250" r="2.1"/><circle cx="465" cy="280" r="2.1"/><circle cx="465" cy="295" r="2.1"/><circle cx="465" cy="310" r="2.1"/><circle cx="465" cy="325" r="2.1"/><circle cx="465" cy="355" r="2.1"/><circle cx="465" cy="370" r="2.1"/><circle cx="465" cy="415" r="2.1"/><circle cx="465" cy="430" r="2.1"/><circle cx="465" cy="505" r="2.1"/><circle cx="465" cy="520" r="2.1"/><circle cx="465" cy="535" r="2.1"/><circle cx="465" cy="550" r="2.1"/><circle cx="465" cy="565" r="2.1"/><circle cx="465" cy="580" r="2.1"/><circle cx="465" cy="595" r="2.1"/><circle cx="465" cy="610" r="2.1"/><circle cx="480" cy="310" r="2.1"/><circle cx="480" cy="325" r="2.1"/><circle cx="480" cy="340" r="2.1"/><circle cx="480" cy="355" r="2.1"/><circle cx="480" cy="370" r="2.1"/><circle cx="480" cy="430" r="2.1"/><circle cx="480" cy="445" r="2.1"/><circle cx="480" cy="505" r="2.1"/><circle cx="480" cy="520" r="2.1"/><circle cx="480" cy="535" r="2.1"/><circle cx="480" cy="550" r="2.1"/><circle cx="480" cy="565" r="2.1"/><circle cx="480" cy="580" r="2.1"/><circle cx="480" cy="595" r="2.1"/><circle cx="495" cy="340" r="2.1"/><circle cx="495" cy="355" r="2.1"/><circle cx="495" cy="370" r="2.1"/><circle cx="495" cy="415" r="2.1"/><circle cx="495" cy="430" r="2.1"/><circle cx="495" cy="445" r="2.1"/><circle cx="495" cy="460" r="2.1"/><circle cx="495" cy="475" r="2.1"/><circle cx="495" cy="490" r="2.1"/><circle cx="495" cy="505" r="2.1"/><circle cx="495" cy="520" r="2.1"/><circle cx="495" cy="535" r="2.1"/><circle cx="495" cy="550" r="2.1"/><circle cx="495" cy="580" r="2.1"/><circle cx="510" cy="355" r="2.1"/><circle cx="510" cy="400" r="2.1"/><circle cx="510" cy="415" r="2.1"/><circle cx="510" cy="430" r="2.1"/><circle cx="510" cy="445" r="2.1"/><circle cx="510" cy="460" r="2.1"/><circle cx="510" cy="475" r="2.1"/><circle cx="510" cy="490" r="2.1"/><circle cx="510" cy="505" r="2.1"/><circle cx="510" cy="520" r="2.1"/><circle cx="510" cy="535" r="2.1"/><circle cx="525" cy="385" r="2.1"/><circle cx="525" cy="400" r="2.1"/><circle cx="525" cy="415" r="2.1"/><circle cx="525" cy="430" r="2.1"/><circle cx="525" cy="445" r="2.1"/><circle cx="525" cy="460" r="2.1"/><circle cx="525" cy="475" r="2.1"/><circle cx="525" cy="490" r="2.1"/><circle cx="525" cy="505" r="2.1"/><circle cx="525" cy="520" r="2.1"/><circle cx="525" cy="565" r="2.1"/><circle cx="540" cy="370" r="2.1"/><circle cx="540" cy="385" r="2.1"/><circle cx="540" cy="400" r="2.1"/><circle cx="540" cy="415" r="2.1"/><circle cx="540" cy="430" r="2.1"/><circle cx="540" cy="445" r="2.1"/><circle cx="540" cy="460" r="2.1"/><circle cx="540" cy="475" r="2.1"/><circle cx="540" cy="490" r="2.1"/><circle cx="555" cy="205" r="2.1"/><circle cx="555" cy="220" r="2.1"/><circle cx="555" cy="235" r="2.1"/><circle cx="555" cy="355" r="2.1"/><circle cx="555" cy="370" r="2.1"/><circle cx="555" cy="385" r="2.1"/><circle cx="555" cy="400" r="2.1"/><circle cx="555" cy="415" r="2.1"/><circle cx="555" cy="430" r="2.1"/><circle cx="555" cy="445" r="2.1"/><circle cx="555" cy="460" r="2.1"/><circle cx="555" cy="475" r="2.1"/><circle cx="555" cy="490" r="2.1"/><circle cx="555" cy="505" r="2.1"/><circle cx="570" cy="205" r="2.1"/><circle cx="570" cy="220" r="2.1"/><circle cx="570" cy="235" r="2.1"/><circle cx="570" cy="250" r="2.1"/><circle cx="570" cy="265" r="2.1"/><circle cx="570" cy="340" r="2.1"/><circle cx="570" cy="355" r="2.1"/><circle cx="570" cy="370" r="2.1"/><circle cx="570" cy="385" r="2.1"/><circle cx="570" cy="400" r="2.1"/><circle cx="570" cy="415" r="2.1"/><circle cx="570" cy="430" r="2.1"/><circle cx="570" cy="445" r="2.1"/><circle cx="570" cy="460" r="2.1"/><circle cx="570" cy="475" r="2.1"/><circle cx="570" cy="490" r="2.1"/><circle cx="585" cy="175" r="2.1"/><circle cx="585" cy="190" r="2.1"/><circle cx="585" cy="205" r="2.1"/><circle cx="585" cy="220" r="2.1"/><circle cx="585" cy="235" r="2.1"/><circle cx="585" cy="250" r="2.1"/><circle cx="585" cy="280" r="2.1"/><circle cx="585" cy="295" r="2.1"/><circle cx="585" cy="310" r="2.1"/><circle cx="585" cy="325" r="2.1"/><circle cx="585" cy="340" r="2.1"/><circle cx="585" cy="355" r="2.1"/><circle cx="585" cy="370" r="2.1"/><circle cx="585" cy="385" r="2.1"/><circle cx="585" cy="400" r="2.1"/><circle cx="585" cy="415" r="2.1"/><circle cx="585" cy="430" r="2.1"/><circle cx="585" cy="445" r="2.1"/><circle cx="585" cy="460" r="2.1"/><circle cx="585" cy="475" r="2.1"/><circle cx="585" cy="520" r="2.1"/><circle cx="585" cy="550" r="2.1"/><circle cx="585" cy="565" r="2.1"/><circle cx="600" cy="190" r="2.1"/><circle cx="600" cy="205" r="2.1"/><circle cx="600" cy="220" r="2.1"/><circle cx="600" cy="235" r="2.1"/><circle cx="600" cy="295" r="2.1"/><circle cx="600" cy="310" r="2.1"/><circle cx="600" cy="325" r="2.1"/><circle cx="600" cy="340" r="2.1"/><circle cx="600" cy="355" r="2.1"/><circle cx="600" cy="370" r="2.1"/><circle cx="600" cy="385" r="2.1"/><circle cx="600" cy="400" r="2.1"/><circle cx="600" cy="415" r="2.1"/><circle cx="600" cy="430" r="2.1"/><circle cx="600" cy="445" r="2.1"/><circle cx="600" cy="460" r="2.1"/><circle cx="600" cy="475" r="2.1"/><circle cx="600" cy="490" r="2.1"/><circle cx="615" cy="160" r="2.1"/><circle cx="615" cy="175" r="2.1"/><circle cx="615" cy="190" r="2.1"/><circle cx="615" cy="205" r="2.1"/><circle cx="615" cy="220" r="2.1"/><circle cx="615" cy="235" r="2.1"/><circle cx="615" cy="250" r="2.1"/><circle cx="615" cy="265" r="2.1"/><circle cx="615" cy="310" r="2.1"/><circle cx="615" cy="340" r="2.1"/><circle cx="615" cy="355" r="2.1"/><circle cx="615" cy="370" r="2.1"/><circle cx="615" cy="385" r="2.1"/><circle cx="615" cy="400" r="2.1"/><circle cx="615" cy="415" r="2.1"/><circle cx="615" cy="430" r="2.1"/><circle cx="615" cy="445" r="2.1"/><circle cx="615" cy="460" r="2.1"/><circle cx="615" cy="475" r="2.1"/><circle cx="615" cy="490" r="2.1"/><circle cx="615" cy="505" r="2.1"/><circle cx="615" cy="520" r="2.1"/><circle cx="615" cy="610" r="2.1"/><circle cx="630" cy="100" r="2.1"/><circle cx="630" cy="130" r="2.1"/><circle cx="630" cy="145" r="2.1"/><circle cx="630" cy="160" r="2.1"/><circle cx="630" cy="175" r="2.1"/><circle cx="630" cy="190" r="2.1"/><circle cx="630" cy="205" r="2.1"/><circle cx="630" cy="220" r="2.1"/><circle cx="630" cy="235" r="2.1"/><circle cx="630" cy="250" r="2.1"/><circle cx="630" cy="265" r="2.1"/><circle cx="630" cy="280" r="2.1"/><circle cx="630" cy="295" r="2.1"/><circle cx="630" cy="325" r="2.1"/><circle cx="630" cy="340" r="2.1"/><circle cx="630" cy="355" r="2.1"/><circle cx="630" cy="370" r="2.1"/><circle cx="630" cy="385" r="2.1"/><circle cx="630" cy="400" r="2.1"/><circle cx="630" cy="415" r="2.1"/><circle cx="630" cy="430" r="2.1"/><circle cx="630" cy="445" r="2.1"/><circle cx="630" cy="460" r="2.1"/><circle cx="630" cy="505" r="2.1"/><circle cx="630" cy="520" r="2.1"/><circle cx="630" cy="535" r="2.1"/><circle cx="630" cy="595" r="2.1"/><circle cx="645" cy="115" r="2.1"/><circle cx="645" cy="130" r="2.1"/><circle cx="645" cy="145" r="2.1"/><circle cx="645" cy="160" r="2.1"/><circle cx="645" cy="175" r="2.1"/><circle cx="645" cy="190" r="2.1"/><circle cx="645" cy="205" r="2.1"/><circle cx="645" cy="220" r="2.1"/><circle cx="645" cy="235" r="2.1"/><circle cx="645" cy="250" r="2.1"/><circle cx="645" cy="265" r="2.1"/><circle cx="645" cy="280" r="2.1"/><circle cx="645" cy="295" r="2.1"/><circle cx="645" cy="340" r="2.1"/><circle cx="645" cy="355" r="2.1"/><circle cx="645" cy="370" r="2.1"/><circle cx="645" cy="385" r="2.1"/><circle cx="645" cy="400" r="2.1"/><circle cx="645" cy="415" r="2.1"/><circle cx="645" cy="430" r="2.1"/><circle cx="645" cy="445" r="2.1"/><circle cx="645" cy="460" r="2.1"/><circle cx="645" cy="475" r="2.1"/><circle cx="645" cy="535" r="2.1"/><circle cx="645" cy="550" r="2.1"/><circle cx="645" cy="595" r="2.1"/><circle cx="645" cy="610" r="2.1"/><circle cx="660" cy="115" r="2.1"/><circle cx="660" cy="130" r="2.1"/><circle cx="660" cy="145" r="2.1"/><circle cx="660" cy="160" r="2.1"/><circle cx="660" cy="175" r="2.1"/><circle cx="660" cy="190" r="2.1"/><circle cx="660" cy="205" r="2.1"/><circle cx="660" cy="220" r="2.1"/><circle cx="660" cy="235" r="2.1"/><circle cx="660" cy="250" r="2.1"/><circle cx="660" cy="265" r="2.1"/><circle cx="660" cy="325" r="2.1"/><circle cx="660" cy="340" r="2.1"/><circle cx="660" cy="355" r="2.1"/><circle cx="660" cy="370" r="2.1"/><circle cx="660" cy="385" r="2.1"/><circle cx="660" cy="400" r="2.1"/><circle cx="660" cy="415" r="2.1"/><circle cx="660" cy="430" r="2.1"/><circle cx="660" cy="445" r="2.1"/><circle cx="660" cy="460" r="2.1"/><circle cx="660" cy="475" r="2.1"/><circle cx="660" cy="490" r="2.1"/><circle cx="660" cy="550" r="2.1"/><circle cx="660" cy="565" r="2.1"/><circle cx="675" cy="100" r="2.1"/><circle cx="675" cy="115" r="2.1"/><circle cx="675" cy="130" r="2.1"/><circle cx="675" cy="145" r="2.1"/><circle cx="675" cy="160" r="2.1"/><circle cx="675" cy="175" r="2.1"/><circle cx="675" cy="235" r="2.1"/><circle cx="675" cy="325" r="2.1"/><circle cx="675" cy="340" r="2.1"/><circle cx="675" cy="355" r="2.1"/><circle cx="675" cy="370" r="2.1"/><circle cx="675" cy="385" r="2.1"/><circle cx="675" cy="400" r="2.1"/><circle cx="675" cy="415" r="2.1"/><circle cx="675" cy="430" r="2.1"/><circle cx="675" cy="445" r="2.1"/><circle cx="675" cy="460" r="2.1"/><circle cx="675" cy="475" r="2.1"/><circle cx="675" cy="490" r="2.1"/><circle cx="675" cy="505" r="2.1"/><circle cx="675" cy="550" r="2.1"/><circle cx="690" cy="85" r="2.1"/><circle cx="690" cy="100" r="2.1"/><circle cx="690" cy="115" r="2.1"/><circle cx="690" cy="130" r="2.1"/><circle cx="690" cy="145" r="2.1"/><circle cx="690" cy="160" r="2.1"/><circle cx="690" cy="175" r="2.1"/><circle cx="690" cy="340" r="2.1"/><circle cx="690" cy="355" r="2.1"/><circle cx="690" cy="370" r="2.1"/><circle cx="690" cy="385" r="2.1"/><circle cx="690" cy="400" r="2.1"/><circle cx="690" cy="415" r="2.1"/><circle cx="690" cy="430" r="2.1"/><circle cx="690" cy="445" r="2.1"/><circle cx="690" cy="460" r="2.1"/><circle cx="690" cy="475" r="2.1"/><circle cx="690" cy="490" r="2.1"/><circle cx="690" cy="505" r="2.1"/><circle cx="690" cy="520" r="2.1"/><circle cx="690" cy="535" r="2.1"/><circle cx="690" cy="550" r="2.1"/><circle cx="705" cy="85" r="2.1"/><circle cx="705" cy="100" r="2.1"/><circle cx="705" cy="115" r="2.1"/><circle cx="705" cy="130" r="2.1"/><circle cx="705" cy="145" r="2.1"/><circle cx="705" cy="160" r="2.1"/><circle cx="705" cy="190" r="2.1"/><circle cx="705" cy="295" r="2.1"/><circle cx="705" cy="340" r="2.1"/><circle cx="705" cy="355" r="2.1"/><circle cx="705" cy="370" r="2.1"/><circle cx="705" cy="385" r="2.1"/><circle cx="705" cy="400" r="2.1"/><circle cx="705" cy="415" r="2.1"/><circle cx="705" cy="430" r="2.1"/><circle cx="705" cy="445" r="2.1"/><circle cx="705" cy="460" r="2.1"/><circle cx="705" cy="475" r="2.1"/><circle cx="705" cy="490" r="2.1"/><circle cx="705" cy="505" r="2.1"/><circle cx="705" cy="520" r="2.1"/><circle cx="705" cy="535" r="2.1"/><circle cx="705" cy="550" r="2.1"/><circle cx="705" cy="565" r="2.1"/><circle cx="705" cy="580" r="2.1"/><circle cx="720" cy="70" r="2.1"/><circle cx="720" cy="85" r="2.1"/><circle cx="720" cy="100" r="2.1"/><circle cx="720" cy="115" r="2.1"/><circle cx="720" cy="130" r="2.1"/><circle cx="720" cy="175" r="2.1"/><circle cx="720" cy="190" r="2.1"/><circle cx="720" cy="205" r="2.1"/><circle cx="720" cy="220" r="2.1"/><circle cx="720" cy="250" r="2.1"/><circle cx="720" cy="280" r="2.1"/><circle cx="720" cy="295" r="2.1"/><circle cx="720" cy="310" r="2.1"/><circle cx="720" cy="325" r="2.1"/><circle cx="720" cy="340" r="2.1"/><circle cx="720" cy="355" r="2.1"/><circle cx="720" cy="370" r="2.1"/><circle cx="720" cy="385" r="2.1"/><circle cx="720" cy="400" r="2.1"/><circle cx="720" cy="415" r="2.1"/><circle cx="720" cy="430" r="2.1"/><circle cx="720" cy="445" r="2.1"/><circle cx="720" cy="460" r="2.1"/><circle cx="720" cy="475" r="2.1"/><circle cx="720" cy="490" r="2.1"/><circle cx="720" cy="505" r="2.1"/><circle cx="720" cy="520" r="2.1"/><circle cx="720" cy="535" r="2.1"/><circle cx="720" cy="565" r="2.1"/><circle cx="720" cy="580" r="2.1"/><circle cx="720" cy="595" r="2.1"/><circle cx="735" cy="55" r="2.1"/><circle cx="735" cy="70" r="2.1"/><circle cx="735" cy="85" r="2.1"/><circle cx="735" cy="100" r="2.1"/><circle cx="735" cy="115" r="2.1"/><circle cx="735" cy="130" r="2.1"/><circle cx="735" cy="175" r="2.1"/><circle cx="735" cy="190" r="2.1"/><circle cx="735" cy="205" r="2.1"/><circle cx="735" cy="220" r="2.1"/><circle cx="735" cy="250" r="2.1"/><circle cx="735" cy="295" r="2.1"/><circle cx="735" cy="310" r="2.1"/><circle cx="735" cy="325" r="2.1"/><circle cx="735" cy="340" r="2.1"/><circle cx="735" cy="355" r="2.1"/><circle cx="735" cy="370" r="2.1"/><circle cx="735" cy="385" r="2.1"/><circle cx="735" cy="400" r="2.1"/><circle cx="735" cy="415" r="2.1"/><circle cx="735" cy="430" r="2.1"/><circle cx="735" cy="445" r="2.1"/><circle cx="735" cy="460" r="2.1"/><circle cx="735" cy="475" r="2.1"/><circle cx="735" cy="490" r="2.1"/><circle cx="735" cy="505" r="2.1"/><circle cx="735" cy="520" r="2.1"/><circle cx="735" cy="535" r="2.1"/><circle cx="750" cy="55" r="2.1"/><circle cx="750" cy="70" r="2.1"/><circle cx="750" cy="85" r="2.1"/><circle cx="750" cy="100" r="2.1"/><circle cx="750" cy="115" r="2.1"/><circle cx="750" cy="130" r="2.1"/><circle cx="750" cy="145" r="2.1"/><circle cx="750" cy="160" r="2.1"/><circle cx="750" cy="175" r="2.1"/><circle cx="750" cy="190" r="2.1"/><circle cx="750" cy="205" r="2.1"/><circle cx="750" cy="220" r="2.1"/><circle cx="750" cy="250" r="2.1"/><circle cx="750" cy="265" r="2.1"/><circle cx="750" cy="280" r="2.1"/><circle cx="750" cy="295" r="2.1"/><circle cx="750" cy="310" r="2.1"/><circle cx="750" cy="325" r="2.1"/><circle cx="750" cy="340" r="2.1"/><circle cx="750" cy="355" r="2.1"/><circle cx="750" cy="370" r="2.1"/><circle cx="750" cy="385" r="2.1"/><circle cx="750" cy="400" r="2.1"/><circle cx="750" cy="415" r="2.1"/><circle cx="750" cy="430" r="2.1"/><circle cx="750" cy="445" r="2.1"/><circle cx="750" cy="460" r="2.1"/><circle cx="750" cy="475" r="2.1"/><circle cx="750" cy="490" r="2.1"/><circle cx="750" cy="505" r="2.1"/><circle cx="750" cy="520" r="2.1"/><circle cx="750" cy="535" r="2.1"/><circle cx="765" cy="55" r="2.1"/><circle cx="765" cy="70" r="2.1"/><circle cx="765" cy="85" r="2.1"/><circle cx="765" cy="100" r="2.1"/><circle cx="765" cy="115" r="2.1"/><circle cx="765" cy="130" r="2.1"/><circle cx="765" cy="145" r="2.1"/><circle cx="765" cy="160" r="2.1"/><circle cx="765" cy="175" r="2.1"/><circle cx="765" cy="190" r="2.1"/><circle cx="765" cy="205" r="2.1"/><circle cx="765" cy="220" r="2.1"/><circle cx="765" cy="250" r="2.1"/><circle cx="765" cy="265" r="2.1"/><circle cx="765" cy="280" r="2.1"/><circle cx="765" cy="295" r="2.1"/><circle cx="765" cy="310" r="2.1"/><circle cx="765" cy="325" r="2.1"/><circle cx="765" cy="340" r="2.1"/><circle cx="765" cy="355" r="2.1"/><circle cx="765" cy="370" r="2.1"/><circle cx="765" cy="385" r="2.1"/><circle cx="765" cy="400" r="2.1"/><circle cx="765" cy="415" r="2.1"/><circle cx="765" cy="430" r="2.1"/><circle cx="765" cy="445" r="2.1"/><circle cx="765" cy="460" r="2.1"/><circle cx="765" cy="475" r="2.1"/><circle cx="765" cy="490" r="2.1"/><circle cx="765" cy="505" r="2.1"/><circle cx="765" cy="520" r="2.1"/><circle cx="765" cy="535" r="2.1"/><circle cx="765" cy="565" r="2.1"/><circle cx="765" cy="580" r="2.1"/><circle cx="780" cy="70" r="2.1"/><circle cx="780" cy="85" r="2.1"/><circle cx="780" cy="115" r="2.1"/><circle cx="780" cy="130" r="2.1"/><circle cx="780" cy="145" r="2.1"/><circle cx="780" cy="160" r="2.1"/><circle cx="780" cy="175" r="2.1"/><circle cx="780" cy="190" r="2.1"/><circle cx="780" cy="205" r="2.1"/><circle cx="780" cy="310" r="2.1"/><circle cx="780" cy="325" r="2.1"/><circle cx="780" cy="340" r="2.1"/><circle cx="780" cy="355" r="2.1"/><circle cx="780" cy="370" r="2.1"/><circle cx="780" cy="385" r="2.1"/><circle cx="780" cy="400" r="2.1"/><circle cx="780" cy="415" r="2.1"/><circle cx="780" cy="430" r="2.1"/><circle cx="780" cy="445" r="2.1"/><circle cx="780" cy="460" r="2.1"/><circle cx="780" cy="475" r="2.1"/><circle cx="780" cy="565" r="2.1"/><circle cx="780" cy="580" r="2.1"/><circle cx="780" cy="595" r="2.1"/><circle cx="780" cy="610" r="2.1"/><circle cx="795" cy="190" r="2.1"/><circle cx="795" cy="310" r="2.1"/><circle cx="795" cy="325" r="2.1"/><circle cx="795" cy="340" r="2.1"/><circle cx="795" cy="355" r="2.1"/><circle cx="795" cy="370" r="2.1"/><circle cx="795" cy="385" r="2.1"/><circle cx="795" cy="400" r="2.1"/><circle cx="795" cy="415" r="2.1"/><circle cx="795" cy="430" r="2.1"/><circle cx="795" cy="445" r="2.1"/><circle cx="795" cy="460" r="2.1"/><circle cx="795" cy="550" r="2.1"/><circle cx="795" cy="565" r="2.1"/><circle cx="795" cy="580" r="2.1"/><circle cx="795" cy="595" r="2.1"/><circle cx="795" cy="610" r="2.1"/><circle cx="810" cy="340" r="2.1"/><circle cx="810" cy="370" r="2.1"/><circle cx="810" cy="385" r="2.1"/><circle cx="810" cy="400" r="2.1"/><circle cx="810" cy="415" r="2.1"/><circle cx="810" cy="430" r="2.1"/><circle cx="810" cy="445" r="2.1"/><circle cx="810" cy="535" r="2.1"/><circle cx="810" cy="550" r="2.1"/><circle cx="810" cy="565" r="2.1"/><circle cx="810" cy="580" r="2.1"/><circle cx="810" cy="595" r="2.1"/><circle cx="810" cy="610" r="2.1"/></g><g class="arcs"><path class="arc" pathLength="600" d="M726.6,513.9 Q690.3,410.5 582.0,393.8" style="animation-delay:0.00s"/><path class="arc" pathLength="600" d="M726.6,513.9 Q682.7,381.0 544.7,357.1" style="animation-delay:0.42s"/><path class="arc" pathLength="600" d="M726.6,513.9 Q653.0,401.9 519.5,414.0" style="animation-delay:0.84s"/><path class="arc" pathLength="600" d="M726.6,513.9 Q582.1,452.4 459.8,550.9" style="animation-delay:1.26s"/><path class="arc" pathLength="600" d="M726.6,513.9 Q781.5,363.5 674.7,244.2" style="animation-delay:1.68s"/><path class="arc" pathLength="600" d="M726.6,513.9 Q761.5,429.8 703.8,359.4" style="animation-delay:2.10s"/><path class="arc" pathLength="600" d="M726.6,513.9 Q669.3,488.4 619.7,526.9" style="animation-delay:2.52s"/><path class="arc" pathLength="600" d="M726.6,513.9 Q653.7,373.0 495.1,371.1" style="animation-delay:2.94s"/><path class="arc" pathLength="600" d="M726.6,513.9 Q719.1,448.7 657.9,424.6" style="animation-delay:3.36s"/><path class="arc" pathLength="600" d="M726.6,513.9 Q705.6,553.4 730.6,590.5" style="animation-delay:3.78s"/><path class="arc" pathLength="600" d="M726.6,513.9 Q748.7,508.1 754.0,485.9" style="animation-delay:4.20s"/></g><g class="hubs"><circle class="ring" cx="726.6" cy="513.9" r="6.5" style="animation-delay:0.00s"/><circle class="hub sofia" cx="726.6" cy="513.9" r="6.5" style="animation-delay:0.00s"/><circle class="ring" cx="657.9" cy="424.6" r="4.2" style="animation-delay:0.40s"/><circle class="hub" cx="657.9" cy="424.6" r="4.2" style="animation-delay:0.40s"/><circle class="ring" cx="582.0" cy="393.8" r="4.2" style="animation-delay:0.80s"/><circle class="hub" cx="582.0" cy="393.8" r="4.2" style="animation-delay:0.80s"/><circle class="ring" cx="544.7" cy="357.1" r="4.2" style="animation-delay:1.20s"/><circle class="hub" cx="544.7" cy="357.1" r="4.2" style="animation-delay:1.20s"/><circle class="ring" cx="703.8" cy="359.4" r="4.2" style="animation-delay:1.60s"/><circle class="hub" cx="703.8" cy="359.4" r="4.2" style="animation-delay:1.60s"/><circle class="ring" cx="459.8" cy="550.9" r="4.2" style="animation-delay:2.00s"/><circle class="hub" cx="459.8" cy="550.9" r="4.2" style="animation-delay:2.00s"/><circle class="ring" cx="519.5" cy="414.0" r="4.2" style="animation-delay:2.40s"/><circle class="hub" cx="519.5" cy="414.0" r="4.2" style="animation-delay:2.40s"/><circle class="ring" cx="619.7" cy="526.9" r="4.2" style="animation-delay:2.80s"/><circle class="hub" cx="619.7" cy="526.9" r="4.2" style="animation-delay:2.80s"/><circle class="ring" cx="730.6" cy="590.5" r="4.2" style="animation-delay:3.20s"/><circle class="hub" cx="730.6" cy="590.5" r="4.2" style="animation-delay:3.20s"/><circle class="ring" cx="674.7" cy="244.2" r="4.2" style="animation-delay:3.60s"/><circle class="hub" cx="674.7" cy="244.2" r="4.2" style="animation-delay:3.60s"/><circle class="ring" cx="754.0" cy="485.9" r="4.2" style="animation-delay:4.00s"/><circle class="hub" cx="754.0" cy="485.9" r="4.2" style="animation-delay:4.00s"/><circle class="ring" cx="495.1" cy="371.1" r="4.2" style="animation-delay:4.40s"/><circle class="hub" cx="495.1" cy="371.1" r="4.2" style="animation-delay:4.40s"/></g></svg>
 
-    <div class="stats-row">
-      <div class="stat-pill">
-        <div class="stat-pill-icon">🍼</div>
-        <div class="stat-pill-val" id="stat-feed">преди 1ч</div>
-        <div class="stat-pill-lbl">Хранене</div>
+  <div class="wrap">
+    <div class="frame show"><span>Partner Program · 2026</span></div>
+    <h1>Grow your business on top of an EU trust infrastructure.</h1>
+    <p>Sell or embed qualified eID and e-signature into your platform — and earn on every client you bring to Evrotrust.</p>
+    <div class="hero-stats">
+      <div><b>200+</b><small>clients</small></div>
+      <div><b>15</b><small>major EU banks</small></div>
+      <div><b>1.8M+</b><small>users</small></div>
+      <div><b>61</b><small>nationalities</small></div>
+    </div>
+    <div class="scroll-cue"><span class="dot"></span> Scroll to explore</div>
+  </div>
+</header>
+
+<!-- MODELS -->
+<section class="reveal" id="s-models">
+  <div class="wrap">
+    <div class="eyebrow">Referral or Reseller?</div>
+    <h2 class="frame sec-title">Two ways to partner</h2>
+    <p class="lead" style="margin-top:20px">Pick the model that fits how you go to market — refer clients to our sales team, or own the client and resell prepaid Trust Units bundled into your own offering.</p>
+    <div class="grid2">
+      <div class="model ref">
+        <div class="bar"></div>
+        <div class="tag">Referral</div>
+        <h3>You refer, we contract</h3>
+        <div class="who">For licensed agents and resellers of CRM, HR or other software where Evrotrust is integrated.</div>
+        <ul>
+          <li>Business clients are referred to the Evrotrust sales team; Evrotrust contracts the client.</li>
+          <li>No volume commitment.</li>
+          <li>Commission fee for each signed contract and paid customer invoice.</li>
+          <li>No engagement with the client integration process.</li>
+          <li>No specific industry knowledge required.</li>
+        </ul>
       </div>
-      <div class="stat-pill">
-        <div class="stat-pill-icon">😴</div>
-        <div class="stat-pill-val" id="stat-sleep">2ч 10м</div>
-        <div class="stat-pill-lbl">Сън</div>
-      </div>
-      <div class="stat-pill">
-        <div class="stat-pill-icon">🌡️</div>
-        <div class="stat-pill-val" id="stat-temp">36.7°</div>
-        <div class="stat-pill-lbl">Темп.</div>
+      <div class="model res">
+        <div class="bar"></div>
+        <div class="tag">Reseller</div>
+        <h3>You own the client</h3>
+        <div class="who">For providers of software platforms bundling trust services into their own product.</div>
+        <ul>
+          <li>Client ownership sits with the partner; you sign a Reseller contract with Evrotrust.</li>
+          <li>Purchase a prepaid Trust Unit package at reseller discounts.</li>
+          <li>End price is negotiated directly between you and your client.</li>
+          <li>One-time integration effort for embedded solutions.</li>
+          <li>Bundle trust services with your own business model and pricing.</li>
+        </ul>
       </div>
     </div>
   </div>
+</section>
 
-  <div class="home-scroll">
-    <div class="day-tip-card" id="day-tip-card">
-      <div class="day-tip-week">Седмица 1</div>
-      <div class="day-tip-title">Адаптация</div>
-      <div class="day-tip-text">Белослава се адаптира към света. Фокус: топлина, кожен контакт, кърмене по желание. Жълтеница е нормална — следете цвета.</div>
-    </div>
+<!-- REFERRAL ECONOMICS -->
+<section class="tint reveal" id="s-referral">
+  <div class="wrap">
+    <div class="eyebrow">Referral model · earnings</div>
+    <h2 class="frame sec-title">Earn up to 15% on first-year fees</h2>
+    <p class="lead" style="margin-top:20px">Commission is based only on revenue from trust services — support, professional/training and third-party services are excluded. Paid 30 days after the client pays their invoice.</p>
 
-    <div class="sec-head">
-      <div class="sec-title">Бърз достъп</div>
-    </div>
-    <div class="quick-grid" style="margin-bottom:20px;">
-      <button class="q-btn" onclick="openDetail('hold')"><div class="q-icon">🤱</div><div class="q-lbl">Как се държи</div></button>
-      <button class="q-btn" onclick="openDetail('feed')"><div class="q-icon">🍼</div><div class="q-lbl">Хранене</div></button>
-      <button class="q-btn" onclick="openDetail('pampers')"><div class="q-icon">👶</div><div class="q-lbl">Памперс</div></button>
-      <button class="q-btn" onclick="openDetail('bath')"><div class="q-icon">🛁</div><div class="q-lbl">Баня</div></button>
-      <button class="q-btn" onclick="openDetail('sleep')"><div class="q-icon">😴</div><div class="q-lbl">Сън</div></button>
-      <button class="q-btn" onclick="openDetail('cry')"><div class="q-icon">🎵</div><div class="q-lbl">Плач</div></button>
-      <button class="q-btn" onclick="openDetail('guests')"><div class="q-icon">👵</div><div class="q-lbl">Гости</div></button>
-      <button class="q-btn red" onclick="openDetail('emergency')"><div class="q-icon">🚨</div><div class="q-lbl">Спешно</div></button>
-      <button class="q-btn" style="background:linear-gradient(135deg,#FFF0F0,#FFE4E4);border-color:rgba(176,48,64,0.18);grid-column:span 2;flex-direction:row;gap:10px;padding:14px 14px;" onclick="openDetail('firstaid')"><div class="q-icon" style="font-size:26px;">🏥</div><div style="text-align:left;"><div class="q-lbl" style="font-size:11px;font-weight:600;color:#B03040;line-height:1.4;">Първа помощ</div><div class="q-lbl" style="font-size:10px;color:#B03040;opacity:0.8;">10 сценария + видеа</div></div></button>
-      <button class="q-btn" style="background:linear-gradient(135deg,#F0F0FF,#E8E4FF);border-color:rgba(107,79,160,0.18);grid-column:span 2;flex-direction:row;gap:10px;padding:14px 14px;" onclick="openDetail('tips')"><div class="q-icon" style="font-size:26px;">💡</div><div style="text-align:left;"><div class="q-lbl" style="font-size:11px;font-weight:600;color:#6B4FA0;line-height:1.4;">Съвети за нови родители</div><div class="q-lbl" style="font-size:10px;color:#6B4FA0;opacity:0.8;">Позиции · Масаж · Сън + видеа</div></div></button>
-    </div>
-
-    <div class="sec-head"><div class="sec-title" id="tasks-heading">Задачи — Ден 1</div></div>
-    <div class="task-list">
-      <div class="task-item" onclick="toggleTask(this)">
-        <div class="task-circle done">✓</div>
-        <div class="task-text">Утринно хранене</div>
-        <div class="task-time">07:00</div>
+    <div class="tiers">
+      <div class="tier t1">
+        <div class="lvl">L1 · Qualified Lead</div>
+        <h4>Convert a prospect into a qualified lead</h4>
+        <p>Explicit interest in Evrotrust, an identified use-case and potential deal size.</p>
+        <div class="pct">5%<small> of invoiced revenue</small></div>
       </div>
-      <div class="task-item" onclick="toggleTask(this)">
-        <div class="task-circle done">✓</div>
-        <div class="task-text">Смяна на памперс</div>
-        <div class="task-time">09:30</div>
+      <div class="tier t2">
+        <div class="lvl">L2 · Drive &amp; Sign</div>
+        <h4>Run the whole sales process to signature</h4>
+        <p>L1 plus demos, local-language materials, sales meetings and negotiations to contract.</p>
+        <div class="pct">15%<small> of invoiced revenue</small></div>
       </div>
-      <div class="task-item" onclick="toggleTask(this)">
-        <div class="task-circle"></div>
-        <div class="task-text">Следва хранене</div>
-        <div class="task-time">12:00</div>
-      </div>
-      <div class="task-item" onclick="toggleTask(this)">
-        <div class="task-circle"></div>
-        <div class="task-text">Разходка на слънце</div>
-        <div class="task-time">15:00</div>
-      </div>
-      <div class="task-item" onclick="toggleTask(this)">
-        <div class="task-circle"></div>
-        <div class="task-text">Вечерна баня</div>
-        <div class="task-time">19:30</div>
+      <div class="tier t3">
+        <div class="lvl">L3 · Upsell bonus (renewals)</div>
+        <h4>A steady stream on year 2 &amp; 3</h4>
+        <div class="split">
+          <div><span>7%</span><small>Year 2 · onboarded clients</small></div>
+          <div><span>5%</span><small>Year 3 · same clients</small></div>
+        </div>
       </div>
     </div>
+    <p class="note">L3 requires active partner status — continuously generating at least €5,000/year from new business. Bonus is calculated on the paid contractual value of each client. Applies to L2 partners; L1 referral partners receive 5%. All figures exclude VAT.</p>
 
-    <div class="sec-head"><div class="sec-title">Моменти</div><div class="sec-more" onclick="nav('moments')">Всички →</div></div>
-    <div class="moments-row">
-      <div class="moment-card"><div class="moment-bg" style="background:linear-gradient(135deg,#FFE8F4,#F0E8FF)">🌸</div><div class="moment-label">Добре дошла</div></div>
-      <div class="moment-card"><div class="moment-bg" style="background:linear-gradient(135deg,#E8F5FF,#E8FFEE)">👶</div><div class="moment-label">Първи час</div></div>
-      <div class="moment-card"><div class="moment-bg" style="background:linear-gradient(135deg,#FFF8E8,#FFE8E8)">🍼</div><div class="moment-label">Първо хранене</div></div>
-      <div class="moment-card"><div class="moment-bg" style="background:linear-gradient(135deg,#E8FFE8,#F0FFE8)">😴</div><div class="moment-label">Първи сън</div></div>
+    <h3 style="margin-top:64px;font-size:24px">How a referral works</h3>
+    <div class="steps">
+      <div class="step"><div class="num"></div><div><h4>Refer a customer</h4><p>Our sales team follows up. When the customer signs, you earn a percentage of their revenue.</p></div></div>
+      <div class="step"><div class="num"></div><div><h4>Accepted or rejected</h4><p>An accepted referral converts into an opportunity. A referral is rejected only if it is already an Evrotrust opportunity, or not a qualified lead.</p></div></div>
+      <div class="step"><div class="num"></div><div><h4>Make the case</h4><p>Identify the need and decision-makers, and get a sense of budget.</p></div></div>
+      <div class="step"><div class="num"></div><div><h4>Close within six months</h4><p>The deal must be closed-won within six months of the referral submission.</p></div></div>
+      <div class="step"><div class="num"></div><div><h4>Stay active</h4><p>Referral fees aren't available to partners acting as resellers. Active status is based on new-business revenue from the previous year.</p></div></div>
     </div>
-
-    <div class="scroll-pad"></div>
   </div>
+</section>
 
-  <div class="bottom-nav">
-    <button class="nav-btn active" onclick="nav('home')"><div class="nav-icon">🏠</div><div class="nav-label on">Начало</div><div class="nav-dot"></div></button>
-    <button class="nav-btn" onclick="nav('guide')"><div class="nav-icon">📖</div><div class="nav-label">Наръчник</div><div class="nav-dot"></div></button>
-    <button class="nav-btn" onclick="nav('astro')"><div class="nav-icon">♉</div><div class="nav-label">Зодия</div><div class="nav-dot"></div></button>
-    <button class="nav-btn" onclick="nav('moments')"><div class="nav-icon">🌸</div><div class="nav-label">Моменти</div><div class="nav-dot"></div></button>
+<!-- TRUST UNITS -->
+<section class="reveal" id="s-tu">
+  <div class="wrap">
+    <div class="eyebrow">The currency</div>
+    <h2 class="frame sec-title">Everything runs on Trust Units</h2>
+    <p class="lead" style="margin-top:20px">One standardized unit measures all platform usage. Fill your Evrotrust Wallet with Trust Units and spend them across any service — current or new — any way you want.</p>
+
+    <div class="tu-wrap">
+      <div>
+        <p style="font-weight:600;margin-bottom:16px">Tap a service to see what it costs:</p>
+        <div class="tu-btns" id="tuBtns">
+          <button class="tu-btn active" data-v="1" data-d="Qualified e-signature of a document. Covers a standard transaction value up to €20,000." data-h="Most common">QES of a document</button>
+          <button class="tu-btn" data-v="0.7" data-d="Qualified e-signature over a hash of a document." data-h="Hash signing">QES over a hash</button>
+          <button class="tu-btn" data-v="0.7" data-d="Advanced e-signature over a document." data-h="AES">Advanced e-signature</button>
+          <button class="tu-btn" data-v="3" data-d="Remote eID verification — done only once per person. No need to re-identify for each signature." data-h="One-time per person">eID verification</button>
+          <button class="tu-btn" data-v="1" data-d="Qualified e-delivery with the same legal value as registered mail." data-h="Registered-mail value">Qualified e-delivery</button>
+          <button class="tu-btn" data-v="0.05" data-d="Two-factor authentication based on combined biometry." data-h="Strong auth">2FA</button>
+          <button class="tu-btn" data-v="0.02" data-d="Qualified timestamp — proof of time for documents and logs." data-h="Proof of time">Qualified timestamp</button>
+        </div>
+      </div>
+      <div class="tu-readout">
+        <div class="val" id="tuVal">1<small> TU</small></div>
+        <div class="desc" id="tuDesc">Qualified e-signature of a document. Covers a standard transaction value up to €20,000.</div>
+        <div class="hint" id="tuHint">Most common</div>
+      </div>
+    </div>
+
+    <div class="flow">
+      <div class="node">eSign<small>1 TU</small></div>
+      <div class="node">eID<small>3 TU</small></div>
+      <div class="node">eDelivery<small>1 TU</small></div>
+      <div class="node">All new products<small>mapped to TU</small></div>
+      <span class="arr">→</span>
+      <div class="node">Trust Unit Package</div>
+      <span class="arr">→</span>
+      <div class="node">Referral / Reseller</div>
+      <span class="arr">→</span>
+      <div class="node">Business Clients</div>
+    </div>
+
+    <div class="grid2" style="margin-top:40px">
+      <div class="model res"><div class="bar" style="background:linear-gradient(120deg,#16a085,#1abc9c)"></div>
+        <div class="tag">Pay-as-you-go</div><h3>No one-off costs</h3>
+        <div class="who" style="margin-bottom:0">Start with zero commitment. Embedded discounts kick in automatically as your volume grows.</div>
+      </div>
+      <div class="model ref"><div class="bar"></div>
+        <div class="tag">Committed volume</div><h3>Lower cost, bigger discount</h3>
+        <div class="who" style="margin-bottom:0">Commit to usage levels for lower prices — the larger the commitment, the greater the discount. Spend across multiple channels and services.</div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
-<!-- ══════════ GUIDE ══════════ -->
-<div class="screen" id="s-guide">
-  <div class="guide-hero">
-    <div class="hero-top-row">
-      <div class="hero-day" style="color:rgba(255,255,255,0.65)">Академия за родители</div>
-      <button class="home-btn" onclick="nav('home')" title="Начало">🏠</button>
+<!-- WHY -->
+<section class="tint reveal" id="s-why">
+  <div class="wrap">
+    <div class="eyebrow">Why Evrotrust</div>
+    <h2 class="frame sec-title">A notified eID scheme <em style="font-style:normal;color:var(--flame)">and</em> a QTSP</h2>
+    <p class="lead" style="margin-top:20px">The most AML-compliant remote KYC solution, plus the full set of eIDAS qualified trust services — from one platform, fully white-labellable.</p>
+
+    <div class="reasons">
+      <div class="reason"><h4>Standardization &amp; interoperability</h4><p>Our eID is automatically accepted by all EU member states (reg. 910 eIDAS).</p></div>
+      <div class="reason"><h4>Compliance with regulation</h4><p>Automatically AML-compliant for KYC in all member states (5th AML Directive).</p></div>
+      <div class="reason"><h4>Trust &amp; risk management</h4><p>Identification via an eID scheme isn't third-party reliance — by law, we bear the risk of wrongful identification.</p></div>
+      <div class="reason"><h4>True end-to-end digital journey</h4><p>Zero physical interactions — eID and sign with QES directly in web or app, white-labeled as your own.</p></div>
+      <div class="reason"><h4>Cost &amp; time savings</h4><p>End-to-end onboarding and servicing significantly cuts operational cost and processing time.</p></div>
+      <div class="reason"><h4>Future-proofing</h4><p>A notified scheme is the foundation for future regulation and the upcoming EU ID Wallet.</p></div>
     </div>
-    <div class="guide-hero-title">Наръчник за Белослава</div>
-    <div class="guide-hero-sub">Всичко, което трябва да знаете</div>
+
+    <div class="counters">
+      <div><b data-to="200" data-suffix="+">0</b><small>clients</small></div>
+      <div><b data-to="15">0</b><small>major EU banks</small></div>
+      <div><b data-to="11">0</b><small>countries</small></div>
+      <div><b data-to="1.8" data-suffix="M+" data-dec="1">0</b><small>users</small></div>
+      <div><b data-to="61">0</b><small>nationalities</small></div>
+    </div>
+
+    <div class="trust-row">
+      <span>UniCredit</span><span>KBC</span><span>Raiffeisen</span><span>UBB</span><span>Allianz</span>
+      <span>DocuSign</span><span>Adobe</span><span>Deloitte</span><span>Accenture</span><span>Software Group</span>
+      <span>Porsche Finance</span><span>Paysafe</span><span>A1</span><span>Bulgarian Government</span>
+    </div>
+
+    <div class="mc">
+      <h3>And Mastercard trusts us</h3>
+      <div>Selected by Mastercard Global as an eID &amp; Trust Service Partner for CEE.</div>
+      <div>Audited on IT, data protection, security, compliance and TPRM.</div>
+      <div>Licensed to use the Mastercard ID brand, with a white-label SDK.</div>
+      <div>Government pilot in North Macedonia.</div>
+    </div>
   </div>
+</section>
 
-  <div class="guide-scroll">
-    <div class="guide-grid">
-      <div class="guide-card" onclick="openDetail('hold')">
-        <div class="g-emoji">🤱</div>
-        <div><div class="g-title">Как се държи бебе</div><div class="g-sub">Позиции · Правилно/Грешно</div></div>
-      </div>
-      <div class="guide-card" onclick="openDetail('feed')">
-        <div class="g-emoji">🍼</div>
-        <div><div class="g-title">Хранене</div><div class="g-sub">Кърмене · Шише</div></div>
-      </div>
-      <div class="guide-card" onclick="openDetail('pampers')">
-        <div class="g-emoji">👶</div>
-        <div><div class="g-title">Смяна на памперс</div><div class="g-sub">Стъпка по стъпка</div></div>
-      </div>
-      <div class="guide-card" onclick="openDetail('bath')">
-        <div class="g-emoji">🛁</div>
-        <div><div class="g-title">Къпане</div><div class="g-sub">Температура · Позиция</div></div>
-      </div>
-      <div class="guide-card" onclick="openDetail('sleep')">
-        <div class="g-emoji">😴</div>
-        <div><div class="g-title">Безопасен сън</div><div class="g-sub">Профилактика на SIDS</div></div>
-      </div>
-      <div class="guide-card" onclick="openDetail('cry')">
-        <div class="g-emoji">🎵</div>
-        <div><div class="g-title">Разпознаване на плач</div><div class="g-sub">4 вида плач</div></div>
-      </div>
-      <div class="guide-card" onclick="openDetail('guests')">
-        <div class="g-emoji">👵</div>
-        <div><div class="g-title">Баби · Гости</div><div class="g-sub">Хигиена · Правила</div></div>
-      </div>
-      <div class="guide-card wide emergency" onclick="openDetail('emergency')">
-        <div class="g-emoji">🚨</div>
-        <div class="guide-card-body">
-          <div class="g-title">Спешни ситуации</div>
-          <div class="g-sub">Задавяне · Температура · Дишане</div>
-        </div>
-        <div class="emerg-badge">СПЕШНО</div>
+<!-- USE CASES (stacked) -->
+<section class="reveal" id="s-usecases">
+  <div class="wrap">
+    <div class="eyebrow">Example use-cases</div>
+    <h2 class="frame sec-title">Where partners put us to work</h2>
+
+    <div class="uc-block">
+      <div class="uc-head">Banking · Onboarding</div>
+      <div class="panel-cols">
+        <div class="uc-col"><h4>Online</h4><ul>
+          <li>Remote identification for KYC/AML, compliant with EU 5AMLD.</li>
+          <li>Client declarations for AML &amp; KYC signed with remote cloud-based QES.</li>
+          <li>Remote account opening with automatic population of client data.</li>
+          <li>Remote signing of loan agreements with QES via SMS or the bank's app.</li>
+        </ul></div>
+        <div class="uc-col"><h4>In the retail network</h4><ul>
+          <li>Fully compliant onboarding and sales with one-time QES via SMS — no smartphone required.</li>
+          <li>Paperless engagement and servicing across all processes.</li>
+          <li>On-the-field onboarding through partners, agents and subcontractors.</li>
+          <li>Digitalize management of the retail and agents network.</li>
+        </ul></div>
       </div>
     </div>
-    <div class="scroll-pad"></div>
+
+    <div class="uc-block">
+      <div class="uc-head">Banking · Servicing</div>
+      <div class="panel-cols">
+        <div class="uc-col"><h4>Customer facing</h4><ul>
+          <li>Transform OTP SMS codes into QES inside internet banking.</li>
+          <li>Remote card issuance with QES and secure qualified delivery of the PIN.</li>
+          <li>Secure digital delivery of payment-delay notifications.</li>
+        </ul></div>
+        <div class="uc-col"><h4>Internal</h4><ul>
+          <li>Remote AML-compliant identification for data cleaning and updates.</li>
+          <li>Automated signing on behalf of the bank with cloud-based QES.</li>
+          <li>Out-of-court settlement for bad-debt collection with QES and qualified delivery.</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="uc-block">
+      <div class="uc-head">Insurance</div>
+      <div class="panel-cols">
+        <div class="uc-col"><h4>Customer facing</h4><ul>
+          <li>Remote onboarding with automated client generation in the CRM.</li>
+          <li>Remote signing of insurance agreements via SMS one-time QES or the insurer's app.</li>
+          <li>Digitalize claims filing &amp; submission with QES and qualified delivery.</li>
+          <li>Retention &amp; upsell — send and sign contracts and T&amp;Cs within minutes of a service call.</li>
+        </ul></div>
+        <div class="uc-col"><h4>Internal</h4><ul>
+          <li>Optimize internal validation, escalation and approval of claims and payment orders.</li>
+          <li>Automated issuance of policies on behalf of the insurer with cloud-based QES.</li>
+          <li>Secure digital delivery of claim-repair orders to partnering shops.</li>
+          <li>Digitalize management of the retail and agents network.</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="uc-block">
+      <div class="uc-head">Telecoms &amp; ISPs</div>
+      <div class="panel-cols">
+        <div class="uc-col"><h4>Customer facing</h4><ul>
+          <li>End-to-end remote onboarding — download the app, register, get an e-SIM.</li>
+          <li>Remote onboarding of business clients with validated company data.</li>
+          <li>Retention &amp; upsell with contracts and T&amp;Cs signed in minutes.</li>
+          <li>Offer partner services GDPR-compliant, without the client leaving the telco app.</li>
+        </ul></div>
+        <div class="uc-col"><h4>Internal</h4><ul>
+          <li>Monetize your data — remove data-sharing risk with remote QES-signed T&amp;Cs.</li>
+          <li>Digitalize PoS and cut courier costs on remote contract signing.</li>
+          <li>Digitalize management of the retail and agents network.</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="uc-block">
+      <div class="uc-head">Any industry</div>
+      <div class="panel-cols">
+        <div class="uc-col"><h4>Documents &amp; delivery</h4><ul>
+          <li>Digitalize asset management — eSign acceptance and return protocols.</li>
+          <li>Procurement with QES, qualified timestamps and secure delivery.</li>
+          <li>Qualified e-delivery with the same legal value as registered mail.</li>
+          <li>Receipts for every exchange — manage evidence for future proof.</li>
+        </ul></div>
+        <div class="uc-col"><h4>HR &amp; corporate</h4><ul>
+          <li>All HR processes — identification, onboarding, contracts, leaves, assets, termination.</li>
+          <li>Sign internal documents (BoD and shareholder decisions).</li>
+          <li>Protect content with a qualified seal and timestamp.</li>
+          <li>Timestamp significant changes and security logs for software platforms.</li>
+        </ul></div>
+      </div>
+    </div>
   </div>
+</section>
 
-  <div class="bottom-nav">
-    <button class="nav-btn" onclick="nav('home')"><div class="nav-icon">🏠</div><div class="nav-label">Начало</div><div class="nav-dot"></div></button>
-    <button class="nav-btn active" onclick="nav('guide')"><div class="nav-icon">📖</div><div class="nav-label on">Наръчник</div><div class="nav-dot"></div></button>
-    <button class="nav-btn" onclick="nav('astro')"><div class="nav-icon">♉</div><div class="nav-label">Зодия</div><div class="nav-dot"></div></button>
-    <button class="nav-btn" onclick="nav('moments')"><div class="nav-icon">🌸</div><div class="nav-label">Моменти</div><div class="nav-dot"></div></button>
+<!-- CTA -->
+<section class="cta reveal" id="s-cta">
+  <div class="wrap">
+    <h2>Let's get started</h2>
+    <p>Get in touch and we'll share the program details, help you pick the model that fits your strategy, and set up the NDA and Partner Agreement.</p>
+    <div class="contacts">partners@evrotrust.com <span>·</span> preslav.slavov@evrotrust.com</div>
   </div>
-</div>
+</section>
 
-<!-- ══════════ DETAIL ══════════ -->
-<div class="screen slide-in" id="s-detail">
-  <div class="detail-header">
-    <button class="back-btn" onclick="goBack()">←</button>
-    <div class="detail-header-text">
-      <div class="detail-title-text" id="d-title">Заглавие</div>
-      <div class="detail-sub-text" id="d-sub">Подзаглавие</div>
-    </div>
-    <button class="home-btn home-btn-dark" onclick="nav('home')" title="Начало">🏠</button>
-  </div>
-  <div class="detail-scroll" id="d-content"></div>
-</div>
-
-<!-- ══════════ ASTROLOGY ══════════ -->
-<div class="screen" id="s-astro">
-  <div class="astro-hero">
-    <div class="hero-top-row" style="justify-content:flex-end;margin-bottom:8px;">
-      <button class="home-btn" onclick="nav('home')" title="Начало">🏠</button>
-    </div>
-    <div class="astro-sign-badge">♉</div>
-    <div class="astro-hero-title">Зодията на Белослава</div>
-    <div class="astro-hero-sub">7 май 2026 · 21:49 · София</div>
-  </div>
-
-  <div class="astro-scroll">
-
-    <!-- NATAL CHART WHEEL -->
-    <div class="chart-wrap">
-      <canvas id="natal-canvas" width="320" height="320"></canvas>
-    </div>
-
-    <!-- BIG 3 -->
-    <div class="big3-row">
-      <div class="big3-card" style="background:linear-gradient(135deg,#4a7c59,#2d5c3a)">
-        <div class="big3-symbol">♉</div>
-        <div class="big3-name">Слънце</div>
-        <div class="big3-sign">Телец</div>
-        <div class="big3-deg">17° Телец</div>
-      </div>
-      <div class="big3-card" style="background:linear-gradient(135deg,#6B4FA0,#3D2260)">
-        <div class="big3-symbol">☽</div>
-        <div class="big3-name">Луна</div>
-        <div class="big3-sign">Дева</div>
-        <div class="big3-deg">8° Дева</div>
-      </div>
-      <div class="big3-card" style="background:linear-gradient(135deg,#8B3A3A,#5C1A1A)">
-        <div class="big3-symbol">↑</div>
-        <div class="big3-name">Асцендент</div>
-        <div class="big3-sign">Стрелец</div>
-        <div class="big3-deg">2° Стрелец</div>
-      </div>
-    </div>
-
-    <!-- SECTION: SUN TAURUS -->
-    <div class="astro-section">
-      <div class="astro-section-head">
-        <div class="astro-icon" style="background:linear-gradient(135deg,#4a7c59,#2d5c3a)">♉</div>
-        <div>
-          <div class="astro-section-title">Слънце в Телец — Характер</div>
-          <div class="astro-section-sub">Земен знак · Управлява Венера</div>
-        </div>
-      </div>
-      <div class="astro-card">
-        <div class="astro-trait-row">
-          <div class="trait-pill" style="background:#E8F5EE;color:#2d5c3a">🌿 Устойчива</div>
-          <div class="trait-pill" style="background:#E8F5EE;color:#2d5c3a">🌸 Чувствена</div>
-          <div class="trait-pill" style="background:#E8F5EE;color:#2d5c3a">💎 Упорита</div>
-          <div class="trait-pill" style="background:#E8F5EE;color:#2d5c3a">🎵 Обича красота</div>
-        </div>
-        <div class="astro-text">Белослава ще бъде дете с <strong>дълбока вътрешна сила</strong> — бавно, но трайно изграждащо всичко в живота си. Телецът е знак на земята: търпелив, надежден, с фина чувствителност към красотата, звуците и текстурите около себе си.</div>
-        <div class="astro-text" style="margin-top:10px;">Ще обича с цялото си сърце — но ще й трябва <strong>сигурност и ритъм</strong>. Рутинните ритуали ще я успокояват: едно и също одеяло, една и съща приспивна песен, едни и същи ръце. Не бързайте с промените.</div>
-        <div class="astro-highlight">
-          <div class="astro-hl-icon">💡</div>
-          <div class="astro-hl-text">Телецът е управляван от Венера — планетата на любовта и красотата. Белослава ще реагира силно на музика, нежни докосвания и красиви неща около нея.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECTION: MOON VIRGO -->
-    <div class="astro-section">
-      <div class="astro-section-head">
-        <div class="astro-icon" style="background:linear-gradient(135deg,#6B4FA0,#3D2260)">☽</div>
-        <div>
-          <div class="astro-section-title">Луна в Дева — Емоции</div>
-          <div class="astro-section-sub">Земен знак · Управлява Меркурий</div>
-        </div>
-      </div>
-      <div class="astro-card">
-        <div class="astro-trait-row">
-          <div class="trait-pill" style="background:#EDE8F5;color:#3D2260">🔍 Наблюдателна</div>
-          <div class="trait-pill" style="background:#EDE8F5;color:#3D2260">📋 Обича ред</div>
-          <div class="trait-pill" style="background:#EDE8F5;color:#3D2260">🤗 Грижовна</div>
-          <div class="trait-pill" style="background:#EDE8F5;color:#3D2260">🧠 Аналитична</div>
-        </div>
-        <div class="astro-text">Луната показва <strong>емоционалния свят</strong> — как Белослава ще се чувства вътрешно. Луна в Дева означава бебе, което успокоява чрез <strong>ред и структура</strong>. Хаосът ще я безпокои, докато чистотата, ритъмът и предвидимостта ще я радват.</div>
-        <div class="astro-text" style="margin-top:10px;">По-късно ще бъде <strong>изключително наблюдателна</strong> — ще забелязва дребни детайли, ще иска да помага и да "оправя" нещата. Критичността (към себе си!) може да бъде предизвикателство — насърчавайте я да бъде добра към себе си.</div>
-        <div class="astro-highlight">
-          <div class="astro-hl-icon">💡</div>
-          <div class="astro-hl-text">За бебето сега: Белослава ще се успокоява по-лесно при спокойна, чиста и предсказуема среда. Ясен режим на хранене и сън ще й дава огромна сигурност.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECTION: ASC SAGITTARIUS -->
-    <div class="astro-section">
-      <div class="astro-section-head">
-        <div class="astro-icon" style="background:linear-gradient(135deg,#8B3A3A,#5C1A1A)">↑</div>
-        <div>
-          <div class="astro-section-title">Асцендент Стрелец — Облик</div>
-          <div class="astro-section-sub">Огнен знак · Управлява Юпитер</div>
-        </div>
-      </div>
-      <div class="astro-card">
-        <div class="astro-trait-row">
-          <div class="trait-pill" style="background:#FCE8E8;color:#5C1A1A">🏹 Свободна</div>
-          <div class="trait-pill" style="background:#FCE8E8;color:#5C1A1A">🌍 Любопитна</div>
-          <div class="trait-pill" style="background:#FCE8E8;color:#5C1A1A">😄 Оптимистична</div>
-          <div class="trait-pill" style="background:#FCE8E8;color:#5C1A1A">🔥 Ентусиазирана</div>
-        </div>
-        <div class="astro-text">Асцендентът е <strong>маската, с която се представяме на света</strong> — как другите ни виждат. Стрелецът дава на Белослава <strong>светлина, открита усмивка и жажда за приключения</strong>. Хората ще усещат нейната топлота и ентусиазъм веднага.</div>
-        <div class="astro-text" style="margin-top:10px;">Управителят на Стрелец е <strong>Юпитер</strong> — планетата на щастието, растежа и мъдростта. Белослава носи юпитерианска благодат: нещата ще й се получават, пространствата ще се отварят, хората ще й симпатизират.</div>
-        <div class="astro-highlight">
-          <div class="astro-hl-icon">🏹</div>
-          <div class="astro-hl-text">Телец + Стрелец = земна устойчивост + огнена свобода. Тя ще иска корени И крила. Дайте й и двете.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PLANETS TABLE -->
-    <div class="astro-section">
-      <div class="astro-section-head">
-        <div class="astro-icon" style="background:linear-gradient(135deg,#C9A96E,#8B6840)">☿</div>
-        <div>
-          <div class="astro-section-title">Планети в натална карта</div>
-          <div class="astro-section-sub">7 май 2026 · 21:49 · София 42°N</div>
-        </div>
-      </div>
-      <div class="astro-card" style="padding:0;overflow:hidden;">
-        <div class="planet-row" style="background:var(--warm);">
-          <div class="planet-sym" style="color:#4a7c59">☉</div>
-          <div class="planet-info"><div class="planet-name">Слънце</div><div class="planet-pos">17° Телец</div></div>
-          <div class="planet-house">II дом</div>
-        </div>
-        <div class="planet-row">
-          <div class="planet-sym" style="color:#6B4FA0">☽</div>
-          <div class="planet-info"><div class="planet-name">Луна</div><div class="planet-pos">8° Дева</div></div>
-          <div class="planet-house">IX дом</div>
-        </div>
-        <div class="planet-row" style="background:var(--warm);">
-          <div class="planet-sym" style="color:#C9A96E">☿</div>
-          <div class="planet-info"><div class="planet-name">Меркурий</div><div class="planet-pos">29° Телец</div></div>
-          <div class="planet-house">VI дом</div>
-        </div>
-        <div class="planet-row">
-          <div class="planet-sym" style="color:#C4607A">♀</div>
-          <div class="planet-info"><div class="planet-name">Венера</div><div class="planet-pos">14° Рак</div></div>
-          <div class="planet-house">VIII дом</div>
-        </div>
-        <div class="planet-row" style="background:var(--warm);">
-          <div class="planet-sym" style="color:#B03040">♂</div>
-          <div class="planet-info"><div class="planet-name">Марс</div><div class="planet-pos">3° Близнаци</div></div>
-          <div class="planet-house">VI дом</div>
-        </div>
-        <div class="planet-row">
-          <div class="planet-sym" style="color:#2d7a4e">♃</div>
-          <div class="planet-info"><div class="planet-name">Юпитер</div><div class="planet-pos">22° Рак</div></div>
-          <div class="planet-house">VIII дом</div>
-        </div>
-        <div class="planet-row" style="background:var(--warm);">
-          <div class="planet-sym" style="color:#5C4A2A">♄</div>
-          <div class="planet-info"><div class="planet-name">Сатурн</div><div class="planet-pos">17° Овен ℞</div></div>
-          <div class="planet-house">V дом</div>
-        </div>
-        <div class="planet-row">
-          <div class="planet-sym" style="color:#185FA5">♅</div>
-          <div class="planet-info"><div class="planet-name">Уран</div><div class="planet-pos">27° Телец ℞</div></div>
-          <div class="planet-house">VI дом</div>
-        </div>
-        <div class="planet-row" style="background:var(--warm);">
-          <div class="planet-sym" style="color:#3D2260">♆</div>
-          <div class="planet-info"><div class="planet-name">Нептун</div><div class="planet-pos">2° Овен</div></div>
-          <div class="planet-house">IV дом</div>
-        </div>
-        <div class="planet-row">
-          <div class="planet-sym" style="color:#1A0D20">♇</div>
-          <div class="planet-info"><div class="planet-name">Плутон</div><div class="planet-pos">3° Водолей ℞</div></div>
-          <div class="planet-house">II дом</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- HOUSES -->
-    <div class="astro-section">
-      <div class="astro-section-head">
-        <div class="astro-icon" style="background:linear-gradient(135deg,#2d5c7a,#1a3a50)">⌂</div>
-        <div>
-          <div class="astro-section-title">Ключови домове</div>
-          <div class="astro-section-sub">Областите от живота на Белослава</div>
-        </div>
-      </div>
-      <div class="astro-card">
-        <div class="house-item">
-          <div class="house-num">I</div>
-          <div class="house-body">
-            <div class="house-title">Асцендент Стрелец — Аз и облик</div>
-            <div class="house-desc">Как светът я вижда: открита, усмихната, пълна с енергия. Ще влиза в стаята и хората ще я забелязват — не защото е шумна, а защото излъчва топлота.</div>
-          </div>
-        </div>
-        <div class="house-item">
-          <div class="house-num">II</div>
-          <div class="house-body">
-            <div class="house-title">Козирог — Ресурси и ценности</div>
-            <div class="house-desc">Ще изгражда сигурност чрез труд и дисциплина. Ценностите й ще са дълбоки и устойчиви — не е типът да следва тълпата.</div>
-          </div>
-        </div>
-        <div class="house-item">
-          <div class="house-num">VIII</div>
-          <div class="house-body">
-            <div class="house-title">Рак — Трансформация и мистерия</div>
-            <div class="house-desc">Дълбока емоционална интелигентност — ще усеща хората. Ще обича истински и дълбоко, не повърхностно. Интуицията й ще е силна.</div>
-          </div>
-        </div>
-        <div class="house-item">
-          <div class="house-num">IX</div>
-          <div class="house-body">
-            <div class="house-title">Дева — Философия и пътувания</div>
-            <div class="house-desc">Ще обича да учи, да пътува, да задава въпроси. Умът й ще е любопитен — дайте й книги, места, хора с различни истории.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ASPECTS -->
-    <div class="astro-section">
-      <div class="astro-section-head">
-        <div class="astro-icon" style="background:linear-gradient(135deg,#C9A96E,#8B6840)">△</div>
-        <div>
-          <div class="astro-section-title">Ключови аспекти</div>
-          <div class="astro-section-sub">Планетарните връзки в картата</div>
-        </div>
-      </div>
-      <div class="astro-card">
-        <div class="aspect-row">
-          <div class="aspect-badge trine">△ Тригон</div>
-          <div class="aspect-desc"><strong>Слънце + Луна в хармония</strong> — Чувствата и волята й ще работят заедно, не срещу себе си. Рядка вътрешна устойчивост — ще знае кой е и какво иска.</div>
-        </div>
-        <div class="aspect-row">
-          <div class="aspect-badge sextile">✶ Секстил</div>
-          <div class="aspect-desc"><strong>Венера + Юпитер</strong> — Природна топлота и щедрост. Хората около нея ще се чувстват добре. Ще привлича добри приятелства и обич лесно.</div>
-        </div>
-        <div class="aspect-row">
-          <div class="aspect-badge square">□ Квадрат</div>
-          <div class="aspect-desc"><strong>Сатурн + Слънце</strong> — Ще трябва да се доказва и ще го прави. Дава амбиция и дисциплина. Трудностите ще я правят по-силна, не по-слаба.</div>
-        </div>
-        <div class="aspect-row">
-          <div class="aspect-badge trine">△ Тригон</div>
-          <div class="aspect-desc"><strong>Юпитер + Асцендент</strong> — Ще привлича правилните хора и възможности без да ги търси. Удачата ще я следва — особено когато е истинска себе си.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- DESTINY -->
-    <div class="astro-section">
-      <div class="astro-section-head">
-        <div class="astro-icon" style="background:linear-gradient(135deg,#C4607A,#8B3050)">✦</div>
-        <div>
-          <div class="astro-section-title">Мисията на Белослава</div>
-          <div class="astro-section-sub">Северен възел — пътят на душата</div>
-        </div>
-      </div>
-      <div class="astro-card">
-        <div class="destiny-wrap">
-          <div class="destiny-text">Северният възел е в <strong>Дева</strong> — Белослава е тук, за да <strong>помага, анализира и лекува</strong>. Ще намери смисъл в детайлите, в реда, в практическата помощ за другите. Не е типът за шум и слава — нейната сила е в тихото, задълбочено правене на нещата добре.</div>
-          <div class="destiny-quote">"Родена е с мисия да направи света малко по-добър — с търпение, внимание и любов."</div>
-        </div>
-      </div>
-    </div>
-
-    <div style="height:24px;"></div>
-  </div>
-
-  <div class="bottom-nav">
-    <button class="nav-btn" onclick="nav('home')"><div class="nav-icon">🏠</div><div class="nav-label">Начало</div><div class="nav-dot"></div></button>
-    <button class="nav-btn" onclick="nav('guide')"><div class="nav-icon">📖</div><div class="nav-label">Наръчник</div><div class="nav-dot"></div></button>
-    <button class="nav-btn active" onclick="nav('astro')"><div class="nav-icon">♉</div><div class="nav-label on">Зодия</div><div class="nav-dot"></div></button>
-    <button class="nav-btn" onclick="nav('moments')"><div class="nav-icon">🌸</div><div class="nav-label">Моменти</div><div class="nav-dot"></div></button>
-  </div>
-</div>
-
-<!-- ══════════ MOMENTS ══════════ -->
-<div class="screen" id="s-moments">
-  <div class="mom-hero">
-    <div class="hero-top-row">
-      <div class="hero-day" style="color:rgba(255,255,255,0.65)">Семейни спомени</div>
-      <button class="home-btn" onclick="nav('home')" title="Начало">🏠</button>
-    </div>
-    <div class="mom-hero-title">Моменти с Белослава</div>
-    <div class="mom-hero-sub">Първите 30 дни — незабравими</div>
-  </div>
-
-  <div class="mom-scroll">
-    <div class="sec-head"><div class="sec-title">Галерия</div></div>
-    <div class="mom-grid">
-      <div class="mom-card" style="background:linear-gradient(135deg,#FFE8F4,#F0D8FF)">🌸<div class="mom-card-label">Добре дошла, Белослава</div></div>
-      <div class="mom-card" style="background:linear-gradient(135deg,#E8F0FF,#D8EEFF)">👶<div class="mom-card-label">Първи час от живота</div></div>
-      <div class="mom-card" style="background:linear-gradient(135deg,#FFF8E0,#FFE8D0)">🍼<div class="mom-card-label">Първо хранене</div></div>
-      <div class="mom-card-add" onclick="alert('Добавете снимка от галерията')"><div class="mom-add-icon">📷</div><div class="mom-add-lbl">Добави момент</div></div>
-    </div>
-
-    <div class="sec-head"><div class="sec-title">Дневник на родителите</div></div>
-    <div class="diary-card">
-      <div class="diary-date">7 Май 2026 · Ден 1</div>
-      <div class="diary-text">Белослава дойде на свят в 21:49 вечерта. Тежи 3.2 кг и е 50 см. Когато я чух за пръв път — разбрах какво означава любов от пръв поглед.</div>
-      <div class="diary-author">— Мама 💗</div>
-    </div>
-    <div class="diary-card">
-      <div class="diary-date">7 Май 2026 · Ден 1</div>
-      <div class="diary-text">Не вярвах, че ще бъда толкова развълнуван. Малките й ръчички се хванаха за пръста ми и светът спря за секунда.</div>
-      <div class="diary-author">— Тате 💙</div>
-    </div>
-
-    <div class="scroll-pad"></div>
-  </div>
-
-  <div class="bottom-nav">
-    <button class="nav-btn" onclick="nav('home')"><div class="nav-icon">🏠</div><div class="nav-label">Начало</div><div class="nav-dot"></div></button>
-    <button class="nav-btn" onclick="nav('guide')"><div class="nav-icon">📖</div><div class="nav-label">Наръчник</div><div class="nav-dot"></div></button>
-    <button class="nav-btn" onclick="nav('astro')"><div class="nav-icon">♉</div><div class="nav-label">Зодия</div><div class="nav-dot"></div></button>
-    <button class="nav-btn active" onclick="nav('moments')"><div class="nav-icon">🌸</div><div class="nav-label on">Моменти</div><div class="nav-dot"></div></button>
-  </div>
-</div>
-
-</div><!-- /shell -->
+<footer>© Evrotrust, 2026. All rights reserved.</footer>
 
 <script>
-// ── NAVIGATION ──
-let prevScreen = 'home';
-const screenMap = { home:'s-home', guide:'s-guide', astro:'s-astro', moments:'s-moments', intro:'s-intro', detail:'s-detail' };
+(function(){
+  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function nav(key) {
-  const allScreens = document.querySelectorAll('.screen');
-  const target = document.getElementById(screenMap[key]);
-  if (!target) return;
-  allScreens.forEach(s => s.classList.remove('active'));
-  target.classList.add('active');
-  if (key !== 'detail') prevScreen = key;
-}
-
-function goBack() { nav(prevScreen); }
-
-// ── TASKS ──
-function toggleTask(el) {
-  const c = el.querySelector('.task-circle');
-  if (c.classList.contains('done')) {
-    c.classList.remove('done'); c.textContent = '';
-  } else {
-    c.classList.add('done'); c.textContent = '✓';
+  /* progress bar */
+  var pb = document.getElementById('progress');
+  function onScroll(){
+    var h = document.documentElement;
+    var pct = h.scrollTop / (h.scrollHeight - h.clientHeight);
+    pb.style.width = (pct*100)+'%';
   }
-}
+  document.addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
-// ── DAY SYSTEM ──
-const BIRTH = new Date(2026, 4, 7, 21, 49); // May 7 2026 21:49
-let currentDay = 1;
-const TOTAL_DAYS = 30;
+  /* reveal on scroll */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ if(rm){el.classList.add('in');} else {io.observe(el);} });
 
-const bgNames = ['яну','фев','мар','апр','май','юни','юли','авг','сеп','окт','ное','дек'];
-
-const DAY_DATA = {
-  week: {
-    1:  { label:'Седмица 1', tip:'Първи ден — дишайте!', text:'Топлина и кожен контакт — това е всичко. Кърмете при всяко търсене. Жълтеникав тен = нормално. Спете когато тя спи.' },
-    2:  { label:'Седмица 1', tip:'Пъпчето и кожата', text:'Пъпчето започва да изсъхва — не мокрете, не покривайте. Кожата се люспи — нормално е, не мажете с нищо. Хранете на 2–3 часа.' },
-    3:  { label:'Седмица 1', tip:'Млякото идва!', text:'Ден 3 = млякото се появява. Гърдите набъбват и болят — нормално. Продължавайте да кърмите колкото се може повече. Ако не може — помолете за помощ от акушерката.' },
-    4:  { label:'Седмица 1', tip:'Теглото намалява', text:'Бебето губи тегло — до 10% е ок. Ще започне да наддава от ден 5–6. Знак за добро хранене: 6+ мокри памперса на ден.' },
-    5:  { label:'Седмица 1', tip:'Педиатър днес!', text:'Задължителен преглед при педиатъра — проверка на тегло и жълтеница. Пригответе въпросите си. Жълтеницата трябва да намалява, не да расте.' },
-    6:  { label:'Седмица 1', tip:'Нощта е трудна', text:'Тя не знае кога е ден и нощ — и нормално! Спете на смени с партньора. Не гледайте часовника. Нощта с новородено е просто такава.' },
-    7:  { label:'Седмица 1', tip:'Първата седмица — done!', text:'7 дни зад вас — браво! Пъпчето трябва да е почти паднало. Забелязвате ли кога е гладна, преди да е заплакала? Вие вече я познавате.' },
-    8:  { label:'Седмица 2', tip:'Тя ви чува', text:'Говорете й — тя разпознава гласа ви! Пейте, коментирайте какво правите. Не е нужно да е перфектно, важно е да чуе вас.' },
-    9:  { label:'Седмица 2', tip:'Зрението й', text:'Вижда на ~25 см — точно колкото е лицето ви при кърмене. Гледайте я в очите. Черно-бели контрасти я привличат повече от цветни играчки.' },
-    10: { label:'Седмица 2', tip:'Теглото расте', text:'Теглото трябва да е над раждането вече. Ако не е — педиатър. Нормата: 8–12 хранения на ден. Да, и нощем. Да, за дълго.' },
-    11: { label:'Седмица 2', tip:'Вечерният плач', text:'Следобед и вечер = по-нервно бебе. Т.нар. "вечерна колика" е нормална. Помага: носене близо до тялото, тихо "шшш" до ухото, леко поклащане.' },
-    12: { label:'Седмица 2', tip:'Газовете боят', text:'Масаж по корема — с пръсти, по часовникова стрелка, нежно. После "велосипед" с краката. Ако е много нервна след хранене — оригнете я по-дълго преди да я слагате.' },
-    13: { label:'Седмица 2', tip:'Кърменето е трудно?', text:'Ако боли, ако тя не се нахранва, ако гърдите са твърди — потърсете лактационен консултант. Не е провал. Те знаят неща, които никой друг не ви е казал.' },
-    14: { label:'Седмица 2', tip:'2 седмици — ура!', text:'Две седмици! Вече забелязвате разлика в плача й — различните видове звучат различно. Продължавайте.' },
-    15: { label:'Седмица 3', tip:'Вижда по-добре', text:'Започва да следи движещи предмети с очи. Покажете й лицето си, черно-бяла картинка, или просто мърдайте пръста бавно. Ще я видите да следи.' },
-    16: { label:'Седмица 3', tip:'Първата усмивка?', text:'Около ден 16–21 може да се появи първата истинска усмивка — не от газове. Ако я видите, ще знаете. Снимайте всичко.' },
-    17: { label:'Седмица 3', tip:'Нощта се подобрява (може би)', text:'Може нощният сън да се удължи малко. Или не. И двете са нормални. Не следвайте "графици" от интернет — следвайте нея.' },
-    18: { label:'Седмица 3', tip:'Музиката работи', text:'Пробвайте различна музика — бяла шума (феникс, прахосмукачка), тихи колиски, класика. Открийте какво я успокоява и го използвайте при нужда.' },
-    19: { label:'Седмица 3', tip:'Звуците й', text:'Освен плач ще чувате малки "ах", "гу", мъркане. Отговаряйте й — повторете звука. Така се учи да "говори".' },
-    20: { label:'Седмица 3', tip:'"Корем-времето"', text:'Слагайте я по корем на постелка (под надзор!) за 1–2 минути. Тя ще вдига главата. Укрепва врата и раменете. Ако плаче — спрете, утре пак.' },
-    21: { label:'Седмица 3', tip:'3 седмици!', text:'21 дни. Тя расте невероятно бързо. Снимайте дори в трудните моменти — след месец ще искате да ги имате.' },
-    22: { label:'Седмица 4', tip:'Последната седмица', text:'Белослава вече не е същото новородено. Забелязвате ли как ви следи с очи? Как реагира на гласа ви по-бързо?' },
-    23: { label:'Седмица 4', tip:'Очен контакт', text:'Гледа ви по-дълго и по-осъзнато. Търси лицата. Правете "игра на очи" — гледайте се, усмихвайте се, изчакайте реакцията й.' },
-    24: { label:'Седмица 4', tip:'Първият "разговор"', text:'Тя издава звук — вие повтаряте — тя отговаря. Изчакайте. Дайте й пространство да "отговори". Това е началото на речта.' },
-    25: { label:'Седмица 4', tip:'Нощта се оправя', text:'Може да спи 3–4 часа на блок. Ако стане — не се събуждайте веднага. Изчакайте 1 минута — понякога сама се успокоява и заспива.' },
-    26: { label:'Седмица 4', tip:'Ръцете й', text:'Ще забележите как опипва нещата с пръстите. Дайте й меки текстури да докосва. Вашият пръст е любимата й "играчка".' },
-    27: { label:'Седмица 4', tip:'Скок в развитието', text:'Дни 26–28 са известни с нервност. Тя расте бързо — и мозъкът й работи усилено. По-голям апетит, по-капризна. Нормално. Ще мине за 2–3 дни.' },
-    28: { label:'Седмица 4', tip:'Почти 1 месец!', text:'4 седмици зад вас. Помните ли как се чувствахте на ден 1? Вижте колко далеч сте стигнали — и двамата.' },
-    29: { label:'Месец 1', tip:'Почти там!', text:'Белослава следи лица, реагира на глас, прави звуци и се усмихва. Педиатърът ще направи преглед за 1 месец — пригответе въпроси.' },
-    30: { label:'Месец 1', tip:'🎉 30 Дни!', text:'30 дни! Направихте го. Без наръчник, без пауза, без почивни дни. Белослава расте и е щастлива — защото вие сте там.' }
-  }
-};
-
-function getDayDate(dayNum) {
-  const d = new Date(BIRTH);
-  d.setDate(d.getDate() + dayNum - 1);
-  return d;
-}
-
-function formatDayDate(dayNum) {
-  const d = getDayDate(dayNum);
-  return `${d.getDate()} ${bgNames[d.getMonth()]} ${d.getFullYear()}`;
-}
-
-function buildDayChips() {
-  const scroll = document.getElementById('day-scroll');
-  if (!scroll) return;
-  scroll.innerHTML = '';
-  for (let i = 1; i <= TOTAL_DAYS; i++) {
-    const chip = document.createElement('button');
-    chip.className = 'day-chip' + (i === currentDay ? ' active' : '');
-    chip.textContent = `Ден ${i}`;
-    chip.onclick = () => selectDay(i);
-    scroll.appendChild(chip);
-  }
-  // scroll active into view
-  setTimeout(() => {
-    const active = scroll.querySelector('.day-chip.active');
-    if (active) active.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-  }, 50);
-}
-
-function selectDay(d) {
-  currentDay = Math.max(1, Math.min(TOTAL_DAYS, d));
-  buildDayChips();
-  updateHomeForDay();
-}
-
-function changeDay(delta) { selectDay(currentDay + delta); }
-
-function updateHomeForDay() {
-  const d = currentDay;
-  document.getElementById('hero-day-num').textContent = d;
-  document.getElementById('hero-date-lbl').textContent = formatDayDate(d);
-
-  // update day tip card
-  const info = DAY_DATA.week[d] || { label:'Седмица 1', tip:'Съвет', text:'Продължавайте — правите чудесно!' };
-  const tipCard = document.getElementById('day-tip-card');
-  if (tipCard) {
-    tipCard.querySelector('.day-tip-week').textContent = info.label;
-    tipCard.querySelector('.day-tip-title').textContent = info.tip;
-    tipCard.querySelector('.day-tip-text').textContent = info.text;
-  }
-
-  // update tasks heading
-  const taskHead = document.getElementById('tasks-heading');
-  if (taskHead) taskHead.textContent = `Задачи — Ден ${d}`;
-}
-
-// ── STARS ──
-(function() {
-  const canvas = document.getElementById('stars-canvas');
-  const ctx = canvas.getContext('2d');
-  const shell = document.querySelector('.shell');
-  canvas.width = shell.offsetWidth || 430;
-  canvas.height = shell.offsetHeight || 900;
-  const stars = Array.from({length:80}, () => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 1.5 + 0.3,
-    a: Math.random(),
-    speed: 0.005 + Math.random() * 0.01,
-    phase: Math.random() * Math.PI * 2
-  }));
-  function draw() {
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    const t = Date.now() / 1000;
-    stars.forEach(s => {
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
-      ctx.fillStyle = `rgba(255,255,255,${0.2 + 0.6 * (0.5 + 0.5 * Math.sin(t * s.speed * 60 + s.phase))})`;
-      ctx.fill();
+  /* side dot nav */
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section[id], header[id]'));
+  var labels = {'s-hero':'Intro','s-models':'Models','s-referral':'Earnings','s-tu':'Trust Units','s-why':'Why us','s-usecases':'Use-cases','s-cta':'Contact'};
+  var dotsWrap = document.getElementById('dots');
+  var dotBtns = sections.map(function(sec){
+    var b=document.createElement('button');
+    b.setAttribute('aria-label', labels[sec.id]||sec.id);
+    var s=document.createElement('span'); s.textContent=labels[sec.id]||sec.id; b.appendChild(s);
+    b.addEventListener('click', function(){ sec.scrollIntoView({behavior: rm?'auto':'smooth', block:'start'}); });
+    dotsWrap.appendChild(b); return b;
+  });
+  var current = 0;
+  var sio = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var i = sections.indexOf(e.target);
+        if(i>-1){ current=i; dotBtns.forEach(function(d,k){ d.classList.toggle('on', k===i); }); }
+      }
     });
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
+  },{threshold:0.5});
+  sections.forEach(function(s){ sio.observe(s); });
 
-// Init day picker on load
-buildDayChips();
-
-// ── DETAIL DATA ──
-const DETAILS = {
-  hold: {
-    title: 'Как се държи бебе',
-    sub: 'Позиции, безопасност и DO/DON\'T',
-    html: `
-      <div class="warn-banner"><div class="warn-icon">⚠️</div><div class="warn-body">Главата на Белослава трябва ВИНАГИ да е подпряна — шийните мускули са слаби. Дръжте и когато я прехвърляте от ръка на ръка.</div></div>
-      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=wFGr9axK8eQ','_blank')">
-        <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/wFGr9axK8eQ/hqdefault.jpg" alt="Как се държи бебе" onerror="this.parentElement.style.background='#1a1a2e'">
-          <div class="video-play-btn"><div class="video-play-circle"></div></div>
-        </div>
-        <div class="video-card-footer">
-          <div class="video-card-footer-icon">▶</div>
-          <div class="video-card-footer-text">
-            <div class="video-card-title">Как се държи новородено бебе</div>
-            <div class="video-card-sub">Детска болница Бостън · YouTube</div>
-          </div>
-          <div class="video-card-arrow">↗</div>
-        </div>
-      </div>
-      <div class="step-card">
-        <div class="step-num-badge">1</div>
-        <div class="step-card-title">На рамото</div>
-        <div class="step-visual">🤱</div>
-        <div class="step-card-body">Главата на рамото ви, ладонта подпира задника. Другата ръка е зад гърба. Лицето й е обърнато настрани. Добра позиция след хранене — помага за оригване.</div>
-      </div>
-      <div class="step-card">
-        <div class="step-num-badge">2</div>
-        <div class="step-card-title">В люлка (хоризонтално)</div>
-        <div class="step-visual">👶</div>
-        <div class="step-card-body">Главата в лакъта, предмишницата поддържа гърба. Бебето лежи хоризонтално. Подходяща за хранене и за гледане в очите. Можете да я поклащате леко.</div>
-      </div>
-      <div class="step-card">
-        <div class="step-num-badge">3</div>
-        <div class="step-card-title">По корем на ръката (за газове)</div>
-        <div class="step-card-body">Главата в ямката на лакъта, тялото по цялата предмишница, краката по двете страни на китката. Тя гледа надолу — помага при газове и колики. САМО при надзор, НИКОГА за сън.</div>
-      </div>
-      <div class="step-card">
-        <div class="step-card-title">✅ / ❌ За запомняне</div>
-        <div class="do-dont">
-          <div class="do-box"><div class="do-lbl">✅ Правилно</div><div class="do-txt">Поддържайте главата ВИНАГИ. Движете се бавно. Говорете нежно — тя чувства тона ви.</div></div>
-          <div class="dont-box"><div class="dont-lbl">❌ Никога</div><div class="dont-txt">Не разтърсвайте (дори при игра). Не оставяйте главата да увисне. Без рязко повдигане.</div></div>
-        </div>
-      </div>
-    `
-  },
-  feed: {
-    title: 'Хранене на Белослава',
-    sub: 'Кърмене, шише, оригване',
-    html: `
-      <div class="step-card"><div class="step-num-badge">1</div><div class="step-card-title">Кога да храните</div><div class="step-card-body">На всеки 2–3 часа, или при ранни сигнали на глад: търсене с уста, смучене на пръсти, завъртване на глава. <strong>Не чакайте плача</strong> — той е последният сигнал. Хранете ~8–12 пъти на ден.</div></div>
-      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=wsNR3cnjoAY','_blank')">
-        <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/wsNR3cnjoAY/hqdefault.jpg" alt="Кърмене" onerror="this.parentElement.style.background='#1a1a2e'">
-          <div class="video-play-btn"><div class="video-play-circle"></div></div>
-        </div>
-        <div class="video-card-footer">
-          <div class="video-card-footer-icon">▶</div>
-          <div class="video-card-footer-text">
-            <div class="video-card-title">Как се залавя бебето при кърмене — правилна техника</div>
-            <div class="video-card-sub">Ръководство за кърмене · 2023</div>
-          </div>
-          <div class="video-card-arrow">↗</div>
-        </div>
-      </div>
-      <div class="step-card"><div class="step-num-badge">2</div><div class="step-card-title">Правилна позиция при кърмене</div><div class="step-visual">🤱</div><div class="step-card-body">Коремът й към вашия корем. Цялото тяло обърнато към вас — не само главата. Устата трябва да обхване цялото зърно, не само върха. Ако боли — значи позицията не е правилна. Пуснете и пробвайте отново.</div></div>
-      <div class="step-card"><div class="step-num-badge">3</div><div class="step-card-title">Шише — как се дава правилно</div><div class="step-visual">🍼</div><div class="step-card-body">Шишето под ~45°. Зърното ВИНАГИ пълно с мляко — без въздух вътре. Пауза всеки 60 мл. Температура: 37°C (капнете на китката — не трябва да гори). Не карайте я да изпие до дъно ако не иска.</div></div>
-      <div class="step-card"><div class="step-num-badge">4</div><div class="step-card-title">Оригване — не пропускайте!</div><div class="step-card-body">След всяко хранене — изправете я вертикално на рамото. Нежно потупвайте гърба с кръгови движения. Изчакайте поне 1–2 минути. Ако е нервна след хранене — оригнете я преди да я слагате. Малко мляко може да се върне — нормално.</div></div>
-      <div class="warn-banner"><div class="warn-icon">🚨</div><div class="warn-body">Ако не се е нахранила добре 3 пъти подред, или имате съмнение за жълтеница — обадете се на педиатъра веднага.</div></div>
-    `
-  },
-  pampers: {
-    title: 'Смяна на памперс',
-    sub: 'Стъпка по стъпка с пълна хигиена',
-    html: `
-      <div class="step-card"><div class="step-num-badge">1</div><div class="step-card-title">Подготовка</div><div class="step-card-body">Пригответе ПРЕДИ да сложите бебето: чист памперс, мокри кърпи (без алкохол, без аромат), крем за попче. <strong>Измийте ръце!</strong> Никога не оставяйте бебето без надзор на масичката.</div></div>
-      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=MN402tbByR0','_blank')">
-        <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/MN402tbByR0/hqdefault.jpg" alt="Смяна на памперс" onerror="this.parentElement.style.background='#1a1a2e'">
-          <div class="video-play-btn"><div class="video-play-circle"></div></div>
-        </div>
-        <div class="video-card-footer">
-          <div class="video-card-footer-icon">▶</div>
-          <div class="video-card-footer-text">
-            <div class="video-card-title">Смяна на памперс — пълен наръчник</div>
-            <div class="video-card-sub">YouTube · 2026</div>
-          </div>
-          <div class="video-card-arrow">↗</div>
-        </div>
-      </div>
-      <div class="step-card"><div class="step-num-badge">2</div><div class="step-card-title">Сваляне на стария памперс</div><div class="step-visual">👶</div><div class="step-card-body">Отворете лепенките. Хванете двете глезени с едната ръка и повдигнете леко задника. Сгънете стария памперс навътре (замърсената страна вътре) и го извадете.</div></div>
-      <div class="step-card"><div class="step-num-badge">3</div><div class="step-card-title">Почистване</div><div class="step-card-body">🩷 Момичета: ВИНАГИ отпред назад! Почистете всички гънки. Не е нужно да почиствате вътре.<br><br>💙 Момчета: покрийте пениса по време на почистване (може да "изненада"). Почистете под скротума.</div></div>
-      <div class="step-card"><div class="step-num-badge">4</div><div class="step-card-title">Поставяне на нов памперс</div><div class="step-card-body">Пъхнете задната (по-широка) част под попчето. Предната минава между краката нагоре. Лепенките трябва да са симетрични. Тест: трябва да влизат 2 пръста отстрани — нито много стегнат, нито хлабав.</div></div>
-      <div class="step-card">
-        <div class="step-card-title">Какво е нормално</div>
-        <div class="step-card-body">🟡 Светло жълта урина — норма<br>🟤 Черен меконий (ден 1–3) — нормално<br>🟡 Жълто-зелено (ден 4+) — нормално при кърмени<br>🟠 Жълто-оранжево при шише — нормално<br><br>🚨 Кръв или бяла слуз → педиатър веднага</div>
-      </div>
-    `
-  },
-  bath: {
-    title: 'Къпане на Белослава',
-    sub: 'Безопасна баня стъпка по стъпка',
-    html: `
-      <div class="warn-banner"><div class="warn-icon">🌡️</div><div class="warn-body">Температура на водата: точно 37°C. Проверявайте с лакъта — не с ръка. Температура в стаята: поне 24°C.</div></div>
-      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=907EhHuntd4','_blank')">
-        <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/907EhHuntd4/hqdefault.jpg" alt="Баня на новородено" onerror="this.parentElement.style.background='#1a1a2e'">
-          <div class="video-play-btn"><div class="video-play-circle"></div></div>
-        </div>
-        <div class="video-card-footer">
-          <div class="video-card-footer-icon">▶</div>
-          <div class="video-card-footer-text">
-            <div class="video-card-title">Първата баня на бебето — стъпка по стъпка</div>
-            <div class="video-card-sub">YouTube · 2025</div>
-          </div>
-          <div class="video-card-arrow">↗</div>
-        </div>
-      </div>
-      <div class="step-card"><div class="step-num-badge">1</div><div class="step-card-title">Подготовка</div><div class="step-card-body">Напълнете ваничката с 8–10 см вода. Пригответе ПРЕДВАРИТЕЛНО: мека кърпа, гъба, шампоан без сълзи, чисти дрехи, чист памперс. Всичко трябва да е в ръка разстояние.</div></div>
-      <div class="step-card"><div class="step-num-badge">2</div><div class="step-card-title">Как се държи Белослава</div><div class="step-visual">🛁</div><div class="step-card-body">Лявата ви ръка е под врата и главата — предмишницата поддържа целия гръб. Дясната ръка мие. Главата е ВИНАГИ над водата. Движете се бавно. Усмихвайте се — тя чувства вашето спокойствие!</div></div>
-      <div class="step-card"><div class="step-num-badge">3</div><div class="step-card-title">Последователност на миене</div><div class="step-card-body">Лице (с чиста вода, без сапун) → шия и гърди → ръце → гърб → крака → интимни зони. Главата — последна. Не разтривайте — нежно потупайте.</div></div>
-      <div class="step-card"><div class="step-num-badge">4</div><div class="step-card-title">Пъпна рана</div><div class="step-card-body">Не потапяйте в ваничката докато пъпчето не е паднало. Само гъба-баня. Третирайте с памучен тупфер и спирт 2 пъти на ден докато изсъхне и падне (около 7–21 дни).</div></div>
-      <div class="step-card">
-        <div class="do-dont">
-          <div class="do-box"><div class="do-lbl">✅ Трябва</div><div class="do-txt">2–3 пъти седмично е достатъчно. Веднага след банята — увийте в топла кърпа.</div></div>
-          <div class="dont-box"><div class="dont-lbl">❌ Не трябва</div><div class="dont-txt">Никога сама! Никога гореща вода. Без Q-tips в ушите. Без течове в ушите.</div></div>
-        </div>
-      </div>
-    `
-  },
-  sleep: {
-    title: 'Безопасен сън',
-    sub: 'Позиция, среда, какво е нормално',
-    html: `
-      <div class="warn-banner"><div class="warn-icon">⚠️</div><div class="warn-body">Позицията за сън е най-важното правило. Прочетете и го запомнете наизуст.</div></div>
-      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=NXmjGbBLP60','_blank')">
-        <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/NXmjGbBLP60/hqdefault.jpg" alt="Безопасен сън" onerror="this.parentElement.style.background='#1a1a2e'">
-          <div class="video-play-btn"><div class="video-play-circle"></div></div>
-        </div>
-        <div class="video-card-footer">
-          <div class="video-card-footer-icon">▶</div>
-          <div class="video-card-footer-text">
-            <div class="video-card-title">5 правила за безопасен сън на бебето (АПП)</div>
-            <div class="video-card-sub">Американска академия по педиатрия · 2023</div>
-          </div>
-          <div class="video-card-arrow">↗</div>
-        </div>
-      </div>
-      <div class="step-card"><div class="step-num-badge">1</div><div class="step-card-title">Позиция: само на гръб</div><div class="step-visual">😴</div><div class="step-card-body">САМО на гръб — за всеки сън, включително кратките дрямки. Никога на корем или настрани без постоянен надзор. Редувайте страните на главата при слагане — ляво, дясно, ляво.</div></div>
-      <div class="step-card"><div class="step-num-badge">2</div><div class="step-card-title">Леглото: минимализъм</div><div class="step-card-body">✅ Твърд матрак с добре опнат чаршаф<br>✅ Спален чувал вместо одеяло<br>✅ Температура в стаята: 18–20°C<br><br>❌ Без възглавница<br>❌ Без одеяло, плюши, играчки в леглото<br>❌ Без мека ограда (бампър) около леглото</div></div>
-      <div class="step-card"><div class="step-num-badge">3</div><div class="step-card-title">До вас, но безопасно</div><div class="step-card-body">Детско легло до родителското = идеален вариант. Лесен достъп при кърмене, но тя спи в своето легло. Никога в едно легло ако сте уморени, взимали сте лекарства, или матракът е мек.</div></div>
-      <div class="step-card">
-        <div class="step-card-title">Какво е нормално за съня</div>
-        <div class="step-card-body">Новородено спи 16–18 часа на ден, но не наведнъж — на цикли от 45–60 мин. Будуване 8–12 пъти нощем е нормално. Не се опитвайте да "поправите" съня й в първия месец — просто оцелявайте.</div>
-      </div>
-    `
-  },
-  cry: {
-    title: 'Защо плаче Белослава?',
-    sub: 'Разпознайте какво ви казва',
-    html: `
-      <div class="step-card">
-        <div class="step-card-title">Проверете по този ред</div>
-        <div class="cry-type">
-          <div class="cry-emoji">🍼</div>
-          <div class="cry-body">
-            <div class="cry-name">Гладна</div>
-            <div class="cry-desc">Ритмичен плач, нараства постепенно. Преди плача: търси с уста, смуче пръстите, върти главата. Последното хранене преди 2+ часа?</div>
-            <span class="cry-tag">➡ Нахранете я</span>
-          </div>
-        </div>
-        <div class="cry-type">
-          <div class="cry-emoji">😴</div>
-          <div class="cry-body">
-            <div class="cry-name">Сънена</div>
-            <div class="cry-desc">Хленчене, стенане. Търка очи, прозява. Очите се затварят и отварят. Будна повече от 1–1.5 часа?</div>
-            <span class="cry-tag">➡ Тъмно, тихо, повийте я</span>
-          </div>
-        </div>
-        <div class="cry-type">
-          <div class="cry-emoji">😣</div>
-          <div class="cry-body">
-            <div class="cry-name">Дискомфорт</div>
-            <div class="cry-desc">Нервен, непостоянен плач. Проверете: мокър памперс? Твърде топло (докоснете тила — не ръцете)? Газове (корем напрегнат)?</div>
-            <span class="cry-tag">➡ Проверете и оправете</span>
-          </div>
-        </div>
-        <div class="cry-type">
-          <div class="cry-emoji">😖</div>
-          <div class="cry-body">
-            <div class="cry-name">Болка</div>
-            <div class="cry-desc">Висок, остър, изненадващ плач. Не спира с нищо. Може да задържи дъха за секунда. Не отшумява след 20–30 минути?</div>
-            <span class="cry-tag">➡ Обадете се на лекар</span>
-          </div>
-        </div>
-      </div>
-      <div class="step-card">
-        <div class="step-card-title">Не се успокоява? Пробвайте по ред:</div>
-        <div class="step-card-body">1. Нахранете (дори да е яла наскоро)<br>2. Сменете памперса<br>3. Носете я изправена на рамото, тихо "шшш" до ухото<br>4. Завийте я плътно (повиване)<br>5. Разходете я в количката или колата<br><br>Ако нищо не помага и плачът е силен и необичаен — обадете се на педиатъра.</div>
-      </div>
-    `
-  },
-  guests: {
-    title: 'Баби, дядовци и гости',
-    sub: 'Правила — ясни и без обяснения',
-    html: `
-      <div class="step-card">
-        <div class="step-num-badge">🧼</div>
-        <div class="step-card-title">Ръцете първо — без изключение</div>
-        <div class="step-card-body">Всеки гост мие ръце с сапун 20 секунди ПРЕДИ да докосне Белослава. Алкохолен гел 70%+ също върши работа. Не е обида — е защита. Имунитетът й е все още много слаб.</div>
-      </div>
-      <div class="step-card">
-        <div class="do-dont">
-          <div class="do-box"><div class="do-lbl">✅ Ок е</div><div class="do-txt">Прегръдки. Носене при измити ръце. Снимки и видео. Помощ в дома.</div></div>
-          <div class="dont-box"><div class="dont-lbl">❌ Не е ок</div><div class="dont-txt">Целувки по лицето и ръчичките. Посещение при болест. Разтърсване. Силен шум.</div></div>
-        </div>
-      </div>
-      <div class="step-card">
-        <div class="step-num-badge">🤒</div>
-        <div class="step-card-title">При болест — без посещение</div>
-        <div class="step-card-body">Настинка, кашлица, грип, херпес на устните — изчакайте 7 дни след пълно оздравяване. Не се обиждайте и не се обяснявайте дълго. Просто: "Елате след като сте добре."</div>
-      </div>
-      <div class="step-card">
-        <div class="step-num-badge">👵</div>
-        <div class="step-card-title">За баби и дядовци — с любов</div>
-        <div class="step-card-body">Медицината се е променила. Важно е да знаят:<br>❌ Без сън по корем<br>❌ Без мед до 1 година<br>❌ Без вода или чай<br>❌ Без биберон-патица (задавяне!)<br><br>Кажете им: "Педиатърът ни каза" — лесно е и не предизвиква спор.</div>
-      </div>
-    `
-  },
-  firstaid: {
-    title: '🏥 Първа помощ',
-    sub: '10 сценария — знайте какво да правите',
-    html: `
-      <div class="warn-banner"><div class="warn-icon">🚑</div><div class="warn-body">При всяко съмнение за спешна ситуация — обадете се на 112. Не губете ценни секунди в колебание.</div></div>
-
-      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=z-3IAG_974o','_blank')">
-        <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/z-3IAG_974o/hqdefault.jpg" alt="Задавяне при бебе" onerror="this.parentElement.style.background='#1a1a2e'">
-          <div class="video-play-btn"><div class="video-play-circle"></div></div>
-        </div>
-        <div class="video-card-footer">
-          <div class="video-card-footer-icon" style="background:#B03040;">▶</div>
-          <div class="video-card-footer-text">
-            <div class="video-card-title" style="color:#B03040;">🫁 Задавяне при бебе — Британски Червен кръст</div>
-            <div class="video-card-sub">Стъпка по стъпка: удари по гърба + натискания на гърдите · 2024</div>
-          </div>
-          <div class="video-card-arrow">↗</div>
-        </div>
-      </div>
-
-      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=01jpBkoQr4Y','_blank')">
-        <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/01jpBkoQr4Y/hqdefault.jpg" alt="Infant CPR" onerror="this.parentElement.style.background='#1a1a2e'">
-          <div class="video-play-btn"><div class="video-play-circle"></div></div>
-        </div>
-        <div class="video-card-footer">
-          <div class="video-card-footer-icon" style="background:#B03040;">▶</div>
-          <div class="video-card-footer-text">
-            <div class="video-card-title" style="color:#B03040;">💙 Infant CPR — стъпка по стъпка</div>
-            <div class="video-card-sub">30 натискания + 2 вдишвания · 2024</div>
-          </div>
-          <div class="video-card-arrow">↗</div>
-        </div>
-      </div>
-
-      <div class="step-card" style="border:1px solid rgba(176,48,64,0.2);background:#FFF8F8;">
-        <div class="step-num-badge" style="background:linear-gradient(135deg,#B03040,#D04050);">1</div>
-        <div class="step-card-title">🫁 Задавяне</div>
-        <div class="step-card-body">Ако бебето не плаче, не диша, посиняло е:<br><br>1. Обърнете по корем на предмишницата, главата надолу<br>2. 5 удара с петата на ладонта между лопатките<br>3. Обърнете на гръб — 2 натискания с 2 пръста на гръдния кош<br>4. Повторете до освобождаване<br>5. ☎️ 112 ВЕДНАГА при първа стъпка</div>
-      </div>
-      <div class="step-card" style="border:1px solid rgba(176,48,64,0.2);background:#FFF8F8;">
-        <div class="step-num-badge" style="background:linear-gradient(135deg,#B03040,#D04050);">2</div>
-        <div class="step-card-title">🌡️ Висока температура (38°C+)</div>
-        <div class="step-card-body">При новородено до 3 месеца ВСЯКА температура над 38°C е СПЕШНА.<br><br>1. Свалете дрехите — оставете само бодито<br>2. Измерете ректално за точност<br>3. Не давайте лекарства без препоръка на лекар<br>4. Не обтривайте с алкохол — опасно!<br>5. ☎️ Педиатър или 112 ВЕДНАГА</div>
-      </div>
-      <div class="step-card" style="border:1px solid rgba(176,48,64,0.2);background:#FFF8F8;">
-        <div class="step-num-badge" style="background:linear-gradient(135deg,#B03040,#D04050);">3</div>
-        <div class="step-card-title">💙 Посиняване около устата</div>
-        <div class="step-card-body">Синьо/лилаво оцветяване = СПЕШНО!<br><br>1. ☎️ 112 НЕЗАБАВНО<br>2. Проверете дишането (слушайте, гледайте гърдите)<br>3. Ако не диша — детска CPR: 30 натискания + 2 леки вдишвания<br>4. Не оставяйте бебето само</div>
-      </div>
-      <div class="step-card" style="border:1px solid rgba(176,48,64,0.2);background:#FFF8F8;">
-        <div class="step-num-badge" style="background:linear-gradient(135deg,#B03040,#D04050);">4</div>
-        <div class="step-card-title">😰 Затруднено дишане</div>
-        <div class="step-card-body">Пребройте вдишвания за 15 сек × 4.<br><br>🚨 Спешно при:<br>• Над 60 вдишвания/мин<br>• Хъркане или свирене<br>• Паузи над 20 сек<br>• Ноздрите се разширяват при дишане<br>• Кожата между ребрата хлътва</div>
-      </div>
-      <div class="step-card" style="border:1px solid rgba(138,96,32,0.2);background:#FFFBF0;">
-        <div class="step-num-badge" style="background:linear-gradient(135deg,#C9A96E,#8B6840);">5</div>
-        <div class="step-card-title">🤕 Падане от повърхност</div>
-        <div class="step-card-body">1. НЕ местете рязко<br>2. Проверете за наранявания<br>3. Наблюдавайте: плаче ли нормално? Буди ли се?<br>4. ☎️ 112 при: загуба на съзнание, повръщане, необичаен плач, подутина<br>5. При съмнение — педиатър</div>
-      </div>
-      <div class="step-card" style="border:1px solid rgba(138,96,32,0.2);background:#FFFBF0;">
-        <div class="step-num-badge" style="background:linear-gradient(135deg,#C9A96E,#8B6840);">6</div>
-        <div class="step-card-title">💊 Поглъщане на предмет</div>
-        <div class="step-card-body">Ако диша нормално:<br>• Не слагайте пръст в устата<br>• ☎️ Педиатър веднага<br><br>Батерия или монета → 🚨 Спешно към болница — батериите са много опасни дори при нормално дишане!</div>
-      </div>
-      <div class="step-card" style="border:1px solid rgba(138,96,32,0.2);background:#FFFBF0;">
-        <div class="step-num-badge" style="background:linear-gradient(135deg,#C9A96E,#8B6840);">7</div>
-        <div class="step-card-title">🔥 Изгаряне</div>
-        <div class="step-card-body">1. Охладете с хладка (НЕ студена) вода 10–20 мин<br>2. Не слагайте масло, паста или лед<br>3. Покрийте с чиста кърпа<br>4. ☎️ Мехури, бяла/черна кожа, лице → 112<br>5. Не спукайте мехурите</div>
-      </div>
-      <div class="step-card" style="border:1px solid rgba(138,96,32,0.2);background:#FFFBF0;">
-        <div class="step-num-badge" style="background:linear-gradient(135deg,#C9A96E,#8B6840);">8</div>
-        <div class="step-card-title">😵 Конвулсии / Гърч</div>
-        <div class="step-card-body">1. ☎️ 112 ВЕДНАГА<br>2. Наредете на страни (не на гръб)<br>3. НЕ слагайте нищо в устата<br>4. НЕ задържайте — само предпазвайте<br>5. Засечете времето на гърча</div>
-      </div>
-      <div class="step-card" style="border:1px solid rgba(45,122,78,0.2);background:#F0FFF5;">
-        <div class="step-num-badge" style="background:linear-gradient(135deg,#2D7A4E,#1a5c35);">9</div>
-        <div class="step-card-title">🤧 Запушен нос</div>
-        <div class="step-card-body">Бебетата дишат само през носа!<br><br>1. Физиологичен серум — 1–2 капки в ноздрата<br>2. Изчакайте 30 сек<br>3. Аспиратор — нежно засмучете<br>4. Повдигнете главата на 15°<br>5. ☎️ Синьо около устата → 112</div>
-      </div>
-      <div class="step-card" style="border:1px solid rgba(45,122,78,0.2);background:#F0FFF5;">
-        <div class="step-num-badge" style="background:linear-gradient(135deg,#2D7A4E,#1a5c35);">10</div>
-        <div class="step-card-title">🌿 Алергична реакция</div>
-        <div class="step-card-body">1. Спрете контакта с алергена<br>2. Проверете дишането<br>3. ☎️ Оток на лицето/устните или задух → 112<br>4. Леки обриви → педиатър до 1 час<br>5. Запишете какво е приемала</div>
-      </div>
-      <button class="panic-btn" onclick="window.open('tel:112')">📞 ОБАДИ СЕ НА 112</button>
-      <div style="height:16px;"></div>
-    `
-  },
-  tips: {
-    title: '💡 Съвети за нови родители',
-    sub: 'Позиции, масаж, сън и грижа',
-    html: `
-      <div class="ai-card" style="margin-bottom:16px;">
-        <div class="ai-card-header"><div class="ai-pulse"></div><div class="ai-card-label">Ръководство</div></div>
-        <div class="ai-card-text">Всичко за спокойните първи 30 дни — позиции при носене, масаж, вечерен ритуал и грижа за себе си.</div>
-      </div>
-
-      <div class="step-card">
-        <div class="step-card-title">🤱 Позиции при носене</div>
-        <div class="video-card" style="margin:10px 0 14px;" onclick="window.open('https://www.youtube.com/watch?v=-wdSjH6LZVA','_blank')">
-          <div class="video-thumb">
-            <img src="https://img.youtube.com/vi/-wdSjH6LZVA/hqdefault.jpg" alt="Позиции при носене" onerror="this.parentElement.style.background='#1a1a2e'">
-            <div class="video-play-btn"><div class="video-play-circle"></div></div>
-          </div>
-          <div class="video-card-footer">
-            <div class="video-card-footer-icon">▶</div>
-            <div class="video-card-footer-text">
-              <div class="video-card-title">Позиции при носене на новородено</div>
-              <div class="video-card-sub">Всички позиции · стъпка по стъпка · 2024</div>
-            </div>
-            <div class="video-card-arrow">↗</div>
-          </div>
-        </div>
-        <div class="step-card-body" style="margin-bottom:10px;"><strong>На рамото</strong> — Главата на рамото ви, ладонта под задника. Идеална след хранене — помага за оригване. Говорете тихо до ухото — гласът ви я успокоява.</div>
-        <div class="step-card-body" style="margin-bottom:10px;"><strong>Люлка (хоризонтално)</strong> — Главата в лакъта, предмишницата поддържа гърба. За хранене и гледане в очите. Поклащайте бавно.</div>
-        <div class="step-card-body" style="margin-bottom:10px;"><strong>По корем на ръката</strong> — За газове. Главата в лакъта, тялото по предмишницата. САМО при надзор, НИКОГА за сън.</div>
-        <div class="step-card-body" style="margin-bottom:12px;"><strong>Вертикална</strong> — Главата на рамото, тялото изправено. Помага при рефлукс. Много бебета предпочитат тази.</div>
-        <div class="do-dont">
-          <div class="do-box"><div class="do-lbl">✅ Винаги</div><div class="do-txt">Поддържайте главата. Движете бавно. Топли ръце преди да я вземете.</div></div>
-          <div class="dont-box"><div class="dont-lbl">❌ Никога</div><div class="dont-txt">Без да подпирате главата. Рязко движение. Разтърсване при игра.</div></div>
-        </div>
-      </div>
-
-      <div class="step-card">
-        <div class="step-card-title">👶 Масаж на бебето</div>
-        <div class="video-card" style="margin:10px 0 14px;" onclick="window.open('https://www.youtube.com/watch?v=x1mhaB2kfjM','_blank')">
-          <div class="video-thumb">
-            <img src="https://img.youtube.com/vi/x1mhaB2kfjM/hqdefault.jpg" alt="Baby Massage AAP" onerror="this.parentElement.style.background='#1a1a2e'">
-            <div class="video-play-btn"><div class="video-play-circle"></div></div>
-          </div>
-          <div class="video-card-footer">
-            <div class="video-card-footer-icon">▶</div>
-            <div class="video-card-footer-text">
-              <div class="video-card-title">Как да масажирате бебето — 6 лесни начина (АПП)</div>
-              <div class="video-card-sub">Американска академия по педиатрия · 2024</div>
-            </div>
-            <div class="video-card-arrow">↗</div>
-          </div>
-        </div>
-        <div class="step-card-body" style="margin-bottom:10px;"><strong>Кога:</strong> 30–45 мин след хранене, при будна и спокойна Белослава. <strong>С какво:</strong> бебешко масажно или кокосово масло.</div>
-        <div class="step-card-body" style="margin-bottom:8px;">🌀 <strong>Корем (за газове):</strong> Кръгове по часовникова стрелка около пъпа с 2 пръста. После "I Love You" — чертайте буквите по корема отляво надясно.</div>
-        <div class="step-card-body" style="margin-bottom:8px;">🦵 <strong>Крака:</strong> Стиснете бедрото и плъзнете до стъпалото. Завъртете нежно всеки пръст.</div>
-        <div class="step-card-body" style="margin-bottom:8px;">💪 <strong>Ръце:</strong> Отворете стиснатото юмруче. Плъзнете от рамото до китката. Масажирайте дланичката с палеца.</div>
-        <div class="step-card-body">🔙 <strong>Гръб:</strong> По корем на коленете ви. Плавни движения надолу. Малки кръгове покрай гръбнака (не върху него).</div>
-      </div>
-
-      <div class="step-card">
-        <div class="step-card-title">⏰ "Корем-времето" (Tummy Time)</div>
-        <div class="video-card" style="margin:10px 0 14px;" onclick="window.open('https://www.youtube.com/watch?v=CwlJc7ufXTE','_blank')">
-          <div class="video-thumb">
-            <img src="https://img.youtube.com/vi/CwlJc7ufXTE/hqdefault.jpg" alt="Tummy Time" onerror="this.parentElement.style.background='#1a1a2e'">
-            <div class="video-play-btn"><div class="video-play-circle"></div></div>
-          </div>
-          <div class="video-card-footer">
-            <div class="video-card-footer-icon">▶</div>
-            <div class="video-card-footer-text">
-              <div class="video-card-title">Как се прави "корем-времето" с новороденото</div>
-              <div class="video-card-sub">Enfamil · Правилна техника стъпка по стъпка · 2023</div>
-            </div>
-            <div class="video-card-arrow">↗</div>
-          </div>
-        </div>
-        <div class="step-card-body" style="margin-bottom:8px;">2–3 минути, 3–4 пъти дневно при надзор. Укрепва шийните мускули — важно за развитието!</div>
-        <div class="step-card-body" style="margin-bottom:6px;">• Поставете на твърда равна повърхност</div>
-        <div class="step-card-body" style="margin-bottom:6px;">• Легнете пред нея и говорете — тя ще се опита да вдигне главата</div>
-        <div class="step-card-body">• НИКОГА за сън, САМО при надзор</div>
-      </div>
-
-      <div class="step-card">
-        <div class="step-card-title">😴 Ритуал за сън</div>
-        <div class="step-card-body" style="margin-bottom:10px;">Последователността е ключова — мозъкът обича предвидимост. <strong>Започвайте от 6–7 вечерта.</strong></div>
-        <div class="step-card-body" style="margin-bottom:6px;">🛁 <strong>Стъпка 1 — Вана:</strong> 37°C, тиха музика, 5–10 мин, приглушена светлина.</div>
-        <div class="step-card-body" style="margin-bottom:6px;">🧴 <strong>Стъпка 2 — Масаж:</strong> 5–10 мин. Топло масло, нежни движения, тихи думи.</div>
-        <div class="step-card-body" style="margin-bottom:6px;">🍼 <strong>Стъпка 3 — Хранене:</strong> В полутъмна стая, без стимулация.</div>
-        <div class="step-card-body" style="margin-bottom:6px;">📖 <strong>Стъпка 4 — Приказка/песен:</strong> Едно и също всяка вечер. Гласът ви е най-успокояващото нещо.</div>
-        <div class="step-card-body">🌙 <strong>Стъпка 5 — Сън:</strong> Слагайте я сънена, но будна. Учи се да заспива сама постепенно.</div>
-      </div>
-
-      <div class="step-card">
-        <div class="step-card-title">🌸 Кожен контакт "кенгуру"</div>
-        <div class="step-card-body" style="margin-bottom:10px;">Кожа до кожа регулира температурата, сърдечния ритъм и дишането. Намалява стреса за двамата.</div>
-        <div class="step-card-body" style="margin-bottom:6px;">• Минимум 1–2 часа дневно в първите седмици</div>
-        <div class="step-card-body" style="margin-bottom:6px;">• Бебето изправено на гърдите ви, само с памперс</div>
-        <div class="step-card-body">• Татко може (и трябва!) — не само мама</div>
-      </div>
-
-      <div class="step-card">
-        <div class="step-card-title">💗 Грижа за себе си (мама и тате)</div>
-        <div class="step-card-body" style="margin-bottom:8px;">😴 <strong>Сън:</strong> Спете когато тя спи — чистенето чака.</div>
-        <div class="step-card-body" style="margin-bottom:8px;">🤝 <strong>Разпределете:</strong> Един се грижи за бебето, другият спи. После сменяйте.</div>
-        <div class="step-card-body" style="margin-bottom:8px;">💬 <strong>Говорете си:</strong> Умората предизвиква напрежение. Нормално е.</div>
-        <div class="step-card-body">🌱 <strong>Baby blues:</strong> Тъга и раздразнителност в първите 2 седмици е нормално. Ако продължи над 2 седмици — говорете с лекар.</div>
-      </div>
-      <div style="height:16px;"></div>
-    `
-  },
-  emergency: {
-    title: '🚨 Спешни ситуации',
-    sub: 'При съмнение — обадете се на 112 ВЕДНАГА',
-    html: `
-      <div class="warn-banner"><div class="warn-icon">🚑</div><div class="warn-body">При съмнение — обадете се на 112. По-добре излишен звън, отколкото закъснение. Действайте СПОКОЙНО.</div></div>
-      <div class="video-card" style="border-color:rgba(176,48,64,0.3);" onclick="window.open('https://www.youtube.com/watch?v=01jpBkoQr4Y','_blank')">
-        <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/01jpBkoQr4Y/hqdefault.jpg" alt="Infant CPR" onerror="this.parentElement.style.background='#1a1a2e'">
-          <div class="video-play-btn"><div class="video-play-circle"></div></div>
-        </div>
-        <div class="video-card-footer">
-          <div class="video-card-footer-icon" style="background:#B03040;">▶</div>
-          <div class="video-card-footer-text">
-            <div class="video-card-title" style="color:#B03040;">🚨 Infant CPR — Гледайте СЕГА</div>
-            <div class="video-card-sub">30 натискания + 2 вдишвания · Стъпка по стъпка · 2024</div>
-          </div>
-          <div class="video-card-arrow">↗</div>
-        </div>
-      </div>
-      <div class="step-card" style="border:1px solid rgba(176,48,64,0.25);background:#FFF8F8;">
-        <div class="step-num-badge" style="background:linear-gradient(135deg,#B03040,#D04050);">1</div>
-        <div class="step-card-title">🫁 Задавяне</div>
-        <div class="step-card-body">Ако бебето не плаче и не диша нормално:<br><br>1. Обърнете го по корем на предмишницата си, главата надолу<br>2. 5 удара с петата на ладонта между лопатките<br>3. Обърнете на гръб — 2 натискания на гръдния кош с 2 пръста<br>4. Повторете<br>5. Обадете се на 112 ВЕДНАГА</div>
-      </div>
-      <div class="step-card" style="border:1px solid rgba(176,48,64,0.25);background:#FFF8F8;">
-        <div class="step-num-badge" style="background:linear-gradient(135deg,#B03040,#D04050);">2</div>
-        <div class="step-card-title">🌡️ Висока температура</div>
-        <div class="step-card-body">При новородено (0–3 месеца) ВСЯКА температура над 38°C е СПЕШНА.<br><br>Не давайте лекарства без препоръка. Не обтривайте с алкохол. Свалете дрехите. Обадете се ВЕДНАГА на педиатъра или 112.</div>
-      </div>
-      <div class="step-card" style="border:1px solid rgba(176,48,64,0.25);background:#FFF8F8;">
-        <div class="step-num-badge" style="background:linear-gradient(135deg,#B03040,#D04050);">3</div>
-        <div class="step-card-title">💙 Посиняване</div>
-        <div class="step-card-body">Синьо около устата или по цялото тяло = СПЕШНО!<br><br>Обадете се на 112 НЕЗАБАВНО. Проверете дали диша. Ако не диша — започнете детска CPR (30 натискания + 2 вдишвания).</div>
-      </div>
-      <div class="step-card" style="border:1px solid rgba(176,48,64,0.25);background:#FFF8F8;">
-        <div class="step-num-badge" style="background:linear-gradient(135deg,#B03040,#D04050);">4</div>
-        <div class="step-card-title">😰 Затруднено дишане</div>
-        <div class="step-card-body">Ако дишането е: много бързо (>60/мин), с хъркане, с хлъцане, или с дълги паузи (>20 сек) — 112 веднага.<br><br>Пребройте вдишвания за 15 секунди и умножете по 4.</div>
-      </div>
-      <button class="panic-btn" onclick="alert('Набирате 112!')">📞 ОБАДИ СЕ НА 112</button>
-      <div style="height:16px;"></div>
-    `
-  }
-};
-
-function openDetail(key) {
-  const d = DETAILS[key];
-  if (!d) return;
-  document.getElementById('d-title').textContent = d.title;
-  document.getElementById('d-sub').textContent = d.sub;
-  document.getElementById('d-content').innerHTML = d.html;
-  nav('detail');
-}
-
-// ── AI CHAT ──
-const AI_RESPONSES = {
-  'Защо плаче Белослава?': '🎵 Проверете по ред:\n1. Гладна? — последно хранене преди повече от 2 часа?\n2. Мокра? — отворете памперса\n3. Газове? — масаж на корема по часовникова стрелка, или "велосипед" с краката\n4. Сънена? — прозява ли се, търка очи?\n5. Просто иска прегръдка — и това е ок!\n\nАко нищо не помага — носете я близо до тялото и тихо "шшш" до ухото.',
-  'Кога трябва да я заведем при лекар?': '🏥 Обадете се ВЕДНАГА при:\n• Температура над 38°C\n• Синьо около устата\n• Не яде 4+ часа\n• Не мокри памперс 8+ часа\n• Много вяла — трудно се буди\n\nРутинен преглед: ден 3–5 след изписването. Не чакайте, ако нещо ви притеснява — по-добре "излишен" звън, отколкото чакане.',
-  'Колко трябва да яде?': '🍼 При кърмене: на всеки 2–3 часа, 8–12 пъти на ден.\nПри шише: 60–90 мл на хранене в първата седмица.\n\nЗнак, че е достатъчно:\n✅ 6+ мокри памперса на ден\n✅ Теглото расте след ден 5\n✅ Тя изглежда спокойна след хранене',
-};
-
-function askAI(q) {
-  document.getElementById('chat-field').value = q;
-  sendChat();
-}
-
-function sendChat() {
-  const field = document.getElementById('chat-field');
-  const q = field.value.trim();
-  if (!q) return;
-  field.value = '';
-  const wrap = document.getElementById('chat-wrap');
-
-  const userEl = document.createElement('div');
-  userEl.className = 'chat-msg user';
-  userEl.innerHTML = `<div class="bubble user">${q}</div><div class="chat-ts">Сега</div>`;
-  wrap.appendChild(userEl);
-  wrap.scrollTop = wrap.scrollHeight;
-
-  const aiEl = document.createElement('div');
-  aiEl.className = 'chat-msg ai';
-  aiEl.innerHTML = `<div class="bubble ai"><div class="typing-dots"><span></span><span></span><span></span></div></div><div class="chat-ts">Пиша...</div>`;
-  wrap.appendChild(aiEl);
-  wrap.scrollTop = wrap.scrollHeight;
-
-  setTimeout(() => {
-    const resp = AI_RESPONSES[q] || '✨ Разбирам загрижеността ви. За спешни въпроси — обадете се на педиатъра. Тук можете да питате: "Защо плаче Белослава?", "Кога трябва да я заведем при лекар?" или "Колко трябва да яде?"';
-    aiEl.querySelector('.bubble').textContent = resp;
-    aiEl.querySelector('.chat-ts').textContent = 'Сега';
-    wrap.scrollTop = wrap.scrollHeight;
-  }, 1400);
-}
-
-document.getElementById('chat-field') && document.getElementById('chat-field').addEventListener('keydown', e => {
-  if (e.key === 'Enter') sendChat();
-});
-
-// ── NATAL CHART ──
-function drawNatalChart() {
-  const canvas = document.getElementById('natal-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const W = 320, H = 320, cx = W/2, cy = H/2;
-
-  // Zodiac sign colors
-  const signColors = [
-    '#C4607A','#4a7c59','#185FA5','#8B3A3A',
-    '#C9A96E','#6B4FA0','#C4607A','#4a7c59',
-    '#8B3A3A','#2d5c7a','#4a6a35','#6B4FA0'
-  ];
-  const signSymbols = ['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
-
-  ctx.clearRect(0,0,W,H);
-
-  // Outer ring background
-  ctx.beginPath();
-  ctx.arc(cx, cy, 150, 0, Math.PI*2);
-  ctx.fillStyle = '#1a1a2e';
-  ctx.fill();
-
-  // 12 zodiac segments
-  for (let i = 0; i < 12; i++) {
-    const startA = (i * 30 - 90) * Math.PI / 180;
-    const endA = ((i+1) * 30 - 90) * Math.PI / 180;
-    ctx.beginPath();
-    ctx.moveTo(cx, cy);
-    ctx.arc(cx, cy, 150, startA, endA);
-    ctx.closePath();
-    ctx.fillStyle = signColors[i] + '22';
-    ctx.fill();
-    ctx.strokeStyle = 'rgba(255,255,255,0.08)';
-    ctx.lineWidth = 0.5;
-    ctx.stroke();
-
-    // Sign symbol
-    const midA = (startA + endA) / 2;
-    const r = 135;
-    ctx.font = '12px serif';
-    ctx.fillStyle = signColors[i];
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(signSymbols[i], cx + r * Math.cos(midA), cy + r * Math.sin(midA));
-  }
-
-  // House ring (lighter inner)
-  ctx.beginPath();
-  ctx.arc(cx, cy, 110, 0, Math.PI*2);
-  ctx.fillStyle = '#0f0f1a';
-  ctx.fill();
-  ctx.strokeStyle = 'rgba(255,255,255,0.12)';
-  ctx.lineWidth = 1;
-  ctx.stroke();
-
-  // Draw 12 house cusps
-  // Asc = Sagittarius = 240° on ecliptic → house cusp 1 starts at left (180°)
-  const ascDeg = 242; // 2° Sagittarius on ecliptic
-  for (let i = 0; i < 12; i++) {
-    const angle = ((i * 30) - ascDeg - 90) * Math.PI / 180;
-    const isDivider = true;
-    ctx.beginPath();
-    ctx.moveTo(cx + 60 * Math.cos(angle), cy + 60 * Math.sin(angle));
-    ctx.lineTo(cx + 110 * Math.cos(angle), cy + 110 * Math.sin(angle));
-    ctx.strokeStyle = i === 0 ? '#FF6FA8' : 'rgba(255,255,255,0.15)';
-    ctx.lineWidth = i === 0 ? 2 : 0.5;
-    ctx.stroke();
-
-    // House number
-    const midA2 = ((i + 0.5) * 30 - ascDeg - 90) * Math.PI / 180;
-    ctx.font = '9px DM Sans, sans-serif';
-    ctx.fillStyle = 'rgba(255,255,255,0.35)';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(i+1, cx + 85 * Math.cos(midA2), cy + 85 * Math.sin(midA2));
-  }
-
-  // Inner chart circle
-  ctx.beginPath();
-  ctx.arc(cx, cy, 60, 0, Math.PI*2);
-  ctx.fillStyle = '#0a0a14';
-  ctx.fill();
-  ctx.strokeStyle = 'rgba(255,255,255,0.08)';
-  ctx.lineWidth = 1;
-  ctx.stroke();
-
-  // Planet positions (ecliptic longitude, approx for 7 May 2026)
-  const planets = [
-    { sym:'☉', deg: 47, color:'#FFD700', r: 120 },    // Sun 17° Taurus
-    { sym:'☽', deg: 158, color:'#C0C8FF', r: 120 },   // Moon 8° Virgo
-    { sym:'☿', deg: 59, color:'#B0C4DE', r: 108 },    // Mercury 29° Taurus
-    { sym:'♀', deg: 104, color:'#FF8FAA', r: 108 },   // Venus 14° Cancer
-    { sym:'♂', deg: 63, color:'#FF6040', r: 96 },     // Mars 3° Gemini
-    { sym:'♃', deg: 112, color:'#E8A040', r: 96 },    // Jupiter 22° Cancer
-    { sym:'♄', deg: 17, color:'#8B7040', r: 108 },    // Saturn 17° Aries
-    { sym:'♅', deg: 57, color:'#40B0E8', r: 120 },    // Uranus 27° Taurus
-    { sym:'♆', deg: 12, color:'#6070E8', r: 96 },     // Neptune 2° Aries
-    { sym:'♇', deg: 303, color:'#8B4A80', r: 108 },   // Pluto 3° Aquarius
-  ];
-
-  planets.forEach(p => {
-    const angle = (p.deg - ascDeg - 90) * Math.PI / 180;
-    const px = cx + p.r * Math.cos(angle);
-    const py = cy + p.r * Math.sin(angle);
-
-    // Glow
-    ctx.beginPath();
-    ctx.arc(px, py, 8, 0, Math.PI*2);
-    ctx.fillStyle = p.color + '30';
-    ctx.fill();
-
-    // Symbol
-    ctx.font = 'bold 11px serif';
-    ctx.fillStyle = p.color;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(p.sym, px, py);
-
-    // Dot line to inner circle
-    ctx.beginPath();
-    ctx.moveTo(px, py);
-    ctx.lineTo(cx + 62 * Math.cos(angle), cy + 62 * Math.sin(angle));
-    ctx.strokeStyle = p.color + '40';
-    ctx.lineWidth = 0.5;
-    ctx.stroke();
+  /* keyboard navigation between sections */
+  document.addEventListener('keydown', function(e){
+    var tag=(e.target.tagName||'').toLowerCase();
+    if(tag==='input'||tag==='textarea') return;
+    var go=null;
+    if(e.key==='ArrowDown'||e.key==='PageDown'){ go=Math.min(current+1, sections.length-1); }
+    else if(e.key==='ArrowUp'||e.key==='PageUp'){ go=Math.max(current-1, 0); }
+    else if(e.key==='Home'){ go=0; }
+    else if(e.key==='End'){ go=sections.length-1; }
+    if(go!==null){ e.preventDefault(); current=go; sections[go].scrollIntoView({behavior: rm?'auto':'smooth', block:'start'}); }
   });
 
-  // Draw aspect lines inside inner circle
-  const aspectPairs = [
-    [0,1,'#FFD700','trine'],
-    [3,5,'#FF8FAA','sextile'],
-    [6,0,'#FF6040','square'],
-    [5,null,'#E8A040','trine'], // Jupiter trine Asc
-  ];
-  // Sun trine Moon
-  function planetXY(deg, r) {
-    const angle = (deg - ascDeg - 90) * Math.PI / 180;
-    return [cx + r*0.7 * Math.cos(angle), cy + r*0.7 * Math.sin(angle)];
+  /* TU explorer */
+  var val=document.getElementById('tuVal'), desc=document.getElementById('tuDesc'), hint=document.getElementById('tuHint');
+  document.getElementById('tuBtns').addEventListener('click',function(e){
+    var b=e.target.closest('.tu-btn'); if(!b) return;
+    this.querySelectorAll('.tu-btn').forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active');
+    val.innerHTML=b.dataset.v+'<small> TU</small>';
+    desc.textContent=b.dataset.d;
+    hint.textContent=b.dataset.h;
+  });
+
+  /* animated counters */
+  function animate(el){
+    var to=parseFloat(el.dataset.to), dec=parseInt(el.dataset.dec||'0'), suf=el.dataset.suffix||'', dur=1400, s=performance.now();
+    function step(now){
+      var p=Math.min((now-s)/dur,1); var eased=1-Math.pow(1-p,3);
+      el.textContent=(to*eased).toFixed(dec)+suf;
+      if(p<1) requestAnimationFrame(step); else el.textContent=to.toFixed(dec)+suf;
+    }
+    if(rm){el.textContent=to.toFixed(dec)+suf;} else requestAnimationFrame(step);
   }
-  const [sx,sy] = planetXY(47, 60);
-  const [mx,my] = planetXY(158, 60);
-  ctx.beginPath(); ctx.moveTo(sx,sy); ctx.lineTo(mx,my);
-  ctx.strokeStyle = '#FFD70030'; ctx.lineWidth = 1; ctx.setLineDash([]); ctx.stroke();
-
-  const [vx,vy] = planetXY(104, 60);
-  const [jx,jy] = planetXY(112, 60);
-  ctx.beginPath(); ctx.moveTo(vx,vy); ctx.lineTo(jx,jy);
-  ctx.strokeStyle = '#FF8FAA40'; ctx.lineWidth = 1; ctx.stroke();
-
-  const [satx,saty] = planetXY(17, 60);
-  ctx.beginPath(); ctx.moveTo(satx,saty); ctx.lineTo(sx,sy);
-  ctx.strokeStyle = '#FF604028'; ctx.lineWidth = 1; ctx.stroke();
-
-  // Center: baby name
-  ctx.font = '500 11px DM Sans, sans-serif';
-  ctx.fillStyle = 'rgba(255,255,255,0.8)';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillText('Белослава', cx, cy - 7);
-  ctx.font = '9px DM Sans, sans-serif';
-  ctx.fillStyle = 'rgba(255,255,255,0.4)';
-  ctx.fillText('7.05.2026 · 21:49', cx, cy + 8);
-
-  // ASC marker
-  const ascAngle = (-ascDeg - 90) * Math.PI / 180;
-  ctx.beginPath();
-  ctx.moveTo(cx + 110 * Math.cos(ascAngle), cy + 110 * Math.sin(ascAngle));
-  ctx.lineTo(cx + 150 * Math.cos(ascAngle), cy + 150 * Math.sin(ascAngle));
-  ctx.strokeStyle = '#FF6FA8';
-  ctx.lineWidth = 2;
-  ctx.stroke();
-  ctx.font = 'bold 9px DM Sans, sans-serif';
-  ctx.fillStyle = '#FF6FA8';
-  ctx.textAlign = 'center';
-  ctx.fillText('ASC', cx + 156 * Math.cos(ascAngle), cy + 156 * Math.sin(ascAngle));
-}
-
-// Draw natal chart when astro screen visited
-const _origNav = nav;
-window.nav = function(key) {
-  _origNav(key);
-  if (key === 'astro') setTimeout(drawNatalChart, 50);
-};
+  var cio=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ animate(e.target); cio.unobserve(e.target);} });
+  },{threshold:0.5});
+  document.querySelectorAll('.counters b').forEach(function(el){cio.observe(el);});
+})();
 </script>
 </body>
 </html>
