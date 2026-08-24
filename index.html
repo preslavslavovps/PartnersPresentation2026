@@ -39,10 +39,8 @@ section,header{scroll-margin-top:60px}
 #progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--grad);z-index:60;transition:width .12s linear}
 .topbar{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.82);
   backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line)}
-.topbar-in{max-width:var(--maxw);margin:0 auto;padding:14px 24px;display:flex;align-items:center}
-.brand{font-family:'Sora',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.5px;color:var(--ink);display:flex;align-items:center;gap:1px}
-.brand .v{color:var(--ember);transform:scaleX(.9)}
-.brand-tag{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft)}
+.topbar-in{max-width:var(--maxw);margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:center}
+.brand-tag{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
 
 /* ---------- side dot nav ---------- */
 .dots{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:55;display:flex;flex-direction:column;gap:14px}
@@ -233,7 +231,6 @@ button:focus-visible,.tu-btn:focus-visible{outline:3px solid var(--sun);outline-
   section{padding:74px 22px}
   .hero{min-height:auto;padding:130px 22px 80px}
   .tu-readout{order:-1}
-  .brand-tag{display:none}
   .dots{display:none}
   .hero-stats div{min-width:calc(50% - 7px);flex:1}
 }
@@ -254,7 +251,6 @@ button:focus-visible,.tu-btn:focus-visible{outline:3px solid var(--sun);outline-
 
 <div class="topbar">
   <div class="topbar-in">
-    <span class="brand">e<span class="v">v</span>rotrust</span>
     <span class="brand-tag">Partner Program</span>
   </div>
 </div>
