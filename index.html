@@ -73,9 +73,7 @@ section{padding:104px 24px;position:relative}
   background:rgba(120,80,40,.12);border-radius:100px}
 .sep i{position:absolute;left:0;top:0;height:100%;width:0;background:var(--grad);border-radius:100px;
   box-shadow:0 0 14px rgba(245,130,31,.55);transition:width .12s linear}
-.sep i::after{content:'';position:absolute;right:-3px;top:50%;transform:translateY(-50%);width:9px;height:9px;
-  border-radius:50%;background:#fff;box-shadow:0 0 10px 2px rgba(245,130,31,.9);opacity:0;transition:opacity .25s}
-.sep i.on::after{opacity:1}
+.sep i::after{display:none}
 
 /* reveal */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
@@ -243,6 +241,52 @@ section{padding:104px 24px;position:relative}
 .uc-col li:first-child{border-top:0}
 .uc-col li::before{content:'';position:absolute;left:2px;top:16px;width:8px;height:8px;border-radius:50%;background:var(--flame)}
 
+/* ---------- shocking truth ---------- */
+.truth{padding:72px 24px}
+.truth-line{font-family:'Sora',sans-serif;font-weight:600;font-size:clamp(22px,3vw,34px);line-height:1.32;
+  letter-spacing:-.4px;color:var(--ink);max-width:20ch;margin:14px 0 0;max-width:900px}
+.truth-line b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800}
+
+/* ---------- outcomes (dark) ---------- */
+.outcomes{background:linear-gradient(180deg,#0b111b 0%,#131c2b 100%);color:#fff}
+.outcomes .eyebrow{color:var(--sun)}
+.outcomes .sec-title{color:#fff}
+.outcomes-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:52px;margin-top:46px;align-items:center}
+.outcomes-viz svg{width:100%;height:auto;filter:drop-shadow(0 20px 40px rgba(0,0,0,.4))}
+.obar{transform-box:fill-box;transform-origin:bottom;transform:scaleY(0);transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.obar.b2{transition-delay:.12s}
+.obar.b3{transition-delay:.24s}
+.outcomes.in .obar{transform:scaleY(1)}
+.oarrow{stroke-dasharray:760;stroke-dashoffset:760;transition:stroke-dashoffset 1.1s ease .35s}
+.outcomes.in .oarrow{stroke-dashoffset:0}
+.oc{padding:22px 0;border-top:1px solid rgba(255,255,255,.1)}
+.oc:first-child{border-top:0}
+.oc h3{color:#fff;font-size:23px;margin-bottom:6px}
+.oc h3 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.oc p{color:rgba(255,255,255,.68);font-size:15.5px;max-width:48ch;margin:0}
+
+/* ---------- why choose (accordion) ---------- */
+.acc{margin-top:40px;display:flex;flex-direction:column;gap:14px}
+.acc-item{background:#3a4552;border-radius:14px;overflow:hidden;border:1px solid rgba(0,0,0,.08);transition:background .25s}
+.acc-item.open{background:#414d5c}
+.acc-head{width:100%;text-align:left;background:none;border:0;cursor:pointer;color:#fff;
+  font-family:'Sora',sans-serif;font-weight:700;font-size:17px;padding:19px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.acc-head .ar{color:var(--flame);font-size:12px;transition:transform .3s;flex:none}
+.acc-item.open .acc-head .ar{transform:rotate(90deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.acc-body p{color:rgba(255,255,255,.82);font-size:15px;line-height:1.55;padding:0 24px 20px;margin:0}
+.acc-item.open .acc-body{max-height:240px}
+
+/* ---------- testimonial ---------- */
+.testimonial{background:var(--grad);color:#fff;overflow:hidden;position:relative}
+.testimonial::after{content:'';position:absolute;inset:0;background:radial-gradient(700px 400px at 85% 10%,rgba(255,255,255,.22),transparent 60%);pointer-events:none}
+.testimonial .wrap{position:relative;z-index:2;max-width:900px}
+.quote-mark{font-family:'Sora',sans-serif;font-weight:800;font-size:110px;line-height:.4;color:rgba(255,255,255,.45);height:56px}
+.testimonial blockquote{margin:0;font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(26px,3.8vw,46px);letter-spacing:-.6px;line-height:1.12;color:#fff;max-width:20ch}
+.testimonial .attr{margin-top:34px}
+.testimonial .attr b{font-family:'Sora',sans-serif;font-size:22px;color:#fff;display:block}
+.testimonial .attr span{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.85)}
+
 /* ---------- CTA ---------- */
 .cta{background:var(--grad);color:#fff;text-align:center;overflow:hidden;position:relative}
 .cta::after{content:'';position:absolute;inset:0;background:radial-gradient(700px 360px at 50% -20%,rgba(255,255,255,.25),transparent 60%);pointer-events:none}
@@ -267,6 +311,10 @@ button:focus-visible,.tu-btn:focus-visible{outline:3px solid var(--sun);outline-
   .tu-readout{order:-1}
   .dots{display:none}
   .hero-stats div{min-width:calc(50% - 7px);flex:1}
+  .hero .wrap{grid-template-columns:1fr;gap:36px}
+  .hero{min-height:auto;padding:118px 22px 64px}
+  .outcomes-grid{grid-template-columns:1fr;gap:30px}
+  .outcomes-viz{max-width:360px}
 }
 
 @media(max-width:480px){
@@ -297,6 +345,12 @@ button:focus-visible,.tu-btn:focus-visible{outline:3px solid var(--sun);outline-
   .step .num{width:44px;height:44px;font-size:13px}
   .mc{padding:24px;gap:12px}
   .counters{gap:16px}
+  .hero-kpis{grid-template-columns:1fr 1fr}
+  .btn{font-size:14px;padding:13px 20px}
+  .oc h3{font-size:20px}
+  .acc-head{font-size:15px;padding:16px 18px}
+  .truth-line{font-size:21px}
+  .testimonial blockquote{font-size:26px}
 }
 
 /* ---------- reduced motion ---------- */
@@ -306,6 +360,10 @@ button:focus-visible,.tu-btn:focus-visible{outline:3px solid var(--sun);outline-
   .scroll-cue .dot::after{animation:none}
   .hero-viz .arc{stroke-dashoffset:0;animation:none;opacity:.85}
   .hero-viz .hub,.hero-viz .ring,.hero-viz .mapdots circle{animation:none;opacity:1}
+  .obar{transition:none;transform:scaleY(1)}
+  .oarrow{transition:none;stroke-dashoffset:0}
+  .hero-card-head .live i{animation:none}
+  .acc-body{transition:none}
 }
 </style>
 </head>
@@ -340,7 +398,167 @@ button:focus-visible,.tu-btn:focus-visible{outline:3px solid var(--sun);outline-
   </div>
 </header>
 
+<!-- THE SHOCKING TRUTH -->
+<section class="reveal truth tint" id="s-truth">
+  <div class="wrap">
+    <div class="eyebrow">The shocking truth</div>
+    <p class="truth-line">If you don't have end-to-end <b>digital customer engagement</b>, you're already behind. We help partners master that shift — and put their clients on the winning side.</p>
+  </div>
+</section>
+
+<!-- ACHIEVE ENVIABLE OUTCOMES -->
+<section class="reveal outcomes" id="s-outcomes">
+  <div class="wrap">
+    <div class="eyebrow">Proven impact</div>
+    <h2 class="frame sec-title">Achieve enviable outcomes</h2>
+    <div class="outcomes-grid">
+      <div class="outcomes-viz">
+        <svg viewBox="0 0 420 330" aria-hidden="true">
+          <rect class="obar b1" x="40"  y="180" width="86" height="120" rx="10" fill="#ffd24a"/>
+          <rect class="obar b2" x="167" y="120" width="86" height="180" rx="10" fill="#ffab1c"/>
+          <rect class="obar b3" x="294" y="55"  width="86" height="245" rx="10" fill="#f5821f"/>
+          <path class="oarrow" d="M40,250 L165,205 L250,235 L385,70" fill="none" stroke="#1f9bb3" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+          <path class="oarrow" d="M340,70 L388,66 L384,116" fill="none" stroke="#1f9bb3" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="outcomes-list">
+        <div class="oc"><h3><span>+300%</span> Faster Growth</h3><p>Typical clients achieve +300% yearly digital growth with +10x improvements in process speed.</p></div>
+        <div class="oc"><h3><span>15x</span> Higher Margins</h3><p>Reduce customer-acquisition costs by 15x and average time-to-serve by 20x.</p></div>
+        <div class="oc"><h3>Lower Risk</h3><p>The highest compliance with the lowest friction — described by a CEE bank CEO as the fastest KYC-compliant solution on the market.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE EVROTRUST -->
+<section class="reveal tint" id="s-why-choose">
+  <div class="wrap">
+    <div class="eyebrow">The difference</div>
+    <h2 class="frame sec-title" style="color:var(--flame)">Why choose Evrotrust?</h2>
+    <p class="lead" style="margin-top:18px;max-width:760px">We are the only electronic identification scheme recognised by the EU Commission (eIDAS) that is fully remote, offers an automated solution, and can onboard individuals of any nationality.</p>
+    <div class="acc">
+      <div class="acc-item open">
+        <button class="acc-head">Unique eIDAS 2.0 Notified eID Scheme <span class="ar">▶</span></button>
+        <div class="acc-body"><p>Unlike other vendors, our eID is unique as it is just like a "Digital Passport". It is automatically accepted by all EU member states (reg. 910 eIDAS), obligatory accepted and soon used in cross-border travels. This also means that it is automatically AML compliant for KYC in all member states (5th AML Directive). The best part is that identification with eID scheme is not considered third-party reliance &amp; we bear the risk for wrongful identification (by law).</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head">Amazing Customer Experience <span class="ar">▶</span></button>
+        <div class="acc-body"><p>Omnichannel Qualified Trust Service Provider (QTSP) services enable uninterrupted, seamless and user-friendly digital interactions; all our services can be white-labeled as well. We can facilitate any type of integration: web-only, mobile SDK, API integration or no-integration at all.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head">True end-to-end Digital Journey <span class="ar">▶</span></button>
+        <div class="acc-body"><p>Have zero physical interactions with clients; start and finish each process digitally (eID &amp; sign with QES directly in web or app). This is the process that meets truly the client expectations and unlike other solutions, Evrotrust offers the same amazing user experience to citizens from over 60 different nationalities.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head">10x Cost and 15x Time Savings <span class="ar">▶</span></button>
+        <div class="acc-body"><p>Using QTSP for end-to-end customer onboarding and servicing significantly reduces operational costs and processing times. Our clients have reported: 10x cheaper to alternative processes and 15x faster with lower drop-off rates than the competition.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head">Scalability and Flexibility <span class="ar">▶</span></button>
+        <div class="acc-body"><p>Digital identity verification, electronic signatures, and secure authentication methods enable swift completion of contracts, agreements, and transactions for fast growing businesses. Applicable through the whole lifecycle journey of the client.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES + INTEGRATION (interactive) -->
+<style>
+  #s-services .svc-toggle{margin-top:40px}
+  #s-services .svc-panels{margin-top:34px}
+  #s-services .svc-panel{display:none}
+  #s-services .svc-panel.show{display:block;animation:svcfade .45s cubic-bezier(.16,1,.3,1)}
+  @keyframes svcfade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  #s-services .svc-grid{display:grid;gap:20px}
+  #s-services .svc-grid-4{grid-template-columns:repeat(4,1fr)}
+  #s-services .svc-grid-3{grid-template-columns:repeat(3,1fr)}
+  #s-services .svc-card{background:var(--paper);border:1px solid var(--line);border-radius:18px;
+    padding:26px 24px;display:flex;flex-direction:column;
+    transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s,border-color .3s}
+  #s-services .svc-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(245,130,31,.35)}
+  #s-services .svc-card.reco{border-color:rgba(245,130,31,.5);box-shadow:0 22px 54px -34px rgba(245,130,31,.75)}
+  #s-services .svc-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+  #s-services .svc-card h3{font-size:18px}
+  #s-services .svc-tu{font-size:13px;font-weight:600;color:var(--flame);background:var(--grad-soft);
+    border:1px solid rgba(245,130,31,.25);padding:5px 12px;border-radius:100px;white-space:nowrap}
+  #s-services .svc-cat{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
+  #s-services .svc-card p{color:var(--ink-soft);font-size:15px;line-height:1.55;margin:0;flex:1}
+  #s-services .svc-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  #s-services .svc-tags span{font-size:12px;color:var(--ink-soft);background:var(--cloud);
+    border:1px solid var(--line);padding:5px 11px;border-radius:8px}
+  #s-services .svc-note{margin-top:26px;font-size:14px;color:var(--ink-soft);line-height:1.55;max-width:760px}
+  #s-services .svc-note b{color:var(--ink);font-weight:600}
+  @media(max-width:900px){#s-services .svc-grid-4{grid-template-columns:1fr 1fr}#s-services .svc-grid-3{grid-template-columns:1fr}}
+  @media(max-width:560px){#s-services .svc-grid-4{grid-template-columns:1fr}}
+  @media(prefers-reduced-motion:reduce){#s-services .svc-panel.show{animation:none}#s-services .svc-card{transition:none}}
+</style>
 <div class="sep"><i></i></div>
+<section class="reveal tint" id="s-services">
+  <div class="wrap">
+    <div class="eyebrow">What we offer</div>
+    <h2 class="frame sec-title">The full trust stack — and how to ship it</h2>
+    <p class="lead">Four qualified services on one Trust Units wallet, delivered through the integration path that fits your architecture.</p>
+
+    <div class="svc-toggle tu-btns" id="svcToggle" role="tablist" aria-label="Services and integration">
+      <button class="tu-btn active" data-p="services" role="tab" aria-selected="true">What we offer</button>
+      <button class="tu-btn" data-p="integrate" role="tab" aria-selected="false">How to integrate</button>
+    </div>
+
+    <div class="svc-panels">
+      <!-- SERVICES -->
+      <div class="svc-panel show" data-panel="services" role="tabpanel">
+        <div class="svc-grid svc-grid-4">
+          <article class="svc-card">
+            <div class="svc-top"><h3>eID Verification</h3><span class="svc-tu mono">3 TU</span></div>
+            <p>Remote KYC/AML identity, eIDAS LoA High. 61 nationalities, verified in ~2 min.</p>
+          </article>
+          <article class="svc-card">
+            <div class="svc-top"><h3>Qualified eSignature</h3><span class="svc-tu mono">1 TU</span></div>
+            <p>Legally binding across all 27 EU member states. Issued automatically after eID.</p>
+          </article>
+          <article class="svc-card">
+            <div class="svc-top"><h3>Qualified eDelivery</h3><span class="svc-tu mono">1 TU</span></div>
+            <p>Certified document delivery. Tamper-proof audit trail, evidence kept 10 years.</p>
+          </article>
+          <article class="svc-card">
+            <div class="svc-top"><h3>2FA &amp; eTimestamp</h3><span class="svc-tu mono">0.05 / 0.02 TU</span></div>
+            <p>PSD2-SCA authentication and qualified proof of time.</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- INTEGRATION -->
+      <div class="svc-panel" data-panel="integrate" role="tabpanel">
+        <div class="svc-grid svc-grid-3">
+          <article class="svc-card">
+            <div class="svc-top"><h3>API Integration</h3><span class="svc-cat">Backend</span></div>
+            <p>Full control over logic. Server-to-server with JSON responses and webhooks.</p>
+            <div class="svc-tags"><span>High control</span><span>Build own UI</span><span>Any stack</span></div>
+          </article>
+          <article class="svc-card reco">
+            <div class="svc-top"><h3>Web SDK</h3><span class="svc-tu mono">Recommended</span></div>
+            <p>Embed a ready-made Evrotrust flow in any website. Fast integration, UI included.</p>
+            <div class="svc-tags"><span>Fast setup</span><span>Ready UI</span><span>Any browser</span></div>
+          </article>
+          <article class="svc-card">
+            <div class="svc-top"><h3>Mobile SDK</h3><span class="svc-cat">Native app</span></div>
+            <p>Native iOS / Android. Best UX and highest security — private key stays in the device HSM.</p>
+            <div class="svc-tags"><span>Best UX</span><span>NFC &amp; biometrics</span><span>iOS / Android</span></div>
+          </article>
+        </div>
+        <p class="svc-note">All paths are <b>eIDAS compliant</b> and legally binding across the EU. Integration starts with an <b>API Key</b> issued after the partner agreement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="reveal testimonial" id="s-testimonial">
+  <div class="wrap">
+    <div class="quote-mark">&ldquo;</div>
+    <blockquote>Achieved 10x faster customer onboarding than our previous process.</blockquote>
+    <div class="attr"><b>UBB, a KBC Group Bank</b><span>Head of Digital Channels</span></div>
+  </div>
+</section>
 
 <!-- MODELS -->
 <section class="reveal" id="s-models">
@@ -709,7 +927,7 @@ button:focus-visible,.tu-btn:focus-visible{outline:3px solid var(--sun);outline-
 
   /* side dot nav */
   var sections = Array.prototype.slice.call(document.querySelectorAll('section[id], header[id]'));
-  var labels = {'s-hero':'Intro','s-models':'Models','s-reseller':'Reseller','s-referral':'Earnings','s-tu':'Trust Units','s-why':'Why us','s-usecases':'Use-cases','s-cta':'Contact'};
+  var labels = {'s-hero':'Intro','s-truth':'Truth','s-outcomes':'Outcomes','s-why-choose':'Why choose','s-services':'Services','s-testimonial':'Clients','s-models':'Models','s-reseller':'Reseller','s-referral':'Earnings','s-tu':'Trust Units','s-why':'Why us','s-usecases':'Use-cases','s-cta':'Contact'};
   var dotsWrap = document.getElementById('dots');
   var dotBtns = sections.map(function(sec){
     var b=document.createElement('button');
@@ -766,6 +984,23 @@ button:focus-visible,.tu-btn:focus-visible{outline:3px solid var(--sun);outline-
     entries.forEach(function(e){ if(e.isIntersecting){ animate(e.target); cio.unobserve(e.target);} });
   },{threshold:0.5});
   document.querySelectorAll('.counters b').forEach(function(el){cio.observe(el);});
+
+  /* accordion (why choose) */
+  document.querySelectorAll('.acc-head').forEach(function(h){
+    h.addEventListener('click', function(){ h.parentNode.classList.toggle('open'); });
+  });
+
+  /* services / integration toggle */
+  var svcT=document.getElementById('svcToggle');
+  if(svcT){
+    svcT.addEventListener('click', function(e){
+      var b=e.target.closest('.tu-btn'); if(!b) return;
+      this.querySelectorAll('.tu-btn').forEach(function(x){ x.classList.remove('active'); x.setAttribute('aria-selected','false'); });
+      b.classList.add('active'); b.setAttribute('aria-selected','true');
+      var p=b.dataset.p;
+      document.querySelectorAll('#s-services .svc-panel').forEach(function(pan){ pan.classList.toggle('show', pan.dataset.panel===p); });
+    });
+  }
 })();
 </script>
 </body>
